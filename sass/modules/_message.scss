@@ -1,0 +1,192 @@
+/* Messages
+	========================================================================== */
+section.message {
+    .container {
+        max-width: 1400px;
+        
+        @include media(800px) {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        
+        .heading {
+            text-align: left;
+            position: relative;
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+            line-height: .9;
+            width: 100%;
+            @include font-size(27px);
+            
+            @include media(600px) {
+                font-size: 4.45vw;
+            }
+            
+            @include media(800px) {
+                font-size: 3.45vw;
+            }
+            
+            @include media($hd) {
+                @include font-size(42px);
+            }
+            
+            &::after {
+                position: absolute;
+                margin: 0;
+                padding: 0;
+                left: -125px;
+                bottom: 0;
+                width: 250px;
+            }
+        }
+        
+        h2 {
+            width: 100%;
+            @include font-size(32px);
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+            position: relative;
+            
+            &::after {
+                content: '';
+                height: 4px;
+                background: linear-gradient(to right, $orange, $red, $lilac, $blue, $teal, $yellow);
+		        background-size: 600% 600%;
+		        animation: gradient 30s ease-in-out infinite;
+                position: absolute;
+                margin: 0;
+                padding: 0;
+                left: -125px;
+                bottom: 0;
+                width: 250px;
+            }
+        }
+    }
+    .cover {
+        background-color: #DDD;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        @include aspect-ratio(16,10.0572);
+        
+        @include media(800px) {
+            width: 50%;
+            max-width: 700px;
+            align-self: stretch;
+        }
+        
+        img {
+            position: absolute;
+    		display: block;
+    		height: 100%;
+    		width: 100%;
+    		object-fit: cover;
+    		top: 50%;
+    		left: 50%;
+    		transform: translate(-50%, -50%) scale(1.01);
+    		transform-style: preserve-3d;
+    		transition: all .2s;
+        }
+        
+        &:hover {
+	        img {
+				transform: translate(-50%, -50%) scale(1.06);
+	        }
+        }
+    }
+    
+    .content {
+        padding: 30px 20px;
+        margin: auto;
+        max-width: 650px;
+        
+        @include media(550px) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        @include media(800px) {
+            margin: 0;
+            width: 50%;
+            max-width: 700px;
+            padding: 40px 0px 40px 40px;
+            display: block;
+        }
+        
+        @include media($desktop) {
+            display: flex;
+        }
+        
+        h3 {
+            line-height: 1.2;
+            margin-bottom: 15px;
+            @include font-size(22px);
+            
+            span {
+                text-transform: uppercase;
+            }
+        }
+        
+        .info {
+            @include media(550px) {
+                width: calc(100% - 180px);
+            }
+            @include media(800px) {
+                width: 100%;
+            }
+            @include media($desktop) {
+                width: calc(100% - 190px);
+            }
+            
+            a {
+                color: black;
+                text-transform: uppercase;
+                @include rem(letter-spacing,2px);
+            }
+        }
+        .meta {
+            text-align: left;
+            @include font-size(18px);
+            padding-top: 15px;
+            
+            @include media(550px) {
+                text-align: center;
+                @include font-size(24px);
+                padding-left: 20px;
+                border-left: 1px solid rgba(black,.1);
+            }
+            
+            @include media(800px) {
+                text-align: left;
+                @include font-size(18px);
+                padding-top: 20px;
+                padding-left: 0px;
+                border-left: none;
+            }
+            
+            @include media($desktop) {
+                text-align: center;
+                @include font-size(24px);
+                padding-top: 0;
+                padding-left: 30px;
+                border-left: 1px solid rgba(black,.1);
+            }
+            
+            strong {
+                display: block;
+                color: #ccc;
+                text-transform: uppercase;
+                font-weight: 800;
+                @include rem(letter-spacing, 2px);
+                margin-bottom: 8px;
+            }
+            .button {
+                padding-top: .9em;
+                padding-bottom: .9em;
+                width: 130px;
+            }
+        }
+    }
+}

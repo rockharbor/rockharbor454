@@ -1,0 +1,45 @@
+
+.pagination-infinite {
+	text-align: center;
+	display: block;
+}
+
+.page-load-status {
+	.infinite-scroll-request {
+		display: none;
+	}
+}
+
+.page-numbers.page-num {
+	display: none;
+}
+
+.page-numbers {
+	display: inline-block;
+	border: 1px solid #FFF;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+
+a.page-numbers {
+	display: inline-block;
+	border: 1px solid #DDD;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	
+	&:hover {
+		text-decoration: none;
+		background: $blue;
+		color: #FFF;
+		border-color: $blue;
+	}
+}

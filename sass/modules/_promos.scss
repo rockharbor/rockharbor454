@@ -1,0 +1,98 @@
+/* Promos
+	========================================================================== */
+section.promos {
+    .container {
+        max-width: 1200px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+        a {
+            text-decoration: none;
+            
+            p {
+                color: white;
+            }
+        }
+    }
+    
+    .promo {
+        background: #111;
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: white;
+        overflow: hidden;
+        
+        .image {
+            position: absolute;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+    		display: block;
+    		height: 100%;
+    		width: 100%;
+    		top: 0;
+    		left: 0;
+            z-index: 0;
+    		transform-style: preserve-3d;
+            transition: all .2s ease-in-out;
+            //opacity: .95;
+        }
+        
+        &.has-info .image {
+            opacity: .5;
+        }
+        
+        .info {
+            position: relative;
+            z-index: 1;
+            padding: 50px;
+            
+            h3 {
+                color: white;
+                margin-bottom: 10px;
+            }
+        }
+        
+        p:not(:last-child) {
+            margin-bottom: 15px;
+        }
+        
+        a:hover .image {
+            transform: scale(1.05);
+        }
+    }
+    
+    .single {
+        @include aspect-ratio(12,3);
+        width: 100%;
+        @include font-size(24px);
+        
+        & + .double, & + .double + .double {
+            margin-top: 40px;
+        }
+        
+        h3 {
+            @include font-size(54px);
+        }
+    }
+    
+    .double {
+        @include aspect-ratio(12,4.5);
+        @include font-size(20px);
+        align-self: stretch;
+        width: 100%;
+        margin-top: 40px;
+        
+        @include media(800px) {
+            width: calc(50% - 20px);
+            @include aspect-ratio(10,5.5);
+			margin-top: 0;
+        }
+        
+        h3 {
+            @include font-size(44px);
+        }
+    }
+}

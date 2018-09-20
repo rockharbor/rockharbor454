@@ -1,0 +1,28 @@
+/* Video
+	========================================================================== */
+section.video-plyr {
+    .container {
+        max-width: 1200px;
+        
+        h2.heading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 99;
+            width: 100%;
+            color: white;
+            @include font-size(18px);
+            padding: 30px;
+            opacity: 1;
+            transition: all .3s ease-in-out;
+        }
+    }
+    
+    .plyr {
+        position: relative;
+        
+        &.plyr--hide-controls .heading {
+            opacity: 0;
+        }
+    }
+}

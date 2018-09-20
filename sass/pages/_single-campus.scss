@@ -1,0 +1,197 @@
+/* Single Campus
+	========================================================================== */
+.campus-hero {
+    position: relative;
+    background-color: #111;
+    background-position: center;
+    background-size: cover;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(black,.6);
+    }
+    
+    // Container
+    .container {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 30px 20px 30px 20px;
+        min-height: 700px;
+        height: 100vh;
+        max-height: 900px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        h1 {
+            text-transform: uppercase;
+            color: white;
+            margin-bottom: 30px;
+            @include font-size(52px);
+            
+            @include media(500px) {
+                font-size: 10.49vw;
+            }
+            @include media(1100px) {
+                @include font-size(115px);
+            }
+        }
+    }
+    
+    // Info
+    .info {
+        margin: 0 auto 30px auto;
+        width: 100%;
+        border-top: 1px solid white;
+        color: white;
+        @include font-size(18px);
+        line-height: 1.4;
+        
+        @include media($tablet) {
+            min-width: 550px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        i {
+            @include font-size(32px);
+            width: 45px;
+        }
+        
+        strong {
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        span {
+            @include media($tablet) {
+                display: block;
+            }
+        }
+        
+        .address,
+        .times {
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            
+            @include media($tablet) {
+                width: 50%;
+            }
+        }
+        
+        .address {
+            padding-top: 25px;
+            
+            @include media($tablet) {
+                order: 2;
+                padding-left: 25px;
+                padding-bottom: 20px;
+            }
+        }
+        .times {
+            padding-top: 10px;
+            
+            @include media($tablet) {
+                justify-content: flex-end;
+                padding-top: 25px;
+                padding-right: 25px;
+                padding-bottom: 20px;
+                border-right: 1px solid white;
+                text-align: right;
+                
+                i {
+                    order: 2;
+                }
+            }
+        }
+    }
+    
+    // Other Info
+    ul.other-info {
+        @include font-size(18px);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: white;
+        display: flex;
+        justify-content: center;
+        
+        li {
+            line-height: 1;
+            padding: 0 15px;
+            
+            &:not(:last-child) {
+                border-right: 1px solid white;
+            }
+        }
+        
+        span {
+            color: $teal;
+            font-weight: 600;
+            display: inline-block;
+        }
+    }
+    
+    // Menu
+    .campus-menu {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(black,.80);
+        transition: transform .3s 0s, background .35s .0s;
+        transform: translate3d(0, 0, 0);
+        z-index: 2;
+        
+        &.scroll-to-fixed-fixed {
+            bottom: auto;
+            background: #111;
+            z-index: 11 !important;
+            
+            &.slide-down {
+                transform: translate3d(0, 86px, 0);
+                transition: transform .35s .05s, background .5s .35s;
+                border-top: 1px solid rgba(white,.1);
+            }
+            
+            body.admin-bar & {
+                top: 46px !important;
+                
+                @include media(783px) {
+                    top: 32px !important;
+                }
+            }
+        }
+        
+        ul {
+            max-width: $hd;
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            
+            li {
+                margin: 0 1%;
+            }
+            
+            a {
+                display: block;
+                color: white;
+                font-weight: 600;
+                @include font-size(18px);
+                line-height: 1;
+                padding: 23px 0;
+                text-decoration: none;
+            }
+        }
+    }
+}

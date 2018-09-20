@@ -1,0 +1,155 @@
+/* Expandable Banner
+	========================================================================== */
+section.expandable-banner {
+    padding-left: 0;
+    padding-right: 0;
+    
+    .container {
+        max-width: 100%;
+    }
+    
+
+    
+    .wrapper {
+        position: relative;
+        overflow: hidden;
+        
+        .cover {
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: absolute;
+            z-index: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transform: scale(1);
+            transition: all .3s ease-in-out;
+            
+            &.over {
+                transform: scale(1.1);
+            }
+            &.on {
+                transform: scale(1) !important;
+                //transition-delay: .5s;
+            }
+        }
+        
+        &::before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 200%;
+            z-index: 1;
+            background: linear-gradient(to right, black, rgba(black,0));
+            opacity: .6;
+            transition: all .2s;
+            
+            @include media($tablet) {
+                width: 100%;
+            }
+        }
+    }
+    
+    .accordionButton,
+    .accordionContent {
+        margin: auto;
+        max-width: 1240px;
+        padding: 0 20px;
+        position: relative;
+        z-index: 2;
+    }
+    .accordionButton {
+        
+        h3 {
+            color: white;
+            @include font-size(38px);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 60px 0;
+            
+            @include media(600px) {
+                font-size: 6.3vw;
+            }
+            @include media($tablet) {
+                padding: 100px 0;
+            }
+            @include media($desktop) {
+                padding: 140px 0;
+                @include font-size(60px);
+            }
+        }
+        
+        i {
+	        color: white;
+	        @include font-size(24px);
+	        border-radius: 40px;
+	        width: 40px;
+	        height: 40px;
+	        text-align: center;
+	        line-height: 37px;
+	        text-indent: 1px;
+	        pointer-events: none;
+	        opacity: 0;
+	        margin-left: 0;
+	        margin-top: 15px;
+	        transition: all .2s;
+	        position: absolute;
+	        
+	        &::before, &::after {
+		        content: '';
+		        position: absolute;
+		        background: white;
+	        }
+	        &::before {
+		        width: 19px;
+		        height: 3px;
+		        top: 18px;
+		        left: 11px;
+	        }
+	        &::after {
+		        height: 19px;
+		        width: 3px;
+		        left: 19px;
+		        top: 10px;
+		    }
+        }
+        
+        &:hover i,
+        &.on i {
+	        opacity: 1;
+	        margin-left: 15px;
+        }
+        &.on i {
+	        transform: rotate(-135deg);
+        }
+    }
+    
+    .accordionContent {
+        color: white;
+        padding-bottom: 60px;
+        margin-top: -40px;
+        opacity: 0;
+        transition: opacity .4s ease;
+        
+        @include media($tablet) {
+            padding-bottom: 100px;
+            margin-top: -70px;
+        }
+        @include media($desktop) {
+            padding-bottom: 140px;
+            margin-top: -110px;
+        }
+        
+        .content {
+            max-width: 600px;
+        }
+    }
+    
+    .on + .accordionContent {
+        opacity: 1;
+    }
+}

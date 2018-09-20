@@ -1,0 +1,302 @@
+/* Messages Page
+	========================================================================== */
+.series-archive {
+    padding: 0px 20px 50px 20px;
+    
+    @include media($tablet) {
+	    padding-bottom: 100px;
+    }
+    
+    .container {
+        max-width: $hd;
+        margin: auto;
+        
+        body.archive & {
+            max-width: $desktop;
+        }
+    }
+    
+    h1, h2 {
+        @include font-size(28px);
+        font-weight: 200;
+        text-align: center;
+        margin-bottom: 20px;
+        
+        @include media($tablet) {
+            @include font-size(34px);
+            margin-bottom: 30px;
+        }
+    }
+    h1 {
+        @include media($tablet) {
+            margin-bottom: 40px;
+        }
+    }
+    
+    ul.series {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        
+        li {
+            display: block;
+            @include row-machine(1,0px);
+            margin-bottom: 30px !important;
+            
+            @include media(600px) {
+                @include row-machine(2,10px);
+            }
+            @include media($tablet) {
+                @include row-machine(3,10px);
+            }
+            @include media($desktop) {
+                @include row-machine(3,30px);
+            }
+        }
+        
+        .cover {
+            @include aspect-ratio(16,9);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 5px;
+            background: #DDD;
+            
+            img {
+                position: absolute;
+        		display: block;
+        		height: 100%;
+        		width: 100%;
+        		object-fit: cover;
+        		top: 50%;
+        		left: 50%;
+        		transform: translate(-50%, -50%) scale(1.02);
+                opacity: 1;
+        		transform-style: preserve-3d;
+                transition: all .2s ease;
+            }
+        }
+        
+        a {
+            text-decoration: none;
+            
+            &:hover img {
+                transform: translate(-50%, -50%) scale(1.12);
+                //opacity: .5;
+            }
+        }
+        
+        .series-name a {
+	        color: #111;
+	        
+	        &:hover {
+		        color: $blue;
+	        }
+        }
+        
+        .date {
+            color: #999;
+            text-transform: uppercase;
+            @include font-size(13px);
+            letter-spacing: 1px;
+        }
+    }
+    
+    //// Tax Term Page
+    ul.series-term {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+        li {
+            width: 100%;
+            margin-bottom: 30px !important;
+            
+            @include media(550px) {
+                width: 49%;
+            }
+            
+            &:not(:last-child) {
+                margin-bottom: 15px;
+            }
+            
+            @include media($tablet) {
+                width: 100%;
+                margin: 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                align-items: center;
+                
+                &:not(:last-child) {
+                    border-bottom: 1px solid rgba(black,.1);
+                    padding-bottom: 15px;
+                }
+            }
+        }
+        
+        .cover {
+            display: block;
+            @include aspect-ratio(16,9);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 10px;
+            background: #000;
+            
+            @include media($tablet) {
+                @include aspect-ratio(16,10);
+                width: 40%;
+                margin-bottom: 0;
+                align-self: stretch;
+            }
+            
+            img {
+                position: absolute;
+        		display: block;
+        		height: 100%;
+        		width: 100%;
+        		object-fit: cover;
+        		top: 50%;
+        		left: 50%;
+        		transform: translate(-50%, -50%) scale(1.02);
+                opacity: 1;
+        		transform-style: preserve-3d;
+                transition: all .2s ease;
+            }
+        }
+        
+        h3 {
+            margin-bottom: 3px;
+            
+            @include media(550px) {
+                @include font-size(16px);
+            }
+            @include media($tablet) {
+                @include font-size(22px);
+            }
+            
+            a {
+                color: #222;
+            }
+        }
+        
+        .content {
+            @include media($tablet) {
+                width: calc(60% - 30px);
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+            @include media($desktop) {
+                width: calc(60% - 40px);
+            }
+        }
+        
+        .date {
+            color: #999;
+            @include font-size(15px);
+            
+            a {
+                color: $blue;
+                transition: all .2s;
+                
+                &:hover {
+                    color: #111;
+                }
+            }
+        }
+        
+        .description,
+        .scripture,
+        .tags {
+            display: none;
+            
+            @include media($tablet) {
+                display: block;
+            }
+        }
+        
+        .description {
+            padding-top: 20px;
+        }
+        
+        .tags {
+            
+            strong {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            a {
+                @include font-size(14px);
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 5px;
+                border: 1px solid $blue;
+                border-radius: 2px;
+                color: $blue;
+                padding: 0 5px;
+                text-decoration: none;
+                transition: all .2s;
+                
+                &:hover {
+                    background: $blue;
+                    color: white;
+                }
+            }
+        }
+        
+        a {
+            text-decoration: none;
+            
+            &:hover img {
+                transform: translate(-50%, -50%) scale(1.12);
+                opacity: .5;
+            }
+        }
+    }
+    
+    //// Filters
+    .filters {
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: center;
+        
+        .filter {
+            position: relative;
+            margin: 0 5%;
+            border-bottom: 1px solid rgba(black,.1);
+            width: 175px;
+            
+            &::before {
+                content: '\f107';
+                font-family: "Font Awesome 5 Free";
+                font-weight: bold;
+                position: absolute;
+                top: calc(50% - 8px);
+                right: 5px;
+                line-height: 1;
+                color: #999;
+                pointer-events: none;
+            }
+        }
+        
+        select {
+            outline: none;
+            appearance: none;
+            border: none;
+            background: white;
+            @include font-size(18px);
+            width: 100%;
+        }
+    }
+}
+
+.next-page-loader {
+	width: 45px;
+	display: block;
+	margin: 1em auto;
+}

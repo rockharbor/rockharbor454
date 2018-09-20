@@ -1,0 +1,157 @@
+/* Footer
+	========================================================================== */
+.site-footer {
+    background: #000;
+    
+    &::before {
+        display: block;
+        content: '';
+        height: 8px;
+        background: linear-gradient(to right, $orange, $red, $lilac, $blue, $teal, $yellow);
+        background-size: 600% 600%;
+        animation: gradient 30s ease-in-out infinite;
+    }
+}
+
+////// Footer Info
+.footer-info {
+    margin: auto;
+    max-width: 1200px;
+    padding: 50px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    @include media($tablet) {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    
+    a {
+        text-decoration: none;
+        color: white;
+        transition: all .2s;
+        
+        &:hover {
+            color: $lilac;
+        }
+    }
+    
+    // Social
+    .social {
+        margin-bottom: 40px;
+        
+        @include media($tablet) {
+            order: 2;
+        }
+        
+        a {
+            display: inline-block;
+            margin: 0 10px;
+            @include font-size(22px);
+            
+            @include media($tablet) {
+                margin: 0 15px;
+            }
+        }
+        
+        .fa-twitter:hover {
+            color: #1997F0 !important;
+        }
+        .fa-facebook-f:hover {
+            color: #395CA9 !important;
+        }
+        .fa-instagram:hover {
+            color: #E02D40 !important;
+        }
+    }
+    
+    // Footer Navigation
+    .footer-menu {
+        margin: 0 0 40px 0;
+        padding: 0;
+        list-style: none;
+        
+        @include media($tablet) {
+            order: 1;
+        }
+        
+        li {
+            display: inline-block;
+        }
+        
+        a {
+            color: white;
+            margin: 0 10px;
+            
+            @include media($tablet) {
+                margin: 0 30px 0 0;
+            }
+        }
+    }
+    
+    // App Store Badges
+    .app-store {
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 250px;
+        justify-content: space-around;
+        
+        @include media($tablet) {
+            order: 3;
+        }
+        
+        h5 {
+            width: 100%;
+            color: white;
+            font-weight: 400;
+            margin-bottom: 10px;
+            @include font-size(16px);
+        }
+        
+        a {
+            width: 48%;
+            filter: grayscale(1);
+            opacity: .6;
+            transition: all .2s;
+            
+            &:hover {
+                filter: grayscale(0);
+                opacity: 1;
+            }
+        }
+    }
+}
+
+////// Site Info
+.site-info {
+    text-align: center;
+    @include font-size(12px);
+    text-transform: uppercase;
+    @include rem(letter-spacing, 1px);
+    color: #333;
+    border-top: 1px solid rgba(white,.1);
+    padding: 25px 20px;
+    
+    span {
+        letter-spacing: 0;
+        margin: 0 10px;
+        display: inline-block;
+        height: 12px;
+        width: 1px;
+        background: rgba(white,.1);
+        vertical-align: middle;
+    }
+    
+    a {
+        color: #333;
+        transition: all .2s;
+        text-decoration: none;
+        
+        &:hover {
+            color: #777;
+        }
+    }
+}

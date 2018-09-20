@@ -1,0 +1,49 @@
+/* Content
+	========================================================================== */
+section.content {
+    .content {
+        blockquote {
+            @include rem(margin-bottom, 30px);
+            @include font-size(22px);
+            text-align: center;
+            padding: 0;
+            font-weight: 600;
+            margin: 0 0 30px 0;
+            
+            p {
+                max-width: $tablet;
+                margin: auto;
+                line-height: 1.2;
+            }
+            
+            &::before {
+                display: none;
+            }
+            
+            &::after {
+                display: block;
+                content: '';
+                width: 130px;
+                height: 4px;
+                background: linear-gradient(to right, $orange, $red, $lilac, $blue, $teal, $yellow);
+		        background-size: 600% 600%;
+		        animation: gradient 30s ease-in-out infinite;
+                
+                margin: auto;
+                margin-top: 30px;
+            }
+            
+            h2 {
+                line-height: 1.1;
+                @include font-size(29px);
+                
+                @include media(560px) {
+                    font-size: 5.20vw;
+                }
+                @include media($desktop) {
+                    @include font-size(50px);
+                }
+            }
+        }
+    }
+}

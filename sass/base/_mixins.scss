@@ -1,0 +1,299 @@
+//—————————————————————————————————————————————— Button
+@mixin button {
+	background: white;
+	color: #444;
+	border: none;
+	transition: all .2s ease-in-out;
+	outline: none;
+	border-radius: 0px;
+	display: block;
+	line-height: 1;
+	padding: 1em 1.350em;
+	appearance: none;
+	cursor: pointer;
+	text-align: center;
+	font-weight: 600;
+	@include font-size(18px);
+	text-decoration: none !important;
+	text-align: center;
+	box-shadow: inset 0 0 0px 1px rgba(black,.1);
+	
+	@include media($tablet) {
+		display: inline-block;
+	}
+	
+	&:hover {
+		background: rgba(black,.04);
+	}
+	
+	&.outline {
+		color: #333 !important;
+		background: none !important;
+		border-width: 4px;
+		border-style: solid;
+		border-color: #ccc;
+		box-shadow: none;
+		
+		&:hover {
+			background: #ccc !important;
+		}
+	}
+	
+	&.blue {
+		box-shadow: none;
+		color: #fff;
+		background: $blue;
+		box-shadow: none;
+		&:hover { background: darken($blue,10%);}
+		
+		&.outline {
+			border-color: $blue;
+			
+			&:hover {
+				color: white !important;
+				background: $blue !important;
+			}
+		}
+	}
+	&.lilac {
+		box-shadow: none;
+		color: #fff;
+		background: $lilac;
+		box-shadow: none;
+		&:hover { background: darken($lilac,10%);}
+		
+		&.outline {
+			border-color: $lilac;
+			
+			&:hover {
+				color: white !important;
+				background: $lilac !important;
+			}
+		}
+	}
+	&.red {
+		box-shadow: none;
+		color: #fff;
+		background: $red;
+		box-shadow: none;
+		&:hover { background: darken($red,10%);}
+		
+		&.outline {
+			border-color: $red;
+			
+			&:hover {
+				color: white !important;
+				background: $red !important;
+			}
+		}
+	}
+	&.orange {
+		box-shadow: none;
+		color: #fff;
+		background: $orange;
+		box-shadow: none;
+		&:hover { background: darken($orange,10%);}
+		
+		&.outline {
+			border-color: $orange;
+			
+			&:hover {
+				color: white !important;
+				background: $orange !important;
+			}
+		}
+	}
+	&.teal {
+		box-shadow: none;
+		color: #fff;
+		background: darken($teal,20%);
+		box-shadow: none;
+		&:hover { background: darken($teal,30%);}
+		
+		&.outline {
+			border-color: $teal;
+			
+			&:hover {
+				color: white !important;
+				background: $teal !important;
+			}
+		}
+	}
+	&.yellow {
+		box-shadow: none;
+		color: #fff;
+		background: darken($yellow,15%);
+		box-shadow: none;
+		&:hover { background: darken($yellow,25%);}
+		
+		&.outline {
+			border-color: darken($yellow,15%);
+			
+			&:hover {
+				color: white !important;
+				background: darken($yellow,15%) !important;
+			}
+		}
+	}
+}
+// @include button;
+
+//—————————————————————————————————————————————— Rows
+@mixin row-machine($numPerRow, $margin) {
+	width: calc(#{(100% / $numPerRow)} - #{(($numPerRow - 1) * $margin)/$numPerRow});
+	//float: left;
+
+	&:nth-child(n) {
+		margin-bottom: $margin;
+		margin-right: $margin;
+	}
+	&:nth-child(#{$numPerRow}n) {
+		margin-right: 0;
+	}
+}
+// @include row-machine(4,10px); //pixel & percentage margin
+
+/*@mixin row-machine($numPerRow, $margin) { // Use in the parent container
+	@include clearfix();
+	display: block;
+	> * {
+		width: calc(#{(100% / $numPerRow)} - #{(($numPerRow - 1) * $margin)/$numPerRow});
+		float: left;
+
+		&:nth-child(n) {
+			margin-bottom: $margin;
+			margin-right: $margin;
+		}
+		&:nth-child(#{$numPerRow}n) {
+			margin-right: 0;
+		}
+	}
+}*/
+// @include row-machine(4,10px); //pixel & percentage margin
+
+/*@mixin row-machine($numPerRow, $margin) {
+	width: ((100% - (($numPerRow - 1) * $margin)) / $numPerRow);
+	&:nth-child(n) {
+		margin-bottom: $margin;
+		margin-right: $margin;
+	}
+	&:nth-of-type(#{$numPerRow}n) {
+		margin-right: 0;
+	}
+}
+*/
+// @include row-machine(4,5%); //percentage margin only
+
+//—————————————————————————————————————————————— Aspect Ratio
+@mixin aspect-ratio($ratio-or-width, $height: null) {
+	$padding: if($height, percentage($height/$ratio-or-width), percentage(1/$ratio-or-width));
+	&:before { content:''; float: left; padding-bottom: $padding;  }
+	&:after  { content:''; display: table; clear: both;  }
+}
+// @include aspect-ratio(9,16);
+// @include aspect-ratio(70%,30%);
+
+//—————————————————————————————————————————————— Selection
+@mixin selection($bg){
+	* {
+    	&::-moz-selection { background: $bg; }
+	    &::-webkit-selection { background: $bg; }
+    	&::selection { background: $bg; }
+	}
+}
+// @include selection(#000000);
+
+//—————————————————————————————————————————————— Center block
+@mixin center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+//@mixin center-block($size) {
+	//display: block;
+	//max-width: $size;
+	//margin-left: auto;
+	//margin-right: auto;
+//}
+// @include center-block($desktop);
+
+//—————————————————————————————————————————————— Media Query
+@mixin media ($size) {
+	@media screen and (min-width: $size ) {
+		@content;
+	}
+}
+// @include media($desktop);
+
+@mixin media-between ($sizemin, $sizemax) {
+	@media (min-width: $sizemin ) and (max-width: $sizemax) {
+		@content;
+	}
+}
+// @include media-between($tablet, $desktop);
+
+@mixin media-height ($size) {
+	@media screen and ( min-height: $size ){
+		@content;
+	}
+}
+// @include media-height($tablet);
+
+//—————————————————————————————————————————————— Visiblity
+@mixin visible {
+    opacity: 1;
+    filter: alpha(opacity=100);
+    visibility: visible;
+}
+// @include visible;
+
+@mixin invisible {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    visibility: hidden;
+}
+// @include invisible;
+
+//—————————————————————————————————————————————— Reset
+@mixin nth-reset($nth) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter(); }
+  &:nth-child(#{$nth}+1) { clear: none }
+}
+// @include nth-reset(3);
+
+//—————————————————————————————————————————————— Vertical Align
+@mixin vertical-align {
+	&:before {
+		content: '';
+    	display: inline-block;
+    	vertical-align: middle;
+    	height: 100%; width: .1px;
+	}
+}
+// @include vertical-align; // this goes in the parent element
+
+//—————————————————————————————————————————————— Truncate
+@mixin truncate-text($overflow: ellipsis){
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: $overflow; // values are: clip, ellipsis, or a string
+}
+// @include truncate-text(ellipsis);
+
+
+//—————————————————————————————————————————————— PX to REM
+@function calculate-rem($size) {
+	$remSize: $size / 16px;
+	@return #{$remSize}rem;
+}
+@mixin rem($property, $value) {
+	#{$property}: $value;
+	#{$property}: calculate-rem($value);
+}
+// @include rem(padding, 30px);
+
+@mixin font-size($value) {
+	font-size: $value;
+	font-size: calculate-rem($value);
+}
+// @include font-size(30px);

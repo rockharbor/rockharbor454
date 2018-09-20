@@ -1,0 +1,234 @@
+/* Search Results
+	========================================================================== */
+body.search {
+    
+    //// Page Heading
+    section.page-header {
+        padding-top: 110px;
+        
+        @include media($tablet) {
+            padding-top: 140px;
+        }
+        @include media($desktop) {
+            padding-top: 140px;
+        }
+        
+        h1.heading {
+            small {
+                display: block;
+                font-weight: 300;
+                color: #777;
+                font-size: 50%;
+                margin-bottom: 10px;
+            }
+            @include font-size(44px);
+            
+            @include media($tablet) {
+                @include font-size(54px);
+            }
+            
+            [type="search"] {
+                padding: 0 !important;
+                line-height: .5;
+                @include font-size(44px);
+                text-align: center;
+                color: #888;
+                height: auto;
+                border: none !important;
+                
+                &:focus {
+                    color: #222;
+                }
+                
+                @include media($tablet) {
+                    @include font-size(54px);
+                }
+            }
+            [type="submit"] {
+                display: none !important;
+            }
+        }
+    }
+    //// No Results
+    .no-results {
+        text-align: center;
+        
+        h2 {
+            margin-bottom: 10px;
+        }
+    }
+    
+    //// Post
+    article {
+        margin: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        
+        &:not(:first-child) {
+            padding-top: 20px;
+        }
+        &:not(:nth-last-of-type(-n+1)) {
+            border-bottom: 1px solid rgba(black,.1);
+            padding-bottom: 20px;
+        }
+        
+        h2 {
+            margin-bottom: 5px;
+        }
+        
+        a {
+            transition: all .2s;
+            outline: none;
+            text-decoration: none;
+            color: #333;
+            
+            &:hover {
+                color: $blue;
+            }
+        }
+    }
+}
+
+article.type-campus {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    figure {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 175px;
+        
+        img {
+            display: block;
+        }
+        
+        .alt-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .2s;
+        }
+    }
+    .content {
+        width: calc(100% - 200px);
+        
+        .meta {
+            margin-bottom: 10px;
+            color: #999;
+        }
+        
+        .other-info {
+            margin: 0;
+            padding: 10px 0 0 0;
+            list-style: none;
+        }
+    }
+}
+
+article.type-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    figure {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 175px;
+        
+        img {
+            display: block;
+        }
+        
+        .alt-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .2s;
+        }
+    }
+    .content {
+        width: calc(100% - 200px);
+        
+        .meta {
+            margin-bottom: 10px;
+            color: #999;
+        }
+    }
+}
+
+article.type-staff {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    figure {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 175px;
+        
+        img {
+            display: block;
+        }
+        
+        .alt-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .2s;
+        }
+    }
+    
+    &:hover {
+        .alt-image {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+    
+    .content {
+        width: calc(100% - 200px);
+        
+        h2 {
+            
+            small {
+                font-weight: 300;
+                color: #777;
+            }
+        }
+        
+        span {
+            display: block;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+article.type-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    figure {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 175px;
+        
+        img {
+            display: block;
+        }
+    }
+    .content {
+        width: calc(100% - 200px);
+    }
+}

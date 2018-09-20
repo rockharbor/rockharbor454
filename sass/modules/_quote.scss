@@ -1,0 +1,123 @@
+/* Quotes
+	========================================================================== */
+section.quote {
+    padding: 40px 20px;
+    
+    @include media($tablet) {
+        padding: 80px 30px;
+    }
+    
+    blockquote {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+        
+        p {
+            margin-bottom: 0;
+            line-height: 1.1;
+            @include font-size(34px);
+            
+            @include media(500px) {
+                font-size: 6.7vw;
+            }
+            
+            @include media($desktop) {
+                @include font-size(64px);
+            }
+            
+            &.gradient-one {
+                background: linear-gradient(to right, $orange, $red);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            &.gradient-two {
+                background: linear-gradient(to right, $red, $lilac);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            &.gradient-three {
+                background: linear-gradient(to right, $lilac, $blue);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            &.gradient-four {
+                background: linear-gradient(to right, $blue, $teal);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            &.gradient-five {
+                background: linear-gradient(to right, $teal, $yellow);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            &.gradient-six {
+                background: linear-gradient(to right, $yellow, $orange);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+        
+        body.ie  & {
+            p {
+                background: transparent;
+                -webkit-background-clip: none;
+            }
+            p.gradient-one {
+                color: $orange;
+                -webkit-text-fill-color: $orange;
+            }
+            p.gradient-two {
+                color: $red;
+                -webkit-text-fill-color: $red;
+            }
+            p.gradient-three {
+                color: $lilac;
+                -webkit-text-fill-color: $lilac;
+            }
+            p.gradient-four {
+                color: $blue;
+                -webkit-text-fill-color: $blue;
+            }
+            p.gradient-five {
+                color: $teal;
+                -webkit-text-fill-color: $teal;
+            }
+            p.gradient-six {
+                color: $yellow;
+                -webkit-text-fill-color: $yellow;
+            }
+        }
+        
+        small {
+            display: block;
+            padding-top: 20px;
+            font-weight: 600;
+            @include font-size(14px);
+            text-transform: uppercase;
+            
+            @include media($tablet) {
+                padding-top: 30px;
+                @include font-size(17px);
+            }
+        }
+    }
+    
+    .slick-dots {
+        position: static;
+        transform: translateX(0);
+        padding: 30px 15px 0 15px;
+        
+        li {
+            &::before {
+                background: rgba(black,.2);
+                box-shadow: none;
+            }
+            &:hover {
+                &::before {
+                    background: rgba(black,.6);
+                }
+            }
+        }
+    }
+}

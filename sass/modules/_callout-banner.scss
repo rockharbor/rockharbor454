@@ -1,0 +1,130 @@
+/* Callout Banner
+	========================================================================== */
+section.callout {
+    .container {
+        max-width: 1200px;
+    }
+    
+    &.full-width {
+        padding-left: 0;
+        padding-right: 0;
+        
+        .container {
+            max-width: 100%;
+            
+            .info {
+                width: 100%;
+                max-width: 1100px;
+                margin: auto;
+            }
+        }
+    }
+    
+    &.vertical-spacing {
+        .banner {
+            &:not(:last-child) {
+                margin-bottom: 20px;
+                
+                @include media($tablet) {
+                    margin-bottom: 40px;
+                }
+            }
+        }
+    }
+    
+    .banner {
+        background-color: #111;
+        position: relative;
+        
+        a {
+            display: flex;
+            align-items: center;
+            @include aspect-ratio(12,2.25);
+            text-decoration: none;
+            color: white;
+            
+            .image {
+                position: absolute;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                top: 0; right: 0; bottom: 0; left: 0;
+                z-index: 0;
+                opacity: .5;
+            }
+            
+            /*
+            @include media(1260px) {
+                min-height: 225px;
+                
+                &::before,
+                &::after {
+                    display: none;
+                }
+            }
+            */
+        }
+        
+        .info {
+            padding: 50px;
+            @include font-size(22px);
+            position: relative;
+            z-index: 1;
+            
+            h3 {
+                color: white;
+                margin: 0;
+                @include font-size(38px);
+                
+                @include media(600px) {
+                    font-size: 6.3vw;
+                }
+                @include media($desktop) {
+                    @include font-size(60px);
+                }
+            }
+            p {
+                padding-top: 5px;
+                line-height: 1.1;
+            }
+        }
+        
+        .label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, $teal 0%, $blue 100%);
+            opacity: 0;
+            transition: all .25s;
+            transform: scale(.9);
+            z-index: 3;
+            cursor: pointer;
+            
+            &:hover {
+                opacity: 1;
+                transform: scale(1);
+            }
+            
+            span {
+                width: 80px;
+                height: 80px;
+                background: white;
+                border-radius: 100px;
+                text-align: center;
+                line-height: 1;
+                color: #2CB6D3;
+                position: absolute;
+                top: calc(50% - 40px);
+                left: calc(50% - 40px);
+                text-transform: uppercase;
+                font-weight: 700;
+                @include rem(letter-spacing, 1px);
+                @include font-size(18px);
+                padding-top: 22px;
+                text-transform: uppercase;
+            }
+        }
+    }
+}

@@ -1,0 +1,348 @@
+/* Home Header
+	========================================================================== */
+section.home-header {
+    width: 100%;
+    min-height: 700px;
+    height: 100vh;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    
+    body.admin-bar & {
+        height: calc(100vh - 46px);
+        
+        @include media(783px) {
+            height: calc(100vh - 32px);
+        }
+    }
+    
+    .video {
+        z-index: 0;
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transform-style: preserve-3d;
+        opacity: .6;
+        transition: all .35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        
+        body.callout-on & {
+            opacity: .2;
+            filter: blur(2px);
+        }
+    }
+    
+    .container {
+        max-width: $tablet;
+        text-align: center;
+        padding: 140px 20px 30px 20px;
+        position: relative;
+        z-index: 2;
+        transition: all .3s;
+        top: 0;
+        
+        body.callout-on & {
+            padding-top: 40px;
+            transition-delay: .2s;
+        }
+        
+        h2 {
+            color: white;
+            @include font-size(52px);
+            line-height: .85;
+            transition:
+                opacity .35s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+                visibility .35s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+                filter .35s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+                transform .35s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+                margin .35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+            
+            @include media(500px) {
+                font-size: 10.49vw;
+            }
+            @include media(1100px) {
+                @include font-size(115px);
+            }
+            
+            span {
+                color: $red;
+            }
+            
+            body.callout-on & {
+                opacity: 0;
+                visibility: hidden;
+                filter: blur(5px);
+                transform: scale(.8);
+                margin-bottom: -175px;
+            }
+        }
+    }
+    
+    // Callout
+    .callout {
+        position: relative;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        transition: all .35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+        max-width: 475px;
+        margin: auto;
+        
+        @include media(645px) {
+            max-width: 585px;
+        }
+        
+        h3 {
+            display: none;
+            text-align: left;
+            width: 110px;
+            color: white;
+            text-transform: uppercase;
+            
+            @include media(645px) {
+                display: block;
+            }
+        }
+        
+        .callout-slider {
+            color: white;
+            @include font-size(18px);
+            height: 150px;
+            position: relative;
+            max-width: 475px;
+            z-index: 1;
+            
+            
+            
+            .slick-arrow {
+                position: absolute;
+                right: -8px;
+                z-index: 2;
+                width: 20px;
+                line-height: 1;
+                cursor: pointer;
+                
+                &.slick-prev {
+                    top: 56px;
+                }
+                &.slick-next {
+                    bottom: 56px;
+                }
+            }
+            
+            .slick-list {
+                padding: 0 !important;
+                height: 150px !important;
+            }
+            
+            .slick-slide {
+                height: 50px;
+                display: flex;
+                align-items: center;
+                opacity: 0;
+                visibility: hidden;
+                filter: blur(1px);
+                width: 100% !important;
+                transition: all .35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+                outline: none !important;
+                
+                body.callout-on & {
+                    opacity: .5;
+                    visibility: visible;
+                }
+                
+                &.slick-current {
+                    opacity: 1;
+                    filter: blur(0);
+                    visibility: visible;
+                    
+                    body.callout-on & {
+                        opacity: 1;
+                        
+                        a {
+	                        pointer-events: all;
+                        }
+                        
+                        a:hover i {
+	                        opacity: 1;
+	                        margin-left: 10px;
+                        }
+                    }
+                }
+                
+                a {
+                    display: block;
+                    padding: 5px 20px;
+                    color: white;
+                    text-decoration: none;
+                    outline: 0px !important;
+                    pointer-events: none;
+                    
+                    i {
+	                    transition: all .3s;
+	                    opacity: 0;
+	                    margin-left: 0px;
+                    }
+                }
+            }
+        }
+        
+        .left-border {
+	        width: 4px;
+	        height: 60px;
+	        background: $blue;
+	        position: absolute;
+	        left: 0;
+	        
+	        @include media(645px) {
+		        left: 110px;
+	        }
+	        
+	        &::before {
+		        content: '';
+		        display: block;
+		        width: 100%;
+		        height: 60px;
+		        background: $lilac;
+		        animation: fadeoutin 15s ease-in-out infinite;
+	        }
+        }
+        
+        .top-border,
+        .bottom-border {
+	        height: 4px;
+	        width: auto;
+	        position: absolute;
+	        background: linear-gradient(to right, $blue, $yellow);
+	        left: 0;
+	        right: 0;
+	        
+	        @include media(645px) {
+		        left: 110px;
+	        }
+	        
+	        &::before {
+		        content: '';
+		        display: block;
+		        width: 100%;
+		        height: 4px;
+		        background: linear-gradient(to right, $lilac, $red);
+		        animation: fadeoutin 15s ease-in-out infinite;
+	        }
+	    }
+        .top-border {
+	        top: 45px;
+        }
+	    .bottom-border {
+		    top: 101px;
+	    }
+        
+        .right-border-top,
+        .right-border-bottom {
+            position: absolute;
+            top: calc(50% - 30px);
+            height: 60px;
+            right: 0px;
+            width: 4px;
+            z-index: 0;
+            
+            &::before,
+            &::after, {
+                content: '';
+                width: 100%;
+                height: 11px;
+                position: absolute;
+                left: 0;
+            }
+            &::before {
+                background: $yellow;
+                z-index: 1;
+            }
+            &::after {
+                animation: fadeoutin 15s ease-in-out infinite;
+                background: $red;
+                z-index: 2;
+            }
+        }
+        .right-border-top {
+            &::before,
+            &::after {
+                top: 0;
+            }
+        }
+        .right-border-bottom {
+            &::before,
+            &::after {
+                bottom: 0;
+            }
+        }
+        
+        .callout-toggle {
+            position: absolute;
+            z-index: 100;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            display: block;
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: calc(50% - 30px);
+                width: 100%;
+                right: 0;
+                height: 60px;
+                cursor: pointer;
+            }
+            
+            body.callout-on & {
+                display: none;
+            }
+        }
+    }
+    
+    .close-callout {
+        @include invisible;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        transition: all .2s;
+        cursor: pointer;
+        
+        &::before,
+        &::after {
+            content: '';
+            width: 32px;
+            height: 3px;
+            background: white;
+            position: absolute;
+            top: 50px;
+            right: 40px;
+        }
+        
+        &::before {
+            transform: rotate(-45deg);
+        }
+        &::after {
+            transform: rotate(45deg);
+        }
+        
+        
+        body.callout-on & {
+            @include visible;
+        }
+    }
+}

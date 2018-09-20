@@ -1,0 +1,95 @@
+/* Tabs
+	========================================================================== */
+section.tabs {
+    ul.tab-labels {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        
+        @include media($tablet) {
+            display: table;
+            width: 100%;
+            border-collapse: separate;
+        }
+        
+        li {
+            display: block;
+            height: auto;
+            margin-bottom: 1px;
+            
+            @include media($tablet) {
+                display: table-cell;
+                
+                &:not(:last-child) a {
+                    margin-right: 1px;
+                }
+            }
+            
+            &.orange a{
+                background: $orange;
+                &:hover { background: darken($orange,15%); }
+                
+                &.active { background: darken($orange,15%); }
+            }
+            &.red a{
+                background: $red;
+                &:hover { background: darken($red,15%); }
+                
+                &.active { background: darken($red,15%); }
+            }
+            &.lilac a{
+                background: $lilac;
+                &:hover { background: darken($lilac,15%); }
+                
+                &.active { background: darken($lilac,15%); }
+            }
+            &.blue a{
+                background: $blue;
+                &:hover { background: darken($blue,15%); }
+                
+                &.active { background: darken($blue,15%); }
+            }
+            &.teal a{
+                background: $teal;
+                &:hover { background: darken($teal,15%); }
+                
+                &.active { background: darken($teal,15%); }
+            }
+            &.yellow a{
+                background: darken($yellow,5%);;
+                &:hover { background: darken($yellow,15%); }
+                
+                &.active {
+                    background: darken($yellow,15%);
+                }
+            }
+            
+            a {
+                transition: all .2s;
+                display: block;
+                padding: 10px 20px;
+                color: white;
+                @include font-size(18px);
+                line-height: 1.2;
+                font-weight: 600;
+                text-decoration: none;
+                
+                @include media($tablet) {
+                    padding: 20px 10px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    div.tab-contents {
+        background: rgba(black,.05);
+        
+        .tab-wrapper {
+            padding: 50px;
+            
+            @include media($tablet) {
+                padding: 70px;
+            }
+        }
+    }
+}

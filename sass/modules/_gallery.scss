@@ -1,0 +1,185 @@
+/* Gallery
+	========================================================================== */
+section.gallery {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 0;
+    
+    .container {
+        max-width: 100%;
+        
+        .heading {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 1000px;
+        }
+    }
+    
+    .gallery-grid {
+        margin: -10px auto;
+        max-width: 1220px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        
+        &.col-single {
+            div {
+                @include aspect-ratio(10,6);
+                width: 100%;
+                margin-left: 0;
+                margin-left: 0;
+            }
+        }
+        &.col-large {
+            div {
+                width: calc(50% - 20px);
+            }
+        }
+        &.col-medium {
+            div {
+                width: calc(50% - 20px);
+                
+                @include media($tablet) {
+                    width: calc(33.3333% - 20px);
+                }
+            }
+        }
+        &.col-small {
+            div {
+                width: calc(50% - 20px);
+                
+                @include media(500px) {
+                    width: calc(33% - 20px);
+                }
+                @include media($tablet) {
+                    width: calc(25% - 20px);
+                }
+            }
+        }
+        
+        div {
+            @include aspect-ratio(10,7.5);
+            position: relative;
+            overflow: hidden;
+            background-color: #111;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 10px;
+        }
+        
+        a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: all .3s ease-in-out;
+            transform: none;
+            opacity: 1;
+            transform: scale(1.01);
+            
+            &:hover {
+                transform: scale(1.06);
+                opacity: .7;
+            }
+            
+            img {
+                position: absolute;
+        		display: block;
+        		height: 100%;
+        		width: 100%;
+        		object-fit: cover;
+        		top: 50%;
+        		left: 50%;
+        		transform: translate(-50%, -50%);
+        		transform-style: preserve-3d;
+            }
+        }
+    }
+    
+    [class*="gallery-carousel-"] {
+        .slick-slide {
+            @include aspect-ratio(10,6);
+            position: relative;
+            overflow: hidden;
+            background: #111;
+            
+            @include media(601px) {
+                @include aspect-ratio(10,8);
+            }
+            @include media(801px) {
+                @include aspect-ratio(10,7.5);
+            }
+            @include media(1001px) {
+                @include aspect-ratio(10,6);
+            }
+            @include media(1101px) {
+                @include aspect-ratio(10,8);
+            }
+            @include media(1281px) {
+                @include aspect-ratio(10,7.5);
+            }
+                        
+            a {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                transition: all .3s ease-in-out;
+                transform: scale(1.01);
+                opacity: 1;
+                
+                &:hover {
+                    transform: scale(1.05);
+                    opacity: .7;
+                }
+                
+                img {
+                    position: absolute;
+            		display: block;
+            		height: 100%;
+            		width: 100%;
+            		object-fit: cover;
+            		top: 50%;
+            		left: 50%;
+                    z-index: 0;
+            		transform: translate(-50%, -50%);
+            		transform-style: preserve-3d;
+                }
+            }
+        }
+    }
+    
+    [class*="gallery-slider-"] {
+        max-width: 1200px;
+        margin: auto;
+        
+        .slick-slide {
+	        .slide {
+	            display: block !important;
+	            
+                @include aspect-ratio(16,9);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        }
+        
+        .slick-dots {
+            left: 0;
+            right: 0;
+            width: 100%;
+            bottom: 0px;
+            transform: none;
+            background: linear-gradient(to top, rgba(black,.7),rgba(black,.0));
+        }
+    }
+}

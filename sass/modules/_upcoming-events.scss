@@ -1,0 +1,80 @@
+/* Content
+	========================================================================== */
+section.upcoming-events {
+	overflow: scroll;
+	
+	.container {
+		max-width: 900px;
+	}
+	
+    ul.graphical_theme {
+	    margin: 0;
+	    padding: 0;
+	    list-style: none;
+	    
+	    li {
+		    display: flex;
+		    flex-direction: column;
+		    flex-wrap: wrap;
+		    align-items: flex-start;
+		    justify-content: center;
+		    padding-left: 80px;
+		    position: relative;
+		    min-height: 60px;
+		    
+		    @include media($tablet) {
+			    flex-direction: row;
+			    justify-content: flex-start;
+			    align-items: center;
+		    }
+		    
+		    &:not(:last-child) {
+			    margin-bottom: 15px;
+		    }
+		    
+		    .ccbpress_upcoming_events_graphical_date {
+			    position: absolute;
+			    top: 0;
+			    left: 0;
+			    float: none;
+			    background: linear-gradient(135deg, $blue, $teal);
+			    color: white;
+			    width: 60px;
+			    height: 60px;
+			    border-radius: 0;
+			    font-family: $gibson;
+			    font-weight: 600;
+			    margin: 0;
+			    @include font-size(30px);
+			    line-height: 1;
+			    padding-top: 9px;
+			    
+			    div {
+					@include font-size(14px);
+					line-height: 1;
+			    }
+		    }
+		    .ccbpress_upcoming_events_graphical_name {
+			    font-family: $gibson;
+			    font-weight: 600;
+			    color: #222;
+			    @include font-size(18px);
+			    
+			    @include media($tablet) {
+					margin-right: 10px;
+					padding-right: 10px;
+					border-right: 1px solid #999;
+				}
+		    }
+		    .ccbpress_upcoming_events_graphical_detail {
+			    font-family: $gibson;
+			    font-weight: 400;
+			    color: #222;
+			    @include font-size(16px);
+		    }
+	    }
+	    .ccbpress_upcoming_events_clear {
+		    display: none !important;
+	    }
+    }
+}

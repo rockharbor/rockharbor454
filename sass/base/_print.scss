@@ -1,0 +1,138 @@
+
+*,
+*:before,
+*:after {
+    background: transparent !important;
+    color: #000 !important; // Black prints faster: h5bp.com/s
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.container {
+	max-width: 100% !important;
+}
+
+#header-menu {
+	display: none !important;
+}
+
+.menu-toggle {
+	display: none !important;
+}
+
+section.message {
+	
+	.content {
+		max-width: none !important;
+	}
+	
+	.cover {
+		display: none !important;
+	}
+	
+	.button {
+		display: none !important;
+	}
+}
+
+section.media-content {
+	
+	.media {
+		display: none !important;
+	}
+	
+	.content {
+		max-width: none !important;
+	}
+}
+
+section.promos {
+	.promo {
+		display: none !important;
+		border: 2px solid #000;
+		
+		&.has-info {
+			display: block !important;
+			
+			&:before {
+				display: none !important;
+			}
+		}
+		
+		.button {
+			display: none !important;
+		}
+	}
+}
+
+section.callout {
+	.container {
+		border: 2px solid #000;
+	}
+}
+
+section.gallery {
+	display: none !important;
+}
+
+section.blurb {
+	display: none !important;
+}
+
+section.video-plyr {
+	display: none !important;
+}
+
+section.newsletter {
+	display: none !important;
+}
+
+
+section.staff .figure {
+	display: none !important;
+}
+
+section.tabs {
+	
+	.tab-labels {
+		display: none !important;
+	}
+	
+	.tab-contents .tab-wrapper {
+		display: block !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+}
+
+
+section.campuses {
+	.name {
+		justify-content: left !important;
+		
+		h3 {
+			padding: 0 !important;
+		}
+	}
+}
+
+section.quote {
+	.container {
+		max-width: 1000px !important;
+	}
+	
+	blockquote p {
+		-webkit-text-fill-color: #000 !important;
+	}
+}
+
+section.accordion {
+	.accordionContent {
+		display: block !important;
+	}
+}
+
+
+.site-footer {
+	display: none !important;
+}

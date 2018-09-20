@@ -1,0 +1,24 @@
+/* Columns
+	========================================================================== */
+section.columns {
+    .container {
+        h2 {
+            width: 100%;
+        }
+        
+        .col {
+	        margin-bottom: 1em;
+        }
+        
+        @include media($tablet) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 0;
+            
+            .col {
+                width: 48%;
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+/*!
+Theme Name: ROCKHARBOR Church
+Theme URI: https://rockharbor.org/
+Author: 454 Creative
+Author URI: https://454creative.com/
+Description: The Default WordPress Site for ROCKHARBOR – A Church of Communities in Orange County, CA.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: rockharbor
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+DO NOT MAKE EDITS IN STYLE.CSS
+
+CSS updates should be made in /sass files, or overrides placed in style-additional.css
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+*/
+
+//—————————————————————————————————————————————— Bourbon Library
+@import "bourbon";
+
+//—————————————————————————————————————————————— Base
+@import "base/variables";
+@import "base/mixins";
+@import "base/normalize";
+
+//—————————————————————————————————————————————— Elements
+@import "elements/typography";
+@import "elements/copy";
+@import "elements/links";
+@import "elements/buttons";
+@import "elements/forms";
+@import "elements/tables";
+@import "elements/lists";
+@import "elements/pagination";
+
+//—————————————————————————————————————————————— Vendors
+@import "vendors/aos";
+@import "vendors/custom-animations";
+@import "vendors/slick";
+@import "vendors/plyr";
+@import "vendors/fullpage";
+@import "vendors/fancybox";
+
+//—————————————————————————————————————————————— Theme
+@import "theme/wordpress";
+
+//—————————————————————————————————————————————— Partials
+@import "partials/header";
+@import "partials/navigation";
+@import "partials/content";
+@import "partials/sidebar";
+@import "partials/footer";
+
+//—————————————————————————————————————————————— Components
+@import "modules/section";
+
+@import "modules/home-header";
+@import "modules/page-header";
+
+@import "modules/accordion";
+@import "modules/blurb";
+@import "modules/callout-banner";
+@import "modules/campuses";
+@import "modules/columns";
+@import "modules/content";
+@import "modules/expandable-banner";
+@import "modules/gallery";
+@import "modules/media-content";
+@import "modules/message";
+@import "modules/newsletter";
+@import "modules/promos";
+@import "modules/quote";
+@import "modules/staff";
+@import "modules/tabs";
+@import "modules/upcoming-events";
+@import "modules/video";
+
+//—————————————————————————————————————————————— Pages
+@import "pages/404";
+@import "pages/search";
+@import "pages/single-message";
+@import "pages/single-campus";
+@import "pages/messages";
+@import "pages/jesus";
+@import "pages/about";
+@import "pages/events";
+
+@media print {
+	@import "base/print";
+}

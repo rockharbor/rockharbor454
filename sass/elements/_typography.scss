@@ -1,0 +1,20 @@
+/* Typography
+	========================================================================== */
+body,
+button,
+input,
+select,
+textarea {
+	@include font-size(16px);
+	line-height: 1.5;
+	color: #444;
+	font-family: $gibson;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding: 0;
+	margin: 0;
+	color: #111;
+	font-weight: 600;
+	line-height: 1;
+}

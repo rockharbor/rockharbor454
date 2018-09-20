@@ -1,0 +1,205 @@
+/* Page Header
+	========================================================================== */
+
+body.no-page-header {
+    .site {
+        padding-top: 90px;
+        
+        @include media($tablet) {
+            padding-top: 120px;
+        }
+        @include media($desktop) {
+            padding-top: 150px;
+        }
+    }
+}
+
+section.page-header {
+    padding-top: 110px;
+    padding-bottom: 50px;
+    //margin-bottom: 30px;
+    
+    @include media($tablet) {
+        padding-top: 140px;
+        padding-bottom: 70px;
+    }
+    @include media($desktop) {
+        padding-top: 170px;
+        padding-bottom: 90px;
+    }
+    
+    &.simple {
+        padding-bottom: 30px;
+        //margin-bottom: 0px;
+        
+        & + section.content {
+            padding-top: 30px;
+        }
+    }
+    
+    &.gradient,
+    &.image,
+    &.video {
+        h1 {
+            &::after { display: none !important; }
+            
+            span {
+                color: $red;
+            }
+        }
+        
+        // Shadow
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(black,1), rgba(black,0));
+            height: 50px;
+            width: 100%;
+            opacity: .3;
+        }
+    }
+    
+    &.video {
+        .blurb {
+            display: none;
+            
+            @include media($tablet) {
+                display: block;
+            }
+        }
+    }
+    
+    &.gradient-one {
+        background: linear-gradient(to right, $orange, $red);
+    }
+    &.gradient-two {
+        background: linear-gradient(to right, $red, $lilac);
+    }
+    &.gradient-three {
+        background: linear-gradient(to right, $lilac, $blue);
+    }
+    &.gradient-four {
+        background: linear-gradient(to right, $blue, $teal);
+    }
+    &.gradient-five {
+        background: linear-gradient(to right, $teal, $yellow);
+    }
+    &.gradient-six {
+        background: linear-gradient(to right, $yellow, $orange);
+    }
+    &.gradient-animated {
+        background: linear-gradient(to right, $orange, $red, $lilac, $blue, $teal, $yellow);
+        background-size: 600% 600%;
+        animation: gradient 60s ease-in-out infinite;
+    }
+    
+    &.image,
+    &.video {
+        background-color: #111;
+        border: 0px;
+        border-bottom: 8px solid transparent;
+        
+        .background-image {
+            position: absolute;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: .5;
+        }
+        
+        &::before {
+            opacity: .5;
+        }
+        
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -8px;
+            background: linear-gradient(to right, $orange, $red, $lilac, $blue, $teal, $yellow);
+	        background-size: 600% 600%;
+	        animation: gradient 60s ease-in-out infinite;
+            height: 9px;
+            width: 100%;
+        }
+    }
+    
+    &.video {
+        padding: 0px;
+        border: 0 !important;
+        
+        &::before, &::after {
+            display: none !important;
+        }
+        
+        .container {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            max-width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-100%);
+            
+            h1 {
+                font-size: 6.7vw;
+                
+                @include media($desktop) {
+                    @include font-size(64px);
+                }
+                @include media(1152px) {
+                    @include font-size(74px);
+                }
+                @include media($hd) {
+                    @include font-size(84px);
+                }
+                @include media(1400px) {
+                    @include font-size(94px);
+                }
+            }
+        }
+        
+        .plyr__video-wrapper {
+            transition: opacity .2s;
+        }
+        
+        .plyr--stopped {
+            
+            .plyr__video-wrapper {
+                opacity: .5;
+            }
+            
+            .plyr__control {
+                top: 65%;
+                
+                @include media(600px) {
+                    top: 60%;
+                }
+                @include media($desktop) {
+                    top: 57%;
+                }
+            }
+            
+            & + .container {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .plyr__controls {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        
+    }
+}

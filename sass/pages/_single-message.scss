@@ -1,0 +1,401 @@
+/* Single Message
+	========================================================================== */
+.sermon {
+    position: relative;
+    
+    //// Container
+    .container {
+        margin: auto;
+        max-width: 1200px;
+        position: relative;
+        z-index: 2;
+        padding: 0 20px;
+        
+        // Video
+        .plyr--video {
+            margin: 0 -20px;
+            max-width: calc(100% + 40px);
+        }
+        
+        // Audio
+        .plyr--audio {
+            display: none;
+            border: 1px solid rgba(black,.1);
+            padding-left: 3px;
+            padding-right: 3px;
+            margin-bottom: 20px;
+        }
+    }
+    
+    //// Header & Main
+    header, main {
+        max-width: $desktop;
+        margin: auto;
+        position: relative;
+    }
+    
+    //// Header
+    header {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(black,.2);
+        color: #999;
+        
+        @include media($tablet) {
+            padding-top: 60px;
+            @include font-size(18px);
+        }
+        
+        // H1
+        h1 {
+            @include font-size(24px);
+            margin-bottom: 5px;
+            
+            span {
+                text-transform: uppercase;
+            }
+            
+            @include media($tablet) {
+                width: calc(100% - 150px);
+            }
+        }
+        // Meta
+        .meta {
+            .teacher {
+                a {
+	                color: $blue;
+	                transition: all .2s;
+	                text-decoration: none;
+	                
+	                &:hover {
+		                color: #222;
+	                }
+                }
+            }
+            
+            @include media($tablet) {
+                width: calc(100% - 150px);
+            }
+        }
+        // Share
+        .share {
+            padding-top: 10px;
+            
+            @include media($tablet) {
+                position: absolute;
+                padding: 0;
+                top: 50px;
+                right: 0;
+            }
+            
+            a {
+                display: inline-block;
+                color: white;
+                vertical-align: top;
+                margin-right: 5px;
+                text-decoration: none;
+                
+                @include media($tablet) {
+                    margin-right: 0;
+                    margin-left: 5px;
+                }
+            }
+            i {
+                display: block;
+                width: 32px;
+                height: 32px;
+                border-radius: 100px;
+                text-align: center;
+                line-height: 32px;
+                transition: all .2s;
+                transform: scale(1);
+                
+                &.fa-facebook-f {
+                    @include font-size(15px);
+                    background: #395CA9;
+                }
+                &.fa-pinterest-p {
+                    @include font-size(16px);
+                    background: #E02D40;
+                }
+                &.fa-twitter {
+                    @include font-size(14px);
+                    background: #1997F0;
+                }
+                
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+    //// Main
+    main {
+        padding-top: 20px;
+        padding-bottom: 50px;
+        
+        @include media($tablet) {
+            padding-bottom: 70px;
+        }
+        
+        // Scripture
+        .scripture {
+            margin-bottom: 20px;
+            
+            strong {
+                margin-right: 5px;
+            }
+            
+            a {
+	            color: $blue;
+	            transition: all .2s;
+				text-decoration: none;
+	            
+	            &:hover {
+		            color: #333;
+	            }
+            }
+        }
+        
+        // Tags
+        .tags {
+            margin-bottom: 30px;
+            
+            strong {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            a {
+                @include font-size(14px);
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 5px;
+                border: 1px solid $blue;
+                border-radius: 2px;
+                color: $blue;
+                padding: 0 5px;
+                text-decoration: none;
+                transition: all .2s;
+                
+                &:hover {
+                    background: $blue;
+                    color: white;
+                }
+            }
+        }
+        
+        // Actions
+        .actions {
+            padding-top: 5px;
+            
+            .download {
+                position: relative;
+                display: inline-block;
+                vertical-align: middle;
+                
+                h5 {
+                    font-weight: 600;
+                    @include font-size(16px);
+                    text-transform: uppercase;
+                    color: #777;
+                    cursor: pointer;
+                    height: 28px;
+                    line-height: 28px;
+                    
+                    i {
+                        margin-left: 10px;
+                        color: #333;
+                        transition: all .2s;
+                    }
+                    
+                    &:hover i {
+                        color: $lilac;
+                    }
+                }
+                
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+                    position: absolute;
+                    top: calc(100% + 5px);
+                    left: 0;
+                    background: white;
+                    border: 1px solid rgba(black,.1);
+                    border-top: 2px solid #ccc;
+                    min-width: 130px;
+                    display: none;
+                    
+                    li:not(:last-child) {
+                        border-bottom: 1px solid rgba(black,.1);
+                    }
+                    
+                    a {
+                        line-height: 1;
+                        padding: 15px 20px;
+                        display: block;
+                        text-decoration: none;
+                        color: #444;
+                        
+                        i {
+                            vertical-align: middle;
+                            display: inline-block;
+                            @include font-size(13px);
+                            margin-right: 10px;
+                            color: rgba(black,.2);
+                        }
+                        
+                        &:hover {
+                            background-color: rgba(black,.03);
+                        }
+                    }
+                }
+            }
+            
+            .sep {
+                border-left: 1px solid rgba(black,.3);
+                display: inline-block;
+                height: 20px;
+                vertical-align: middle;
+                margin: 0 5px;
+                
+                @include media($tablet) {
+               		margin: 0 30px;
+                }
+            }
+            
+            a.link {
+                display: inline-block;
+                vertical-align: middle;
+                font-weight: 600;
+                @include font-size(16px);
+                text-transform: uppercase;
+                color: #777;
+                height: 28px;
+                line-height: 28px;
+                cursor: pointer;
+                text-decoration: none;
+                
+                i {
+                    //width: 28px;
+                    //height: 28px;
+                    color: #888;
+                    display: inline-block;
+                    vertical-align: middle;
+                    @include font-size(16px);
+                    border-radius: 5px;
+                    text-align: center;
+                    line-height: 28px;
+                    float: right;
+                    margin-left: 8px;
+                    display: block;
+                    
+                    &::before {
+                        display: inline-block;
+                        transition: all .2s;
+                    }
+                }
+                
+                &:hover i::before {
+                    //transform: scale(1.2);
+                    color: $lilac;
+                }
+                
+                &.podcast i {
+                    //background: linear-gradient(to top, #7B28BB, #D06BFC);
+                }
+                &.listen i {
+                    //background: linear-gradient(to top, $red, lighten($red,20%));
+                }
+            }
+        }
+    }
+}
+
+//// More Sermons
+section.more-sermons {
+    background: rgba(black,.04);
+    
+    .container {
+        max-width: 1200px;
+    }
+    
+    h2.heading {
+        @include font-size(22px);
+        margin-bottom: 30px;
+        
+        @include media($tablet) {
+            @include font-size(28px);
+        }
+    }
+    
+    ul {
+        margin: 0 0 -25px 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        
+        li {
+            @include row-machine(1,25px);
+            max-width: 300px;
+            
+            @include media(620px) {
+                @include row-machine(2,25px);
+                max-width: 350px;
+            }
+            @include media($desktop) {
+                @include row-machine(4,25px);
+            }
+        }
+        
+        a {
+            text-decoration: none;
+            
+            &:hover {
+                img {
+                    transform: translate(-50%, -50%) scale(1.1);
+                }
+            }
+        }
+        
+        .cover {
+            position: relative;
+            @include aspect-ratio(16,9);
+            margin-bottom: 10px;
+            overflow: hidden;
+            
+            img {
+        		position: absolute;
+        		display: block;
+        		height: 100%;
+        		width: 100%;
+        		object-fit: cover;
+        		top: 50%;
+        		left: 50%;
+        		transform: translate(-50%, -50%) scale(1.01);
+        		transform-style: preserve-3d;
+                transition: all .2s;
+            }
+        }
+        
+        h3 {
+            @include font-size(16px);
+        }
+        
+        .date {
+            @include font-size(14px);
+            color: #999;
+        }
+    }
+}
+
+//// More Series
+.section.series-archive {
+    
+    .container {
+        max-width: $hd;
+    }
+}

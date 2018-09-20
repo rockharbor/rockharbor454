@@ -1,0 +1,585 @@
+/* Jesus
+	========================================================================== */
+    
+body.page-template-jesus {
+    .site-header {
+        opacity: 0;
+    }
+    
+    &.fp-viewing-who .site-header {
+        opacity: 1;
+    }
+}
+
+.site-header {
+    .fp-viewing-who & {
+        opacity: 1;
+    }
+}
+    
+#know-jesus {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    
+    .fp-tableCell {
+        color: white;
+        
+        .iScrollIndicator {
+            background: none !important;
+        }
+    }
+    
+    .container {
+        padding-top: 70px !important;
+        padding-bottom: 70px !important;
+        padding-left: 60px;
+        padding-right: 30px;
+        max-width: 1024px;
+        min-height: 100vh;
+        margin: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        @include media($tablet) {
+            padding-top: 90px !important;
+            padding-bottom: 90px !important;
+        }
+        
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
+    
+    h2.title {
+        position: relative;
+        color: white;
+        max-width: 580px;
+        margin: 0 auto;
+        margin-bottom: 5%;
+        line-height: .95;
+        transition: opacity 1s ease, transform 1s ease;
+        transform: translateY(200px);
+        opacity: 0;
+        @include font-size(42px);
+        
+        
+        @include media(560px) {
+            font-size: 7.5vw;
+        }
+        @include media(1200px) {
+            @include font-size(90px);
+        }
+    }
+    
+    h3 {
+        color: white;
+        margin-bottom: 15px;
+    }
+    
+    .blurb {
+        color: white;
+        max-width: 680px;
+        margin: 0 auto;
+        margin-bottom: 5%;
+        font-weight: 200;
+        line-height: 1.2;
+        position: relative;
+        @include font-size(19px);
+        transition: opacity .7s ease, transform 1s ease;
+        transform: translateY(200px);
+        opacity: 0;
+        
+        @include media(900px) {
+            font-size: 2.08vw;
+        }
+        @include media(1200px) {
+            @include font-size(25px);
+        }
+    }
+    
+    .content {
+        max-width: 450px;
+        margin: 0 auto;
+        text-align: left;
+        position: relative;
+        z-index: 10;
+        transition: opacity .5s ease, transform 1s ease;
+        transform: translateY(200px);
+        opacity: 0;
+        
+        @include media($tablet) {
+            max-width: 580px;
+        }
+    }
+    
+    .element {
+        position: absolute;
+        z-index: 1;
+        opacity: .2;
+        
+        @include media($tablet) {
+            opacity: .5;
+        }
+    }
+    
+    .active {
+        h2.title {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .blurb {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+    
+    ul.tab-labels {
+        margin: 0;
+        padding: 10px 0 0 0;
+        list-style: none;
+        
+        @include media($tablet) {
+            display: table;
+            width: 100%;
+            border-collapse: separate;
+        }
+        
+        li {
+            display: block;
+            height: auto;
+            margin-bottom: 1px;
+            background: rgba(black,.1);
+            
+            @include media($tablet) {
+                display: table-cell;
+                
+                &:not(:last-child) a {
+                    margin-right: 1px;
+                }
+            }
+            
+            .active {
+                background: rgba(black,.3);
+            }
+            
+            a {
+                transition: all .2s;
+                display: block;
+                padding: 10px 20px;
+                color: white;
+                @include font-size(18px);
+                line-height: 1.2;
+                font-weight: 600;
+                text-decoration: none;
+                
+                @include media($tablet) {
+                    padding: 20px 10px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+    div.tab-contents {
+        background: rgba(black,.2);
+        
+        .tab-wrapper {
+            padding: 20px 30px;
+            
+            @include media($tablet) {
+                padding: 30px 40px;
+            }
+        }
+    }
+    
+    //// Who is Jesus?
+    .who {
+        
+        .content {
+            @include media($tablet) {
+                margin-left: 0px !important;
+            }
+        }
+        
+        .element {
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            max-width: 750px;
+            height: auto;
+            transform: translate(-50%, -50%);
+            
+            @include media($tablet) {
+                top: auto;
+                bottom: 0;
+                transform: translate(-10%, 0%);
+            }
+        }
+    }
+
+    //// Why is Jesus?
+    .why {
+        .content {
+            @include media($tablet) {
+                margin-right: 0 !important;
+            }
+        }
+        
+        .element {
+            top: 50%;
+            right: 50%;
+            width: 100%;
+            max-width: 390px;
+            height: auto;
+            transform: translate(50%, -50%);
+            
+            @include media($tablet) {
+                transform: translate(-48%, -27%);
+            }
+        }
+        
+        h3 {
+	        margin-bottom: 5px;
+        }
+        
+        form {
+            padding: 0px !important;
+            display: flex;
+            flex-wrap: wrap;
+            
+            .gform_body {
+	            @include media(700px) {
+		            width: calc(100% - 110px);
+	            }
+            }
+            .gform_footer {
+	            @include media(700px) {
+		            width: 110px;
+		            padding: 0 !important;
+		            margin: 0 !important;
+	            }
+            }
+            
+            li {
+	            margin: 0 !important;
+	            padding-right: 6px !important;
+	            
+	            @include media(700px) {
+		            width: 50%;
+		            display: inline-block;
+	            }
+	            
+	            .ginput_container {
+		            margin: 0 !important;
+	            }
+	            
+	            input {
+		            width: 100% !important;
+		            margin: 0 !important;
+	            }
+            }
+            
+            input {
+                height: 50px;
+                line-height: 1;
+                vertical-align: top;
+                border: 0;
+                border-radius: 0;
+                padding: 0;
+                
+                &:not(:last-child) {
+                    margin-right: 6px;
+                }
+            }
+            
+            [type="text"], [type="email"] {
+                text-indent: 15px;
+                
+                &::placeholder {
+                    color: #999;
+                }
+                
+                @include media($tablet) {
+                    width: calc(50% - 62px);
+                }
+            }
+            
+            .button {
+                width: 100px;
+                color: white !important;
+                background: #0065b9;
+            }
+        }
+    }
+
+    //// Alpha
+    .alpha {
+        .content {
+            @include media($tablet) {
+                margin-right: 0 !important;
+            }
+            
+            .button {
+                margin-bottom: 30px;
+                background: #9d2ba0;
+                color: #fff;
+            }
+        }
+        
+        .element {
+            top: 50%;
+            right: 50%;
+            width: 100%;
+            height: auto;
+            max-width: 500px;
+            transform: translate(50%, -50%);
+            
+            @include media($tablet) {
+                transform: translate(-10%, -40%);
+            }
+        }
+    }
+
+    //// Church
+    .church {
+        .content {
+            margin-left: 0 !important;
+        }
+        
+        .element {
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: auto;
+            max-width: 900px;
+            transform: translate(-50%, -50%);
+            
+            @include media($tablet) {
+                top: auto;
+                bottom: 0;
+                transform: translate(-10%, -10%);
+                opacity: .4;
+            }
+        }
+    }
+
+    //// Services
+    .services {
+        
+        .container {
+            max-width: 1280px;
+            
+            h2.title {
+                margin-bottom: 3%;
+            }
+        }
+        .blurb {
+            color: white;
+            max-width: $desktop;
+        }
+        
+        .visit {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            
+            @include media($desktop) {
+	            justify-content: space-between;
+	        }
+            
+            .campus {
+                background: white;
+                min-width: 240px;
+                width: calc(33.3333% - 10px);
+                max-width: 350px;
+                margin: 0 5px 10px 5px;
+            }
+            
+            a {
+                text-decoration: none;
+                color: #333;
+                
+                &:hover .image {
+                    transform: scale(1.1);
+                    opacity: .4;
+                }
+            }
+            
+            .name {
+                display: flex;
+                align-items: center;
+                min-height: 200px;
+                position: relative;
+                background: #111;
+                overflow: hidden;
+                
+                .image {
+                    transition: all .2s;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    position: absolute;
+                    z-index: 0;
+                    opacity: .6;
+                    top: 0; right: 0; left: 0; bottom: 0;
+                }
+                
+                h3 {
+                    position: relative;
+                    z-index: 1;
+                    padding: 30px;
+                    margin: 0;
+                    width: 100%;
+                    text-align: center;
+                    @include font-size(28px);
+                    text-transform: uppercase;
+                    
+                    @include media($desktop) {
+	                    @include font-size(35px);
+                    }
+                }
+            }
+            
+            .info {
+                padding: 20px 0;
+                margin: 0 20px;
+                text-align: left;
+                @include font-size(16px);
+                line-height: 1.3;
+                
+                @include media($desktop) {
+	                padding: 30px 0;
+	                margin: 0 40px;
+	            }
+	            @include media($hd) {
+		            @include font-size(18px);
+		        }
+                
+                .times,
+                .address {
+                    padding: 15px 0;
+                    display: flex;
+                    
+                    @include media($hd) {
+	                    padding: 15px;
+	                }
+                    
+                    i {
+                        display: block;
+                        width: 24px;
+                        margin-right: 10px;
+                        @include font-size(24px);
+                    }
+                    strong {
+                        display: block;
+                    }
+                }
+                
+                .times {
+                    border-bottom: 2px solid rgba(black,.1);
+                }
+                
+            }
+        }
+    }
+}
+
+
+//// Gradient Panels
+.gradients {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 100%;
+    z-index: 0;
+    transition: all .5s ease;
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: .25s;
+    
+    &.gradient-who {
+        background-image: linear-gradient(135deg, #00aba0 0%, #00b8a5 50%, #1685fa 100%);
+        opacity: 1;
+        visibility: visible;
+        
+        .fp-viewing-who & { opacity: 1; visibility: visible; transition-delay: 0s;}
+    }
+    &.gradient-why {
+        background-image: linear-gradient(135deg, #1684f9 0%, #1684f9 50%, #ba58fb 100%);
+        
+        .fp-viewing-why & { opacity: 1; visibility: visible; transition-delay: 0s;}
+    }
+    &.gradient-alpha {
+        background-image: linear-gradient(135deg, #d65ee8 0%, #d65ee8 50%, #d92d7f 100%);
+        
+        .fp-viewing-alpha & { opacity: 1; visibility: visible; transition-delay: 0s;}
+    }
+    &.gradient-church {
+        background-image: linear-gradient(135deg, #d939aa 0%, #db254e 50%, #e73519 100%);
+        
+        .fp-viewing-church & { opacity: 1; visibility: visible; transition-delay: 0s;}
+    }
+    &.gradient-services {
+        background-image: linear-gradient(135deg, #ea3c11 0%, #ffae3e 100%);
+        
+        .fp-viewing-services & { opacity: 1; visibility: visible; transition-delay: 0s;}
+    }
+}
+
+//// Full Page Navigation
+#fp-nav {
+    left: 15px;
+    
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    li {
+        position: static !important;
+        
+        &:hover a::before {
+            border-color: white;
+        }
+        
+        &.active a::before {
+            border: 3px solid white;
+        }
+        
+        .fp-tooltip {
+            width: 180px !important;
+            transition: all .2s ease !important;
+            transform: rotate(-90deg);
+            font-family: $gibson !important;
+            text-transform: uppercase;
+            font-size:12px !important;
+            font-weight: 600 !important;
+            @include rem(letter-spacing, 1px);
+            top: -105% !important;
+            left: -77px !important;
+        }
+    }
+    
+    a {
+        display: block;
+        order: 1;
+        
+        &::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            display: block;
+            border-radius: 20px;
+            border: 2px solid rgba(white,.4);
+            transition: all .3s ease;
+        }
+    }
+}

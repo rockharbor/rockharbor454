@@ -1,0 +1,76 @@
+/* Accordion
+	========================================================================== */
+section.accordion {
+    
+    #accordion{
+    	margin: 0px auto;
+    }
+    	#accordion .accordionButton {
+    		width: 100%;
+            padding: 23px 38px 23px 0;
+    		float: left;
+    		_float: none;  /* Float works in all browsers but IE6 */
+    		cursor: pointer;
+    		transition: all .2s ease-in-out;
+            @include font-size(18px);
+            color: #888;
+            position: relative;
+            line-height: 1.1;
+            font-weight: 600;
+            
+            i {
+                transition: all .2s;
+                color: #ccc;
+                position: absolute;
+                width: 32px;
+                top: calc(50% - 10px);
+                right: 0;
+                text-align: center;
+                line-height: 1;
+            }
+    	}
+    	#accordion .accordionContent {
+    		height: auto;
+    		float: left;
+    		display: none;
+    		_float: none; /* Float works in all browsers but IE6 */
+    		padding: 0px 15px 35px 15px;
+            color: #888;
+    	}
+    #accordion .on {
+    	padding-left: 15px;
+        color: #333;
+        
+        i {
+            color: $lilac !important;
+            transform: rotate(90deg);
+        }
+    }
+    
+    #accordion .on.over {
+        i {
+            transform: rotate(-90deg);
+        }
+    }
+    
+    #accordion .over {
+    	color: #333;
+        
+        i {
+            color: #333;
+            transform: rotate(90deg);
+        }
+    }
+    
+    hr {
+        clear: both;
+        background: rgba(black,.1);
+        height: 1px;
+        margin: 0;
+        border: none;
+        
+        &:last-child {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,201 @@
+/* Header
+	========================================================================== */
+
+body {
+    background: #000;
+}
+
+#wpadminbar {
+    position: fixed;
+}
+
+.site {
+    background: white;
+}
+
+////// Site Header
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 99;
+    transition: all .25s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    
+    @include media($tablet) {
+        position: absolute;
+    }
+    
+    body.admin-bar & {
+        top: 46px;
+        
+        @include media(783px) {
+            top: 32px;
+        }
+    }
+    
+    body.callout-on & {
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+    // Header Bar
+    .header-bar {
+        padding: 10px 20px;
+        color: rgba(white,.7);
+        text-align: center;
+        @include font-size(14px);
+        
+        .button {
+            border: 1px solid rgba(white,.4);
+            background: none;
+            margin: 0 0 0 10px;
+            padding: 8px 12px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            @include font-size(11px);
+            transition: all .2s;
+            
+            &:hover {
+                background: white;
+                color: $lilac;
+            }
+        }
+        
+        .button {
+            box-shadow: none;
+            color: white;
+        }
+        &.bg-orange {
+            background: rgba($orange,.85);
+            .button:hover { color: $orange;}
+        }
+        &.bg-red {
+            background: rgba($red,.85);
+            .button:hover { color: $red;}
+        }
+        &.bg-lilac {
+            background: rgba($lilac,.85);
+            .button:hover { color: $lilac;}
+        }
+        &.bg-blue {
+            background: rgba($blue,.85);
+            .button:hover { color: $blue;}
+        }
+		&.bg-teal {
+            background: rgba($teal,.85);
+            color: rgba(white,.9);
+            .button:hover { color: $teal;}
+        }
+        &.bg-yellow {
+            background: rgba(darken($yellow,10%),.85);
+            color: white;
+            .button:hover { color: darken($yellow,20%);}
+        }
+    }
+        
+    // Header Wrapper
+    .header-wrapper {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        top: 0;
+        transition: transform .35s 0s, background .35s .0s, box-shadow .35s .0s;
+        transform: translate3d(0, 0, 0);
+        background: transparent;
+        box-shadow: none;
+        
+        @include media($tablet) {
+            padding: 30px;
+        }
+        
+        &.slide-up,
+        &.slide-down {
+            position: fixed;
+            transform: translate3d(0, -100%, 0);
+            transition: transform .35s 0s, background .5s .35s, box-shadow .5s .35s;
+            background: white;
+            box-shadow: 0 1px 0px 0px rgba(black,.05);
+            z-index: 999;
+            
+            body.dark-theme & {
+                background: #111;
+            }
+        }
+        &.slide-down {
+            transform: translate3d(0, 0, 0);
+            
+            body.admin-bar & {
+                top: 46px;
+                
+                @include media(783px) {
+                    top: 32px;
+                }
+            }
+        }
+    }
+    
+    // Logo
+    .logo {
+        overflow: hidden;
+        width: 22px;
+        transition: width .2s;
+        
+        @include media($tablet) {
+            overflow: auto;
+            width: 210px;
+        }
+        
+        a, img { display: block; }
+        img { max-width: 210px; }
+    }
+    
+    // Toggler
+    .menu-toggle {
+        width: 30px;
+        height: 25px;
+        margin-left: auto;
+        position: relative;
+        cursor: pointer;
+        
+        &::before, &::after, i {
+            position: absolute;
+            height: 3px;
+            border-radius: 9px;
+        }
+        
+        &::before, &::after {
+            width: 30px;
+            background: #333;
+            content: '';
+            top: 0px;
+            
+            .dark-theme & {
+                background: white;
+            }
+        }
+        
+        &::after {
+            top: 11px;
+        }
+        
+        i {
+            background-color: magenta;
+            transition: left .2s .175s, right .2s 0s, background .5s;
+            left: 15px;
+            right: 0;
+            bottom: 0px;
+        }
+        
+        &:hover i {
+            background-color: #00CABB;
+            transition: left .2s 0s, right .2s .175s, background .5s;
+            left: 0;
+            right: 15px;
+        }
+    }
+}
