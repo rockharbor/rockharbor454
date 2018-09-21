@@ -7,11 +7,11 @@
  * @package ROCKHARBOR_Church
  */
 
-$campus = $_COOKIE['campus'];
+$campus = $_COOKIE['campus'] ?? null;
 // Set default campus variable incase no Cookies Allowed
 if (!$campus) {
 	$campus_slug = get_post(269)->post_name; // Costa Mesa
-    $campus = $campus_slug;	
+    $campus = $campus_slug;
 }
 
 get_header();
@@ -25,7 +25,7 @@ get_header();
 		$campuses = get_the_terms( $post->ID, 'campuses' )[0]->name;
 		$campusSlug = get_the_terms( $post->ID, 'campuses' )[0]->slug;
 		$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);
-		
+
 		if ( has_post_thumbnail() ) {
 			$image = get_the_post_thumbnail_url( $post->id, 'large' );
 		} elseif($seriescover) {
@@ -90,7 +90,7 @@ get_header();
 							<span class="sep"></span>
 							<a href="<?php echo $podcastLink; ?>" class="link podcast">Podcast <i class="fas fa-podcast"></i></a>
 						<?php } ?>
-						
+
 						<?php if($video && $audio) { ?>
 						<span class="sep"></span>
 						<a href="javascript:;" class="link listen">Listen <i class="fas fa-volume-up"></i></a>
@@ -99,7 +99,7 @@ get_header();
 				</main>
 			</div>
 		</section>
-		
+
 		<section class="section more-sermons campus-costa-mesa campus-all">
 			<div class="container">
 				<h2 class="heading">More Messages in "<?php echo $series;?>"</h2>
@@ -129,9 +129,9 @@ get_header();
 					if ( $m_query->have_posts() ) {
 						while ( $m_query->have_posts() ) {
 							$m_query->the_post();
-							
+
 							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);
-		
+
 							if ( has_post_thumbnail() ) {
 								$imagesm = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 								$image = get_the_post_thumbnail_url( $post->id, 'large' );
@@ -154,7 +154,7 @@ get_header();
 				</ul>
 			</div>
 		</section>
-		
+
 		<section class="section more-sermons campus-mission-viejo">
 			<div class="container">
 				<h2 class="heading">More Messages in "<?php echo $series;?>"</h2>
@@ -184,9 +184,9 @@ get_header();
 					if ( $m_query->have_posts() ) {
 						while ( $m_query->have_posts() ) {
 							$m_query->the_post();
-							
+
 							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);
-		
+
 							if ( has_post_thumbnail() ) {
 								$imagesm = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 								$image = get_the_post_thumbnail_url( $post->id, 'large' );
@@ -209,7 +209,7 @@ get_header();
 				</ul>
 			</div>
 		</section>
-		
+
 		<section class="section more-sermons campus-charlotte">
 			<div class="container">
 				<h2 class="heading">More Messages in "<?php echo $series;?>"</h2>
@@ -239,9 +239,9 @@ get_header();
 					if ( $m_query->have_posts() ) {
 						while ( $m_query->have_posts() ) {
 							$m_query->the_post();
-							
+
 							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);
-		
+
 							if ( has_post_thumbnail() ) {
 								$imagesm = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 								$image = get_the_post_thumbnail_url( $post->id, 'large' );
@@ -264,7 +264,7 @@ get_header();
 				</ul>
 			</div>
 		</section>
-		
+
 		<section class="section series-archive campus-costa-mesa campus-all">
 			<div class="container">
 				<h2>Past Series</h2>
@@ -275,7 +275,7 @@ get_header();
 					'post_type'         => array( 'message' ),
 					'posts_per_page'    => 20,
 					'order'             => 'DESC',
-					'orderby'           => 'date',			
+					'orderby'           => 'date',
 				);
 				// The Query
 				$query = new WP_Query( $args );
@@ -283,32 +283,32 @@ get_header();
 				if ( $query->have_posts() ) { ?>
 					<ul class="series">
 					<?php while ( $query->have_posts() ) { $query->the_post();
-			
+
 						$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id); $placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
-						
+
 						if ( has_post_thumbnail() ) {
 							$image = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 						} elseif($seriescover) {
 							$image = wp_get_attachment_image_url( $seriescover, 'thumb_uncropped' );
 						} else {
 							$image = $placeholer;
-						} 
+						}
 						?>
-						
+
 						<?php
 							// Get series of post
 							$seriesID = get_the_terms( $post->ID, 'series' )[0]->term_id;
 							$seriesName = get_the_terms( $post->ID, 'series' )[0]->name;
 							$seriesSlug = get_the_terms( $post->ID, 'series' )[0]->slug;
 						?>
-						<?php	
+						<?php
 							// if this series is not previous series
 							if (!isset($previousSeriesID)) {
 								$previousSeriesID = '';
 							}
-							
+
 							if ($seriesID != $previousSeriesID) {
-						?>			
+						?>
 						<li data-series-id="<?php echo $seriesID ?>">
 							<a href="/series/<?php echo $seriesSlug?>">
 								<div class="cover"><img src="<?php echo $image ?>" alt="<?php echo $seriesName?>"></div>
@@ -319,7 +319,7 @@ get_header();
 									$args = array(
 										'post_type'=>'message',
 										'posts_per_page' => -1,
-										'tax_query' => array( 
+										'tax_query' => array(
 											'relation' => 'AND',
 											array(
 												'taxonomy' => 'series',
@@ -336,7 +336,7 @@ get_header();
 									$posts_array = get_posts( $args );
 									$first = $posts_array[0]->ID;
 									$last = $posts_array[count($posts_array) -1 ]->ID;
-																		
+
 									if(count($posts_array) == 1) {
 										//echo get_the_title( $first );
 										$date = get_the_date( 'M j, Y', $first );
@@ -348,12 +348,12 @@ get_header();
 								<span class="date"><?php echo $date ?></span>
 							</a>
 						</li>
-						
+
 						<?php  } ?>
-						
+
 						<?php $previousSeriesID = get_the_terms( $post->ID, 'series' )[0]->term_id; ?>
-						
-					<?php } ?> 
+
+					<?php } ?>
 					</ul>
 				<?php } else { ?>
 					<div style="padding: 40px 0; text-align: center;">It looks like there are no messages available for <?php the_archive_title(); ?>.</div>
@@ -362,7 +362,7 @@ get_header();
 				<a href="/messages/" class="button teal" style="margin: 0 auto; width: 241px; display: block;">View Messages Archive</a>
 			</div>
 		</section>
-		
+
 		<section class="section series-archive campus-mission-viejo">
 			<div class="container">
 				<h2>Past Series</h2>
@@ -373,7 +373,7 @@ get_header();
 					'post_type'         => array( 'message' ),
 					'posts_per_page'    => 20,
 					'order'             => 'DESC',
-					'orderby'           => 'date',			
+					'orderby'           => 'date',
 				);
 				// The Query
 				$query = new WP_Query( $args );
@@ -381,32 +381,32 @@ get_header();
 				if ( $query->have_posts() ) { ?>
 					<ul class="series">
 					<?php while ( $query->have_posts() ) { $query->the_post();
-			
+
 						$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id); $placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
-						
+
 						if ( has_post_thumbnail() ) {
 							$image = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 						} elseif($seriescover) {
 							$image = wp_get_attachment_image_url( $seriescover, 'thumb_uncropped' );
 						} else {
 							$image = $placeholer;
-						} 
+						}
 						?>
-						
+
 						<?php
 							// Get series of post
 							$seriesID = get_the_terms( $post->ID, 'series' )[0]->term_id;
 							$seriesName = get_the_terms( $post->ID, 'series' )[0]->name;
 							$seriesSlug = get_the_terms( $post->ID, 'series' )[0]->slug;
 						?>
-						<?php	
+						<?php
 							// if this series is not previous series
 							if (!isset($previousSeriesID)) {
 								$previousSeriesID = '';
 							}
-							
+
 							if ($seriesID != $previousSeriesID) {
-						?>			
+						?>
 						<li data-series-id="<?php echo $seriesID ?>">
 							<a href="/series/<?php echo $seriesSlug?>">
 								<div class="cover"><img src="<?php echo $image ?>" alt="<?php echo $seriesName?>"></div>
@@ -417,7 +417,7 @@ get_header();
 									$args = array(
 										'post_type'=>'message',
 										'posts_per_page' => -1,
-										'tax_query' => array( 
+										'tax_query' => array(
 											'relation' => 'AND',
 											array(
 												'taxonomy' => 'series',
@@ -434,7 +434,7 @@ get_header();
 									$posts_array = get_posts( $args );
 									$first = $posts_array[0]->ID;
 									$last = $posts_array[count($posts_array) -1 ]->ID;
-																		
+
 									if(count($posts_array) == 1) {
 										//echo get_the_title( $first );
 										$date = get_the_date( 'M j, Y', $first );
@@ -446,12 +446,12 @@ get_header();
 								<span class="date"><?php echo $date ?></span>
 							</a>
 						</li>
-						
+
 						<?php  } ?>
-						
+
 						<?php $previousSeriesID = get_the_terms( $post->ID, 'series' )[0]->term_id; ?>
-						
-					<?php } ?> 
+
+					<?php } ?>
 					</ul>
 				<?php } else { ?>
 					<div style="padding: 40px 0; text-align: center;">It looks like there are no messages available for <?php the_archive_title(); ?>.</div>
@@ -460,7 +460,7 @@ get_header();
 				<a href="/messages/" class="button teal" style="margin: 0 auto; width: 241px; display: block;">View Messages Archive</a>
 			</div>
 		</section>
-		
+
 		<section class="section series-archive campus-charlotte">
 			<div class="container">
 				<h2>Past Series</h2>
@@ -471,7 +471,7 @@ get_header();
 					'post_type'         => array( 'message' ),
 					'posts_per_page'    => 20,
 					'order'             => 'DESC',
-					'orderby'           => 'date',			
+					'orderby'           => 'date',
 				);
 				// The Query
 				$query = new WP_Query( $args );
@@ -479,32 +479,32 @@ get_header();
 				if ( $query->have_posts() ) { ?>
 					<ul class="series">
 					<?php while ( $query->have_posts() ) { $query->the_post();
-			
+
 						$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id); $placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
-						
+
 						if ( has_post_thumbnail() ) {
 							$image = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 						} elseif($seriescover) {
 							$image = wp_get_attachment_image_url( $seriescover, 'thumb_uncropped' );
 						} else {
 							$image = $placeholer;
-						} 
+						}
 						?>
-						
+
 						<?php
 							// Get series of post
 							$seriesID = get_the_terms( $post->ID, 'series' )[0]->term_id;
 							$seriesName = get_the_terms( $post->ID, 'series' )[0]->name;
 							$seriesSlug = get_the_terms( $post->ID, 'series' )[0]->slug;
 						?>
-						<?php	
+						<?php
 							// if this series is not previous series
 							if (!isset($previousSeriesID)) {
 								$previousSeriesID = '';
 							}
-							
+
 							if ($seriesID != $previousSeriesID) {
-						?>			
+						?>
 						<li data-series-id="<?php echo $seriesID ?>">
 							<a href="/series/<?php echo $seriesSlug?>">
 								<div class="cover"><img src="<?php echo $image ?>" alt="<?php echo $seriesName?>"></div>
@@ -515,7 +515,7 @@ get_header();
 									$args = array(
 										'post_type'=>'message',
 										'posts_per_page' => -1,
-										'tax_query' => array( 
+										'tax_query' => array(
 											'relation' => 'AND',
 											array(
 												'taxonomy' => 'series',
@@ -532,7 +532,7 @@ get_header();
 									$posts_array = get_posts( $args );
 									$first = $posts_array[0]->ID;
 									$last = $posts_array[count($posts_array) -1 ]->ID;
-																		
+
 									if(count($posts_array) == 1) {
 										//echo get_the_title( $first );
 										$date = get_the_date( 'M j, Y', $first );
@@ -544,12 +544,12 @@ get_header();
 								<span class="date"><?php echo $date ?></span>
 							</a>
 						</li>
-						
+
 						<?php  } ?>
-						
+
 						<?php $previousSeriesID = get_the_terms( $post->ID, 'series' )[0]->term_id; ?>
-						
-					<?php } ?> 
+
+					<?php } ?>
 					</ul>
 				<?php } else { ?>
 					<div style="padding: 40px 0; text-align: center;">It looks like there are no messages available for <?php the_archive_title(); ?>.</div>
@@ -558,8 +558,8 @@ get_header();
 				<a href="/messages/" class="button teal" style="margin: 0 auto; width: 241px; display: block;">View Messages Archive</a>
 			</div>
 		</section>
-		
-		
+
+
 <script src="<?php bloginfo('template_url');?>/js/vendors/js.cookie.js"></script>
 <script>
 //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -568,7 +568,7 @@ var $campus = Cookies.get('campus');
 if ($campus) {
 	$('.section').not('.campus-'+$campus).remove();
 }
-</script>	
+</script>
 
 	<?php endwhile; ?>
 <?php
