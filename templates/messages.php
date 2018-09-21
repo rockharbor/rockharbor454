@@ -42,7 +42,7 @@ get_header();
 
 						$m_query->the_post();
 
-						$placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
+						$placeholder = get_bloginfo('template_url').'/images/series-placeholder.png';
 						$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);
 						if ( has_post_thumbnail() ) {
 							$imageMedium = get_the_post_thumbnail_url( $post->id, 'medium' );
@@ -51,12 +51,12 @@ get_header();
 							$imageMedium = wp_get_attachment_image_url( $seriescover, 'medium' );
 							$imageLarge = wp_get_attachment_image_url( $seriescover, 'large' );
 						} else {
-							$imageMedium = $placeholer;
-							$imageLarge = $placeholer;
+							$imageMedium = $placeholder;
+							$imageLarge = $placeholder;
 						}
 
 						 ?>
-						<a href="<?php the_permalink();?>" class="cover"><img src="<?php echo $imageMedium; ?>" data-layzr="<?php echo $imageLarge; ?>" alt="<?php echo $term->name;?>"></a>
+						<a href="<?php the_permalink();?>" class="cover"><img src="<?php echo $imageMedium; ?>" data-layzr="<?php echo $imageLarge; ?>" alt="<?php the_title(); ?>"></a>
 						<div class="content">
 							<h1 class="heading">Last Weekend&rsquo;s Message</h1>
 							<div class="info">
@@ -95,7 +95,7 @@ get_header();
 
 						$m_query->the_post();
 
-						$placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
+						$placeholder = get_bloginfo('template_url').'/images/series-placeholder.png';
 						$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);
 						if ( has_post_thumbnail() ) {
 							$imageMedium = get_the_post_thumbnail_url( $post->id, 'medium' );
@@ -104,12 +104,12 @@ get_header();
 							$imageMedium = wp_get_attachment_image_url( $seriescover, 'medium' );
 							$imageLarge = wp_get_attachment_image_url( $seriescover, 'large' );
 						} else {
-							$imageMedium = $placeholer;
-							$imageLarge = $placeholer;
+							$imageMedium = $placeholder;
+							$imageLarge = $placeholder;
 						}
 
 						 ?>
-						<a href="<?php the_permalink();?>" class="cover"><img src="<?php echo $imageMedium; ?>" data-layzr="<?php echo $imageLarge; ?>" alt="<?php echo $term->name;?>"></a>
+						<a href="<?php the_permalink();?>" class="cover"><img src="<?php echo $imageMedium; ?>" data-layzr="<?php echo $imageLarge; ?>" alt="<?php the_title(); ?>"></a>
 						<div class="content">
 							<h1 class="heading">Last Weekend&rsquo;s Message</h1>
 							<div class="info">
@@ -148,7 +148,7 @@ get_header();
 
 						$m_query->the_post();
 
-						$placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
+						$placeholder = get_bloginfo('template_url').'/images/series-placeholder.png';
 						$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);
 						if ( has_post_thumbnail() ) {
 							$imageMedium = get_the_post_thumbnail_url( $post->id, 'medium' );
@@ -157,12 +157,12 @@ get_header();
 							$imageMedium = wp_get_attachment_image_url( $seriescover, 'medium' );
 							$imageLarge = wp_get_attachment_image_url( $seriescover, 'large' );
 						} else {
-							$imageMedium = $placeholer;
-							$imageLarge = $placeholer;
+							$imageMedium = $placeholder;
+							$imageLarge = $placeholder;
 						}
 
 						 ?>
-						<a href="<?php the_permalink();?>" class="cover"><img src="<?php echo $imageMedium; ?>" data-layzr="<?php echo $imageLarge; ?>" alt="<?php echo $term->name;?>"></a>
+						<a href="<?php the_permalink();?>" class="cover"><img src="<?php echo $imageMedium; ?>" data-layzr="<?php echo $imageLarge; ?>" alt="<?php the_title(); ?>"></a>
 						<div class="content">
 							<h1 class="heading">Last Weekend&rsquo;s Message</h1>
 							<div class="info">
@@ -243,14 +243,15 @@ get_header();
 						<ul class="series">
 						<?php while ( $query->have_posts() ) { $query->the_post();
 
-							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);				$placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
+							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);
+							$placeholder = get_bloginfo('template_url').'/images/series-placeholder.png';
 
 							if ( has_post_thumbnail() ) {
 								$image = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 							} elseif($seriescover) {
 								$image = wp_get_attachment_image_url( $seriescover, 'thumb_uncropped' );
 							} else {
-								$image = $placeholer;
+								$image = $placeholder;
 							}
 							?>
 
@@ -284,14 +285,16 @@ get_header();
 													'taxonomy' => 'series',
 													'field' => 'slug',
 													'terms' => $slug,
-												),
-												array(
-													'taxonomy' => 'campuses',
-													'field' => 'slug',
-													'terms' => $campus,
-												),
-											),
+												)
+											)
 										);
+										if (isset($campus) && ($campus != 'all')) {
+											$args['tax_query'][] = array(
+												'taxonomy' => 'campuses',
+												'field' => 'slug',
+												'terms' => $campus
+											);
+										}
 										$posts_array = get_posts( $args );
 										$first = $posts_array[0]->ID;
 										$last = $posts_array[count($posts_array) -1 ]->ID;
@@ -355,14 +358,14 @@ get_header();
 						<ul class="series">
 						<?php while ( $query->have_posts() ) { $query->the_post();
 
-							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);				$placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
+							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);				$placeholder = get_bloginfo('template_url').'/images/series-placeholder.png';
 
 							if ( has_post_thumbnail() ) {
 								$image = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 							} elseif($seriescover) {
 								$image = wp_get_attachment_image_url( $seriescover, 'thumb_uncropped' );
 							} else {
-								$image = $placeholer;
+								$image = $placeholder;
 							}
 							?>
 
@@ -468,14 +471,14 @@ get_header();
 						<ul class="series">
 						<?php while ( $query->have_posts() ) { $query->the_post();
 
-							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);				$placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
+							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);				$placeholder = get_bloginfo('template_url').'/images/series-placeholder.png';
 
 							if ( has_post_thumbnail() ) {
 								$image = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 							} elseif($seriescover) {
 								$image = wp_get_attachment_image_url( $seriescover, 'thumb_uncropped' );
 							} else {
-								$image = $placeholer;
+								$image = $placeholder;
 							}
 							?>
 
@@ -581,14 +584,14 @@ get_header();
 						<ul class="series">
 						<?php while ( $query->have_posts() ) { $query->the_post();
 
-							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);				$placeholer = get_bloginfo('template_url').'/images/series-placeholder.png';
+							$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);				$placeholder = get_bloginfo('template_url').'/images/series-placeholder.png';
 
 							if ( has_post_thumbnail() ) {
 								$image = get_the_post_thumbnail_url( $post->id, 'thumb_uncropped' );
 							} elseif($seriescover) {
 								$image = wp_get_attachment_image_url( $seriescover, 'thumb_uncropped' );
 							} else {
-								$image = $placeholer;
+								$image = $placeholder;
 							}
 							?>
 
