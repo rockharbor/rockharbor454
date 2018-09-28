@@ -73,8 +73,26 @@ get_header();
 						<div class="download">
 							<h5>Download <i class="fas fa-angle-down"></i></h5>
 							<ul>
-								<?php if($audio) { ?><li><a href="<?php bloginfo('template_url');?>/force_download.php?file=<?php echo $audio;?>" target="_blank"><i class="fas fa-volume-up"></i> Audio</a></li><?php } ?>
-								<?php if($video) { ?><li><a href="<?php bloginfo('template_url');?>/force_download.php?file=<?php echo $video;?>" target="_blank"><i class="fas fa-video"></i> Video</a></li><?php } ?>
+								<?php
+								$redirectKey = strtolower(get_field('redirect_key', 'option'));
+								if ($audio) {
+									$audioUrl = get_bloginfo('template_url') . "/force_download.php?file=" . urlencode($audio);
+									if ($redirectKey && !empty($redirectKey)) {
+										$hash = hash_hmac('sha256', urlencode($audio), $redirectKey);
+										$audioUrl .= "&key={$hash}";
+									}
+									?><li><a href="<?php echo $audioUrl; ?>" target="_blank"><i class="fas fa-volume-up"></i> Audio</a></li>
+								<?php
+								}
+								if ($video) {
+									$videoUrl = get_bloginfo('template_url') . "/force_download.php?file=" . urlencode($video);
+									if ($redirectKey && !empty($redirectKey)) {
+										$hash = hash_hmac('sha256', urlencode($video), $redirectKey);
+										$videoUrl .= "&key={$hash}";
+									}
+									?><li><a href="<?php echo $videoUrl; ?>" target="_blank"><i class="fas fa-video"></i> Video</a></li>
+								<?php
+								} ?>
 							</ul>
 						</div>
 						<?php
