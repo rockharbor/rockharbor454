@@ -7,7 +7,6 @@
  * @package ROCKHARBOR_Church
  */
 
-$campus = $_COOKIE['campus'] ?? $_GET['c'] ?? 'all';
 get_header();
 ?>
 
@@ -41,7 +40,7 @@ get_header();
 				'taxonomy'			=> 'series',
 				'term'				=> $terms,
 				'post_type'         => array( 'message' ),
-				'posts_per_page'    => 100,
+				'posts_per_page'    => 8,
 				'paged' 			=> $paged,
 				'order'             => 'DESC',
 				'orderby'           => 'date',
@@ -110,21 +109,36 @@ get_header();
 		<?php endforeach; ?>
 	</section>
 
-	<!--<script src="<?php bloginfo('template_url');?>/js/vendors/infinite-scroll.pkgd.js"></script>-->
+	<script src="<?php bloginfo('template_url'); ?>/js/vendors/infinite-scroll.pkgd.js"></script>
+	<script src="<?php bloginfo('template_url'); ?>/js/vendors/js.cookie.js"></script>
 	<script>
-		/*if ($('.page-numbers.next').length) {
-			$('.series-term').infiniteScroll({
-			  path: '.page-numbers.next',
-			  append: '.series-term li',
-			  responseType: 'document',
-			  scrollThreshold: 400,
-			  history: false,
-			  hideNav: '.pagination-infinite',
-			  status: '.page-load-status',
-			  debug: false,
-			})
-		}*/
-		$('.container').not('.campus-<?php echo $campus; ?>').remove();
+		<?php
+		if (isset($_GET['c']) && !empty($_GET['c'])) {
+			echo "var phpCampus = " . json_encode(array('campus' => $_GET['c'])) . ";\n";
+		} ?>
+		cookieCampus = Cookies.get('campus');
+		if (typeof phpCampus !== 'undefined') {
+			campus = phpCampus.campus;
+		} else if (cookieCampus) {
+			campus = cookieCampus;
+		} else {
+			campus = 'all';
+		}
+		$(document).ready(function() {
+			$('.container').not('.campus-' + campus).remove();
+			if ($('.page-numbers.next').length) {
+				$('.series-term').infiniteScroll({
+				  path: '.page-numbers.next',
+				  append: '.campus-' + campus + ' .series-term li',
+				  responseType: 'document',
+				  scrollThreshold: 400,
+				  history: false,
+				  hideNav: '.pagination-infinite',
+				  status: '.page-load-status',
+				  debug: false,
+				})
+			}
+		});
 	</script>
 
 <?php

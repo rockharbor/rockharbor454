@@ -136,8 +136,7 @@ function doGoogleAnalytics($url) {
 	$clientIp = $_SERVER['REMOTE_ADDR'];
 	$userAgent = $_SERVER['HTTP_USER_AGENT'];
 	$referer = $_SERVER['HTTP_REFERER'] ?? $_SERVER['HTTP_REFERER'];
-	$urlParts = parse_url($_SERVER['REQUEST_URI']);
-	$gaPageUrl = "{$urlParts['scheme']}://{$urlParts['host']}{$urlParts['path']}?url=" . urlencode($url);
+	$gaPageUrl = get_bloginfo('template_url') . "?url=" . urlencode($url);
 	/* Prepare the Google Analytics POST data
 	See here for reference: https://developers.google.com/analytics/devguides/collection/protocol/v1/devguide */
 	$ga = curl_init("https://www.google-analytics.com/collect");
