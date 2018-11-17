@@ -48,7 +48,9 @@ if ( ! function_exists( 'rockharbor_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'primary' => esc_html__( 'Primary', 'rockharbor' ),
-			'header' => esc_html__( 'Header', 'rockharbor' ),
+			'header-default' => esc_html__( 'Header (default)', 'rockharbor' ),
+			'header-mv' => esc_html__( 'Header MV', 'rockhabor' ),
+			'header-char' => esc_html__( 'Header Char', 'rockharbor' ),
 			'footer' => esc_html__( 'Footer', 'rockharbor' ),
 			'campuses' => esc_html__( 'Campuses', 'rockharbor' ),
 		) );
@@ -131,9 +133,9 @@ add_action( 'widgets_init', 'rockharbor_widgets_init' );
  */
 function rockharbor_scripts() {
 	wp_enqueue_script( 'rockharbor-jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' );
-	
+
 	wp_enqueue_style( 'rockharbor-style', get_stylesheet_uri(), array(), filemtime( get_stylesheet_directory().'/style.css' ) );
-	
+
 	wp_enqueue_style( 'rockharbor-style-additional', get_template_directory_uri() . '/style-additional.css', array(), filemtime( get_stylesheet_directory().'/style-additional.css' ) );
 
 	wp_enqueue_script( 'rockharbor-functions', get_template_directory_uri() . '/js/functions.min.js', array(), '27767446', true );

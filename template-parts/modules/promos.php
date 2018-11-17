@@ -13,8 +13,10 @@
             <?php if($full['button'] == '') {?>
             	<a href="<?php echo ($full['type'] == 'link') ? $full['link'] : $full['url'];?>" <?php echo ($full['type'] == 'external' && $full['new_window']) ? 'target="_blank"' : '';?>>
 	        <?php }?>
-	        <?php }?>
-            <div class="image" style="background-image: url(<?php echo wp_get_attachment_image_url( $full['image'], 'large' ); ?>);"></div>
+	        <?php }
+            $bgUrl = wp_get_attachment_image_url( $full['image'], 'large');
+            $backgroundAttribute = empty($bgUrl) ? 'background: #fff;' : 'background-image: url(' . $bgUrl . ');'; ?>
+            <div class="image" style="<?php echo $backgroundAttribute; ?>"></div>
             <?php if($full['title'] || $full['blurb']){ ?>
             <div class="info">
                 <?php if($full['title']) { ?><h3><?php echo $full['title'];?></h3><?php } ?>
@@ -35,8 +37,10 @@
             <?php if($left['button'] == '') {?>
             	<a href="<?php echo ($left['type'] == 'link') ? $left['link'] : $left['url'];?>" <?php echo ($left['type'] == 'external' && $left['new_window']) ? 'target="_blank"' : '';?>>
 	        <?php }?>
-	         <?php }?>
-            <div class="image" style="background-image: url(<?php echo wp_get_attachment_image_url( $left['image'], 'large' ); ?>);"></div>
+	        <?php }
+            $bgUrl = wp_get_attachment_image_url( $left['image'], 'large');
+            $backgroundAttribute = empty($bgUrl) ? 'background: #fff;' : 'background-image: url(' . $bgUrl . ');'; ?>
+            <div class="image" style="<?php echo $backgroundAttribute; ?>"></div>
             <?php if($left['title'] || $left['blurb']){ ?>
             <div class="info">
                 <?php if($left['title']) { ?><h3><?php echo $left['title'];?></h3><?php } ?>
@@ -55,8 +59,10 @@
             <?php if($right['button'] == '') {?>
             	<a href="<?php echo ($right['type'] == 'link') ? $right['link'] : $right['url'];?>" <?php echo ($right['type'] == 'external' && $right['new_window']) ? 'target="_blank"' : '';?>>
 	        <?php }?>
-	        <?php }?>
-            <div class="image" style="background-image: url(<?php echo wp_get_attachment_image_url( $right['image'], 'large' ); ?>);"></div>
+	        <?php }
+            $bgUrl = wp_get_attachment_image_url( $right['image'], 'large');
+            $backgroundAttribute = empty($bgUrl) ? 'background: #fff;' : 'background-image: url(' . $bgUrl . ');'; ?>
+            <div class="image" style="<?php echo $backgroundAttribute; ?>"></div>
             <?php if($right['title'] || $right['blurb']){ ?>
             <div class="info">
                 <?php if($right['title']) { ?><h3><?php echo $right['title'];?></h3><?php } ?>
