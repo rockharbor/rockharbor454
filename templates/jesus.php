@@ -5,7 +5,7 @@
 
 get_header();
 	while ( have_posts() ) :	the_post();
-	
+
 	$who = get_field('who_is_jesus');
 	$why = get_field('why_jesus');
 	$alpha = get_field('alpha');
@@ -30,8 +30,8 @@ get_header();
 				<h2 class="title"><?php echo $why['title'];?></h2>
 				<div class="content">
 					<?php echo $why['content'];?>
-					
-					<h3>If you don't own a bible we would love to give you one.</h3>
+
+					<h3>Want to learn more about Jesus? Submit your info and receive a free eBook.</h3>
 					<?php echo do_shortcode('[gravityform id="3" title="false" description="false" ajax="true"]');?>
 				</div>
 			</div>
@@ -74,21 +74,21 @@ get_header();
 					        $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
 					        $active.addClass('active');
 					        $content = $($active.attr('href'));
-					        
+
 					        $links.not($active).each(function () {
 					            $($(this).attr('href')).hide();
 					        });
-					    
+
 					        $(this).on('click', 'a', function(e){
 					            $active.removeClass('active');
 					            $content.hide();
-					            
+
 					            $active = $(this);
 					            $content = $($(this).attr('href'));
-					            
+
 					            $active.addClass('active');
 					            $content.fadeIn('fast');
-					            
+
 					            e.preventDefault();
 					        });
 					    });
@@ -140,13 +140,13 @@ get_header();
 			</div>
 		</div>
 	</section>
-	
+
 	<div class="gradients gradient-who"></div>
 	<div class="gradients gradient-why"></div>
 	<div class="gradients gradient-alpha"></div>
 	<div class="gradients gradient-church"></div>
 	<div class="gradients gradient-services"></div>
-	
+
 	<nav id="fp-nav" class="fp-show-active navigation">
 		<ul>
 			<li data-menuanchor="who" class="active"><a href="#who"></a><div class="fp-tooltip">Who is Jesus?</div></li>
@@ -156,7 +156,7 @@ get_header();
 			<li data-menuanchor="services"><a href="#services"></a><div class="fp-tooltip">Weekend Servcies</div></li>
 		</ul>
 	</nav>
-	
+
 
 
 	<?php endwhile;
