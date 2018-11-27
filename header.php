@@ -105,8 +105,10 @@ if (!$campus) {
             } else {
                 $currentCampus = $post->post_name;
             }
+			$rowFound = false;
             while (have_rows('notification_bars', 'option')):
                 the_row();
+				if ($rowFound) { continue; }
                 $notificationText = get_sub_field('message');
     			$current = current_time('mysql');
     			$start = get_sub_field('publish_date');
@@ -124,7 +126,8 @@ if (!$campus) {
 					<?php }?>
 				</div>
 			    <?php
-                    break;
+                    $rowFound = true;
+					continue;
                 }
             endwhile;
         } ?>
