@@ -146,6 +146,82 @@ function rockharbor_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'rockharbor_scripts' );
 
+/**
+ * Filter post title on message feeds to append date for readability
+ *
+ * @param string $title The post $title
+ * @param int $id The post ID
+ * @return string
+ */
+function appendDateToTitle( $title, $id = null ) {
+	if ( is_feed() && ( get_post_type() == 'message' ) ) {
+		$title .= get_the_date( " (n/j/Y)", $id );
+	}
+	return $title;
+}
+add_filter( 'the_title', 'appendDateToTitle', 10, 2 );
+
+/**
+ * Filter post content to append post metadata in message feeds
+ *
+ * @param string $content The post content
+ * @return string
+ */
+function appendMetadataToContent( $content ) {
+	if ( is_feed() && ( get_post_type() == 'message' ) ) {
+		$postID = get_the_ID();
+		$termQuery = new WP_Term_Query();
+		$teachers = $termQuery->query( array(
+			'taxonomy' => 'teacher',
+			'object_ids' => $postID
+		) );
+		$series = $termQuery->query( array(
+			'taxonomy' => 'series',
+			'object_ids' => $postID
+		) );
+		$tags = $termQuery->query( array(
+			'taxonomy' => 'tags',
+			'object_ids' => $postID
+		) );
+		$scripture = get_post_meta( $postID, 'scripture' );
+		$permalink = get_permalink( $postID);
+
+		$lines = array();
+		if ( count( $teachers ) > 0 ) {
+			$elements = array();
+			$value = "Teacher: ";
+			foreach ( $teachers as $teacher ) {
+				$elements[] = $teacher->name;
+			}
+			$value .= implode( ', ', $elements );
+			$lines[] = $value . "\n";
+		}
+		if ( count( $series ) > 0 ) {
+			$lines[] = "Series: " . $series[0]->name . "\n";
+		}
+		if ( count( $tags ) > 0 ) {
+			$elements = array();
+			$value = "Tags: ";
+			foreach ( $tags as $tag ) {
+				$elements[] = $tag->name;
+			}
+			$value .= implode( ', ', $elements );
+			$lines[] = $value . "\n";
+		}
+		if ( count( $scripture ) > 0 ) {
+			$lines[] = 'Scripture: ' . $scripture[0] . "\n";
+		}
+		//$lines[] = 'View Post: <a href="' . $permalink . '">' . $permalink . '</a>';
+		if ( count( $lines ) > 0 ) {
+			$content .= "<p>" . implode( "", $lines ) . "</p>";
+		}
+	}
+
+	return $content;
+}
+add_filter( 'the_content', 'appendMetadataToContent', 10, 1 );
+add_filter( 'the_excerpt_rss', 'appendMetadataToContent', 10, 1 );
+
 
 /**
  * Custom Taxonomies
