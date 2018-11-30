@@ -86,9 +86,15 @@ $('#campus-filter').change(function(){
 	// get filter value
 	var campus = $(this).val();
 	// set cookie
-	Cookies.set('campus', campus, 2147483647, {path: '/'}); 
+	Cookies.set('campus', campus, 2147483647, {path: '/'});
 	// append campus to url in case cookies are dissallowed
-	location.href = document.location.protocol +"//"+ document.location.hostname + document.location.pathname + "?c=" + campus; });
+	redirectUrl = document.location.protocol + "//" + document.location.hostname + document.location.pathname;
+	if (document.location.search.length > 0) {
+		redirectUrl += document.location.search + "&c=" + campus;
+	} else {
+		redirectUrl += "?c=" + campus;
+	}
+	location.href = redirectUrl; });
 </script>
 
 <?php
@@ -101,7 +107,7 @@ if(is_page_template('templates/jesus.php')) { ?>
 <script src="<?php bloginfo('template_url');?>/js/vendors/aos.min.js"></script>
 <script>
 	const player = new Plyr('#plyr');
-	
+
 	var myFullpage = new fullpage('#know-jesus', {
 		licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
 		menu: '#fp-nav',
@@ -121,11 +127,11 @@ if(is_page_template('templates/jesus.php')) { ?>
 			player.pause();
 			//$('#know-jesus').attr('class', 'fullpage-wrapper');
 			//$('#know-jesus').addClass('section' + nextIndex);
-			
+
 			//$('body.page-template-jesus').addClass('gradient' + nextIndex);
 		}
     });
-    
+
 	$(window).ready(function() {
 		AOS.init({ duration: 1000, once: true,});
 	});
@@ -198,7 +204,7 @@ $(window).ready(function() {
   	}());
 	SLIDER.build($('.callout-slider'));
 });
-    
+
 $(window).ready(function() {
 	AOS.init({ duration: 1000, once: true,});
 });
