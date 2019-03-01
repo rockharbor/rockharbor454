@@ -5,50 +5,55 @@
  */
 
 
-$campus = $_COOKIE['campus'] ?? null;
-// If Campus Cookie Not set
-if (!$campus) {
-	// check for campus url parameter, ex: ?c=cotsa-mesa
-	if(isset($_GET['c'])) {
-    	$campus = $_GET['c'];
-		setcookie('campus', $campus, 2147483647, '/');
-	} else {
-		//setcookie('campus', 'all', 2147483647, '/');
-		$campus = 'all';	
-	}
-}
 
 
-$filterCount = 1;
-if( have_rows('modules') ):
-	while ( have_rows('modules') ) : the_row();
-		$assign_campus_field = get_sub_field('assign_campus');
-		if($assign_campus_field) {
-			
-			if($filterCount == '1') { ?>
-				<div class="content-filter">
-					<span>Filter by Campus</span>
-					<div class="select">
-						<select id="campus-filter">
-							<option value="all">All Campuses</option>
-							<?php
-							$taxonomy = 'campuses';
-							$locationsargs = array (
-								'hide_empty'	=> 0,
-								'parent'        => 0,
-								'taxonomy'      => $taxonomy,
-							);
-							$locations = get_terms($locationsargs);
-								foreach($locations as $location) {?>
-								<option value="<?php echo $location->slug;?>"><?php echo $location->name;?></option>
-							<?php } ?>
-						</select>
-					</div>
-				</div>
-			<?php $filterCount++;
-			}
+if(!is_page_template('templates/events.php')): // dont show on events page
+
+	$campus = $_COOKIE['campus'] ?? null;
+	// If Campus Cookie Not set
+	if (!$campus) {
+		// check for campus url parameter, ex: ?c=cotsa-mesa
+		if(isset($_GET['c'])) {
+	    	$campus = $_GET['c'];
+			setcookie('campus', $campus, 2147483647, '/');
+		} else {
+			//setcookie('campus', 'all', 2147483647, '/');
+			$campus = 'all';	
 		}
-	endwhile;
+	}
+	
+	
+	$filterCount = 1;
+	if( have_rows('modules') ):
+		while ( have_rows('modules') ) : the_row();
+			$assign_campus_field = get_sub_field('assign_campus');
+			if($assign_campus_field) {
+				
+				if($filterCount == '1') { ?>
+					<div class="content-filter">
+						<span>Filter by Campus</span>
+						<div class="select">
+							<select id="campus-filter">
+								<option value="all">All Campuses</option>
+								<?php
+								$taxonomy = 'campuses';
+								$locationsargs = array (
+									'hide_empty'	=> 0,
+									'parent'        => 0,
+									'taxonomy'      => $taxonomy,
+								);
+								$locations = get_terms($locationsargs);
+									foreach($locations as $location) {?>
+									<option value="<?php echo $location->slug;?>"><?php echo $location->name;?></option>
+								<?php } ?>
+							</select>
+						</div>				
+					</div>
+				<?php $filterCount++;
+				}
+			}
+		endwhile;
+	endif;
 endif;
 
 if( have_rows('modules') ): $i = 0;
@@ -130,6 +135,9 @@ if( have_rows('modules') ): $i = 0;
 
 				} elseif( get_row_layout() == 'upcoming_events' ) {
 					include(locate_template('template-parts/modules/upcoming-events.php'));
+				
+				} elseif( get_row_layout() == 'upcoming_events_filter' ) {
+					include(locate_template('template-parts/modules/upcoming-events-filter.php'));
 
 				} elseif( get_row_layout() == 'video' ) {
 					include(locate_template('template-parts/modules/video.php'));

@@ -17,7 +17,17 @@ if(!($style == 'none')) { ?>
             </video>
         <?php } ?>
         <div class="container">
-            <h1 class="heading <?php echo $align;?>"><?php if($title) { the_field('page_title'); } else { the_title(); } ?></h1>
+            <h1 class="heading <?php echo $align;?>">
+	            <strong class="page-title"><?php if($title) { the_field('page_title'); } else { the_title(); } ?></strong>
+				<?php
+			    $url = $_SERVER['REQUEST_URI'];
+				$find   = 'event-info/';
+				$pos = strpos($url, $find);
+				if($pos):
+				    echo '<div style="text-align:center; padding-top: 20px; font-size: 16px; font-weight: normal;"><a href="/events/"><i class="fas fa-angle-left"></i> Back to Events</a></div>';
+				endif;
+			    ?>
+            </h1>
             <?php if($blurb) { ?><div class="blurb <?php echo $align;?>"><?php the_field('page_blurb');?></div><?php }?>
         </div>
     </section>

@@ -34,7 +34,7 @@
 		.dashicons {
 			display: inline-block;
 			@include font-size(30px);
-			color: rgba(black,.2);
+			color: $blue;
 			margin-bottom: 18px;
 		}
 	}
@@ -73,5 +73,19 @@
 		display: inline-block;
 		padding: 7px 20px;
 		margin-top: 10px;
+		text-decoration: none;
+		font-weight: 600;
+		
+		&:hover {
+			background: $blue;
+		}
+		
+		&.facebook {
+			background: #4867aa;
+		}
+		
+		&.twitter {
+			background: #1da1f2;
+		}
 	}
 }

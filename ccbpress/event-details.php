@@ -1,9 +1,7 @@
 <?php
 wp_dequeue_script('leaflet');
 wp_dequeue_style('leaflet');
-$min = WP_DEBUG ? '' : '.min';
-wp_register_style('event-details', trailingslashit(get_template_directory_uri()) . "css/event-details{$min}.css", array('dashicons'));
-wp_enqueue_style('event-details');
+wp_enqueue_style( 'dashicons' );
 
 global $post;
 $pageUrl = get_permalink($post->ID);
@@ -28,6 +26,7 @@ if ($event->registration_forms->registration_form) {
 }
 
  ?>
+
 <div class="rh-ccbpress-event-details <?php if ($splitColumns) { echo "rh-ccbpress-left-column"; } ?>">
     <?php if ((get_option('ccbpress_individual_event_show_image', '1') == '1') && $template->has_event_image( $event ) ): ?>
         <div class="rh-ccbpress-event-image"><img src="<?php echo $event->image; ?>" /></div>
@@ -39,12 +38,16 @@ if ($event->registration_forms->registration_form) {
         <a href="tel:+1<?php echo preg_replace("/[^0-9]/", "", $event->phone);?>"><?php echo $event->phone; ?></a>
         <?php endif; ?>
     </div>
-    <?php endif;
-    if (empty($event->description)) : ?>
-    <div class="rh-ccbpress-event-description"><p>No description has been provided for this event</p></div>
-    <?php else: ?>
-	<div class="rh-ccbpress-event-description"><?php echo wpautop( $event->description, true ); ?></div>
     <?php endif; ?>
+    
+    <div class="rh-ccbpress-event-description" style="width: 100%;">
+	    <?php if (empty($event->description)) : ?>
+		    <p>No description has been provided for this event</p>
+		<?php else: ?>
+			<?php echo wpautop( $event->description, true ); ?>
+		<?php endif; ?>
+	</div>
+       
     <div class="rh-ccbpress-event-cta rh-ccbpress-hoverbox">
         <div class="cta-banner"><p>Ready to get on the guest list?</p></div>
         <div class="rh-ccbpress-rsvp">
@@ -56,14 +59,23 @@ if ($event->registration_forms->registration_form) {
             }?>" class="rh-button">Sign Me Up!</a>
     	</div>
     </div>
+    
     <div class="rh-ccbpress-share-container rh-ccbpress-hoverbox">
         <div class="cta-banner"><p>Want to share with your friends?</p></div>
-        <a class="share facebook" href="<?php echo "http://www.facebook.com/sharer.php?u=$pageUrl&t=$event->name"?>"><span class="icon icon-facebook"></span></a>
-        <a class="share twitter" href="<?php echo "http://www.twitter.com/home?status=Check out $event->name at $pageUrl"?>"><span class="icon icon-twitter"></span></a>
+        	<a class="share facebook rh-button" href="<?php echo "http://www.facebook.com/sharer.php?u=$pageUrl&t=$event->name"?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+			<a class="share twitter rh-button" href="<?php echo "http://www.twitter.com/home?status=Check out $event->name at $pageUrl"?>" target="_blank"><i class="fab fa-twitter"></i></a>
     </div>
+    
 </div>
+
 <?php if ($splitColumns): ?>
 <div class="rh-ccbpress-right-column">
+	
+    <div class="rh-event-info-box">
+        <div class="rh-event-info-box-header clearfix"><div class="rh-ccbpress-event-location-header rh-event-info-box-icon"><span class="dashicons dashicons-clock"></span></div><div class="rh-event-info-box-header-text">When</div></div>
+        <div class="rh-ccbpress-event-recurrence-description"><?php echo $template->recurrence_desc( $event ) ; ?></div>
+    </div>
+	
 	<?php
 	/**
 	 * Check if there are is a location for this event
@@ -84,47 +96,13 @@ if ($event->registration_forms->registration_form) {
 			'<br/>' . trim($cleanAddress2) . '</div>'; ?>
 		<div class="rh-ccbpress-event-location rh-event-info-box">
 			<div class="rh-event-info-box-header clearfix"><div class="rh-ccbpress-event-location-header rh-event-info-box-icon"><span class="dashicons dashicons-location-alt"></span></div><div class="rh-ccbpress-event-location-header rh-event-info-box-header-text">Where</div></div>
-			<div id="google-map" data-address="<?php echo $event->location_line_1 . $event->location_line_2; ?>"></div>
 			<div class="rh-ccbpress-event-location-nomap"><?php echo $template->map_label( $event->location_name, $event->location_line_1, $event->location_line_2 ); ?></div>
 		</div>
-		<script type="text/javascript">
-		function initMap() {
-			var geocoder = new google.maps.Geocoder();
-			var address = jQuery('#google-map').data('address');
-			geocoder.geocode({'address': address}, function(results, status) {
-				if (status === google.maps.GeocoderStatus.OK) {
-					var mapDiv = jQuery('#google-map').width('100%').height('300px');
-					var nomapDiv = jQuery('.rh-ccbpress-event-location-nomap').css('display', 'none');
-					var map = new google.maps.Map(mapDiv.get(0), {
-						zoom: 13,
-						center: {lat:33.5, lng:-118}
-					});
-					map.setCenter(results[0].geometry.location);
-					var marker = new google.maps.Marker({
-						map: map,
-						position: results[0].geometry.location,
-						title: "<?php echo str_replace(array("\r\n", "\n", "\r"), "<br/>", $markerTitle) ?>"
-					});
-					var infowindow = new google.maps.InfoWindow({
-						content: "<?php echo $addressString; ?>"
-					});
-					marker.addListener('click', function() {
-						infowindow.open(map, marker);
-					});
-                    infowindow.open(map, marker);
-				}
-			});
-		}
-		</script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3HEVaDRiRa_VcrpVYpfrwlYcz2MRccBc&callback=initMap" async defer></script>
 	<?php
     endif;
 
     ?>
-    <div class="rh-event-info-box">
-        <div class="rh-event-info-box-header clearfix"><div class="rh-event-info-box-icon"><div id="rh-ccbpress-clock"></div></div><div class="rh-event-info-box-header-text">When</div></div>
-        <div class="rh-ccbpress-event-recurrence-description"><?php echo $template->recurrence_desc( $event ) ; ?></div>
-    </div>
+
     <?php
 
 	/**
@@ -240,7 +218,8 @@ if ($event->registration_forms->registration_form) {
 // Fix titles without hacking plugin
 jQuery(document).ready(function() {
     var eventName = "<?php echo $event->name; ?>";
-    jQuery('.breadcrumbs').append('&nbsp;/&nbsp;<span class="crumb"><?php echo str_replace("'", "\'", $event->name); ?></span>');
-    jQuery('#content-title h1').html(eventName);
+    console.log('<?php echo $event->name; ?>');
+    //jQuery('.breadcrumbs').append('&nbsp;/&nbsp;<span class="crumb"><?php echo str_replace("'", "\'", $event->name); ?></span>');
+    jQuery('h1 .page-title').html(eventName);
 });
 </script>

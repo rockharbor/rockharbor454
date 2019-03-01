@@ -69,15 +69,18 @@
 
 <?php wp_footer(); ?>
 
-<script>
-//////////////////////////////////////////////////////////////////////////////////////////////////
-////// Update Campus Filter to match Cookie
-var $campus = Cookies.get('campus');
-if (!$campus) {
-	$campus = 'all';
-}
-$('#campus-filter').val($campus);
-</script>
+
+<?php if(!is_page_template('templates/events.php')) { // dont run on events page ?>
+	<script>
+	//////////////////////////////////////////////////////////////////////////////////////////////////
+	////// Update Campus Filter to match Cookie
+	var $campus = Cookies.get('campus');
+	if (!$campus) {
+		$campus = 'all';
+	}
+	$('#campus-filter').val($campus);
+	</script>
+<?php } ?>
 
 <script>
 //////////////////////////////////////////////////////////////////////////////////////////////////

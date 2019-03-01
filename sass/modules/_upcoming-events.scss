@@ -3,6 +3,18 @@
 section.upcoming-events {
 	overflow: scroll;
 	
+	
+	.no-results {
+		margin: 2em 0 !important;
+		text-align: center !important;
+		padding: 0 !important;
+		font-size: 1.5em;
+		
+		span {
+			color: $blue;
+		}
+	}
+	
 	.container {
 		max-width: 900px;
 	}
