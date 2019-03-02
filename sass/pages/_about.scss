@@ -9,16 +9,6 @@
         background-size: cover;
         position: relative;
         
-        &::before {
-            content: '';
-            position: absolute;
-            z-index: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            height: 55%;
-        }
-        
         .wrapper {
             max-width: 1200px;
             padding: 10% 30px 25% 30px;
@@ -216,14 +206,9 @@
 }
 
 .teachings {
-    background: #606EA1;
+    background: #111;
     
     .intro {
-        background-position: center center;
-	    
-        &::before {
-            background: linear-gradient(to top, #606EA1 10%, rgba(#606EA1,0) 100%);
-        }
         .content {
             @include media($tablet) {
                 margin-left: 0 !important;
@@ -231,16 +216,13 @@
         }
     }
     .most-recent {
-        border-bottom: 1px solid darken(#606EA1,10%);
+        border-bottom: 1px solid rgba(white,0.1);
     }
 }
 .music {
     background: #111;
     
     .intro {
-        &::before {
-            background: linear-gradient(to top, #111 10%, rgba(#111,0) 100%);
-        }
         .content {
             @include media($tablet) {
                 margin-right: 0 !important;

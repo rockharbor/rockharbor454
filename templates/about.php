@@ -34,7 +34,7 @@ get_header();
 			$image = get_sub_field('background');
 		?>
 		<section class="featured teachings">
-			<div class="intro" style="background-image: url(<?php echo wp_get_attachment_image_url( $image, 'large' ); ?>);">
+			<div class="intro" style="background-image: linear-gradient(to top, #111 5.5%, rgba(17,17,17,0) 55%), url(<?php echo wp_get_attachment_image_url( $image, 'large' ); ?>);">
 				<div class="wrapper">
 					<div class="content">
 					<?php while ( have_rows('content') ) : the_row(); ?>
@@ -173,7 +173,7 @@ get_header();
 			$image = get_sub_field('background');
 		?>
 		<section class="featured music">
-			<div class="intro" style="background-image: url(<?php echo wp_get_attachment_image_url( $image, 'large' ); ?>);">
+			<div class="intro" style="background-image: linear-gradient(to top, #111 5.5%, rgba(17,17,17,0) 55%), url(<?php echo wp_get_attachment_image_url( $image, 'large' ); ?>);">
 				<div class="wrapper">
 					<div class="content">
 					<?php while ( have_rows('content') ) : the_row(); ?>
