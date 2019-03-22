@@ -6,7 +6,7 @@
  *
  * @package ROCKHARBOR_Church
  */
- 
+
 
 // Set Campus Slug as Campus Cookie
 global $post;
@@ -16,7 +16,7 @@ setcookie('campus', $campus, 2147483647, '/');
 
 get_header(); ?>
 	<?php while ( have_posts() ) : the_post(); ?>
-		
+
 		<section class="campus-hero" style="background-image: url('<?php echo the_post_thumbnail_url( 'large' );?>')">
 			<div class="container">
 	  			<div>
@@ -27,7 +27,7 @@ get_header(); ?>
 					$coord = explode (',', implode($gtemp));
 				?>
 				<div class="info">
-					<?php if($address){?><div class="address"><i class="bx bx-map"></i><div><?php echo '<span>' . $gtemp[0] . ',</span> <span>' . $gtemp[1] . ', ' . $gtemp[2] . '</span>'; ?></div></div><?php } ?>
+					<?php if($address){?><div class="address"><a href="<?php echo "https://www.google.com/maps/place/" . urlencode($address['address']); ?>" target="_blank"><i class="bx bx-map"></i><div><?php echo '<span>' . $gtemp[0] . ',</span> <span>' . $gtemp[1] . ', ' . $gtemp[2] . '</span>'; ?></div></a></div><?php } ?>
 					<?php
 					$rows = get_field('hours');
 					$first_row = $rows[0];
