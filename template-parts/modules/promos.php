@@ -21,7 +21,7 @@
             <div class="info">
                 <?php if($full['title']) { ?><h3><?php echo $full['title'];?></h3><?php } ?>
                 <?php if($full['blurb']) { ?><p><?php echo $full['blurb'];?></p><?php } ?>
-                <?php if($full['button']) {?><a href="<?php echo ($full['type'] == 'link') ? $full['link'] : $full['url'];?>" class="button <?php echo $full['button_color'];?>"><?php echo $full['button'];?></a><?php } ?>
+                <?php if($full['type'] != 'none' && $full['button']) {?><a href="<?php echo ($full['type'] == 'link') ? $full['link'] : $full['url'];?>" class="button <?php echo $full['button_color'];?>"><?php echo $full['button'];?></a><?php } ?>
             </div>
             <?php }?>
             <?php if($full['type'] != 'none') {?>
@@ -45,7 +45,7 @@
             <div class="info">
                 <?php if($left['title']) { ?><h3><?php echo $left['title'];?></h3><?php } ?>
                 <?php if($left['blurb']) { ?><p><?php echo $left['blurb'];?></p><?php } ?>
-                <?php if($left['button']) {?><a href="<?php echo ($left['type'] == 'link') ? $left['link'] : $left['url'];?>" class="button <?php echo $left['button_color'];?>"><?php echo $left['button'];?></a><?php } ?>
+                <?php if($left['type'] != 'none' && $left['button']) {?><a href="<?php echo ($left['type'] == 'link') ? $left['link'] : $left['url'];?>" class="button <?php echo $left['button_color'];?>"><?php echo $left['button'];?></a><?php } ?>
             </div>
             <?php }?>
             <?php if($left['type'] != 'none') {?>
@@ -67,7 +67,7 @@
             <div class="info">
                 <?php if($right['title']) { ?><h3><?php echo $right['title'];?></h3><?php } ?>
                 <?php if($right['blurb']) { ?><p><?php echo $right['blurb'];?></p><?php } ?>
-                <?php if($right['button']) {?><a href="<?php echo ($right['type'] == 'link') ? $right['link'] : $right['url'];?>" class="button <?php echo $right['button_color'];?>"><?php echo $right['button'];?></a><?php } ?>
+                <?php if($right['type'] != 'none' && $right['button']) {?><a href="<?php echo ($right['type'] == 'link') ? $right['link'] : $right['url'];?>" class="button <?php echo $right['button_color'];?>"><?php echo $right['button'];?></a><?php } ?>
             </div>
             <?php }?>
             <?php if($right['type'] != 'none') {?>

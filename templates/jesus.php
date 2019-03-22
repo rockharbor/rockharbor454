@@ -44,7 +44,7 @@ get_header();
 				<div class="content">
 					<?php echo $alpha['content'];?>
 					<div class="plyr__video-embed" id="plyr">
-			            <iframe data-ratio="normal" class="vimeo-embed" src="https://player.vimeo.com/video/200440921" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+			            <iframe data-ratio="normal" class="vimeo-embed" src="https://player.vimeo.com/video/288478585" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 			        </div>
 				</div>
 			</div>

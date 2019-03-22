@@ -90,10 +90,19 @@ $('#campus-filter').change(function(){
 	var campus = $(this).val();
 	// set cookie
 	Cookies.set('campus', campus, 2147483647, {path: '/'});
-	// append campus to url in case cookies are dissallowed
+	// append campus to url in case cookies are disallowed
 	redirectUrl = document.location.protocol + "//" + document.location.hostname + document.location.pathname;
 	if (document.location.search.length > 0) {
-		redirectUrl += document.location.search + "&c=" + campus;
+		redirectUrl += "?";
+		newParams = Array();
+		queryParams = document.location.search.substring(1).split('&');
+		queryParams.forEach(function(queryParam) {
+			if (queryParam.search(/^c=/g) == -1) {
+				newParams.push(queryParam);
+			}
+		});
+		newParams.push("c=" + campus);
+		redirectUrl += newParams.join("&");
 	} else {
 		redirectUrl += "?c=" + campus;
 	}
