@@ -18,6 +18,11 @@ get_header();
 		$campus = get_the_terms( $post->ID, 'campuses' )[0]->name;
 		$campusSlug = get_the_terms( $post->ID, 'campuses' )[0]->slug;
 		$seriescover = get_field('thumbnail', 'series_'.get_the_terms( $post->ID, 'series' )[0]->term_id);
+		$duration = powerpress_get_enclosure_data( $post->ID )['duration'];
+		if (isset($duration) && !empty($duration)) {
+			$durationParts = explode(':', $duration);
+			$duration8601 = "PT" . $durationParts[0] . "H" . $durationParts[1] . "M" . $durationParts[2] . "S";
+		}
 
 		if ( has_post_thumbnail() ) {
 			$image = get_the_post_thumbnail_url( $post->id, 'large' );
@@ -26,6 +31,9 @@ get_header();
 		} else {
 			$image = get_bloginfo('template_url').'/images/series-placeholder.png';
 		} ?>
+		<script type="application/ld+json">
+			{"@context":"https://schema.org","@type":"VideoObject","name":"<?php the_title(); ?>","description":"<?php echo str_replace('"', '\"', get_the_content()); ?>","thumbnailUrl":["<?php echo $image; ?>"],"uploadDate":"<?php echo get_the_date('c'); ?>",<?php if (isset($duration8601)) { echo "\"duration\":\"" . $duration8601 . "\","; } ?>"contentUrl":"<?php echo $video; ?>"}
+		</script>
 
 		<section class="sermon">
 			<div class="container">
