@@ -17,7 +17,7 @@ body.open-overlay {
     background: linear-gradient(to right bottom, darken($teal,20%), $blue);
 	display: flex;
 	flex-direction: row;
-	
+
 	body.open-overlay & {
 		height: 100%;
 		width: 100%;
@@ -27,17 +27,17 @@ body.open-overlay {
 		transition: all .3s 0s;
 		pointer-events: all;
 	}
-	
+
 	body.admin-bar.open-overlay & {
 		top: 46px;
 		height: calc(100% - 46px);
-		
+
 		@include media(783px) {
 			top: 32px;
 			height: calc(100% - 32px);
 		}
 	}
-	
+
 	.wrapper {
 		height: 100%;
 		width: 100%;
@@ -51,13 +51,13 @@ body.open-overlay {
 		transition: all 0.3s .0s;
 		@include invisible;
 		transform: translateY(-20px);
-		
+
 		body.open-overlay & {
 			transition: all 0.3s .2s;
 			transform: translateY(0);
 			@include visible;
 		}
-		
+
 		@include media($tablet) {
 			padding-top: 145px;
 		}
@@ -68,7 +68,7 @@ body.open-overlay {
 			width: 80%;
 		}
 	}
-	
+
 	.overlay-scroller {
 		position: absolute;
 		top: 88px;
@@ -81,7 +81,7 @@ body.open-overlay {
 		overflow-y: scroll;
 	    -webkit-overflow-scrolling: touch;
 	    -ms-overflow-style: -ms-autohiding-scrollbar;
-		
+
 		&::-webkit-scrollbar {
 	    	-webkit-appearance: none;
 	    	width: 2px;
@@ -91,25 +91,25 @@ body.open-overlay {
 			border-radius: 8px;
 	        background-color: rgba(white, .2);
 		}
-		
+
 		@include media(600px) {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
 		}
-		
+
 		@include media($tablet) {
 			top: 145px;
 		}
-		
+
 		@include media($desktop) {
 			width: 85%;
 			padding-left: 0;
 			padding-right: 0;
 		}
 	}
-	
+
 	// Menu
 	ul.overlay-menu {
 		margin: auto 0;
@@ -119,7 +119,7 @@ body.open-overlay {
 		column-gap: 50px;
 		column-fill: balance;
 		width: 100%;
-		
+
 		@include media(600px) {
 			column-count: 2;
 		}
@@ -130,7 +130,7 @@ body.open-overlay {
 		@include media($hd) {
 			column-gap: 50px;
 		}
-		
+
 		ul {
 			display: block;
 			width: 100%;
@@ -138,37 +138,37 @@ body.open-overlay {
 			margin: 0 0 0 15px;
 			padding-top: 7px;
 			column-count: 1;
-			
+
 			li {
 				padding: 4px 0;
 			}
-			
+
 			a {
 				@include font-size(18px);
 			}
 		}
-		
+
 		li {
 			display: block;
 			padding: 20px 0 20px 0;
 			break-inside: avoid;
 			line-height: 1;;
 		}
-		
+
 		a {
 			@include font-size(22px);
 			display: inline-block;
 			color: #fff;
 			transition: color 0.2s;
 			text-decoration: none;
-			
+
 			&:hover,
 			&:focus {
 				color: $yellow;
 			}
 		}
 	}
-	
+
 	.overlay-search {
 		margin-top: auto;
 		margin-left: auto;
@@ -180,7 +180,7 @@ body.open-overlay {
 		transition: all 0.3s .0s;
 		@include invisible;
 		transform: translateY(-20px);
-		
+
 		@include media($tablet) {
 			width: 85%;
 			padding: 20px 30px 65px 30px;
@@ -188,22 +188,22 @@ body.open-overlay {
 		@include media($desktop) {
 			width: 80%;
 		}
-		
+
 		body.open-overlay & {
 			transition: all 0.3s .2s;
 			transform: translateY(0);
 			@include visible;
 		}
-		
+
 		div {
 			position: relative;
 		}
-		
-		
+
+
 		input {
 			background: transparent;
 			border: 0px;
-			appearance: none;
+			@include x-appearance(none);
 			color: rgba(white,.7);
 			transition: all .2s;
 			width: 100%;
@@ -215,11 +215,11 @@ body.open-overlay {
 			border-radius: 0;
 			border-bottom: 2px solid rgba(white,.3);
 			@include font-size(20px);
-			
+
 			@include media($tablet) {
 				@include font-size(34px);
 			}
-			
+
 			&::placeholder {
 				color: rgba(white,.5);
 			}
@@ -227,7 +227,7 @@ body.open-overlay {
 				color: white;
 			}
 		}
-		
+
 		button {
 			width: 32px;
 			height: 32px;
@@ -239,20 +239,20 @@ body.open-overlay {
 			top: calc(50% - 16px);
 			transition: all .2s;
 			box-shadow: none;
-			
+
 			&:hover {
 				opacity: 1;
 			}
-			
+
 			i {
-				
+
 				display: block;
 				position: relative;
 				width: 32px;
 				height: 3px;
 				background: white;
 				border-radius: 8px;
-				
+
 				&:before,
 				&:after {
 					content: '';
@@ -274,7 +274,7 @@ body.open-overlay {
 			}
 		}
 	}
-	
+
 	.overlay-social {
 		background: linear-gradient(to bottom, $blue 0%, rgba(darken($blue,5%),.1) 100%);
 		z-index: 4;
@@ -286,20 +286,20 @@ body.open-overlay {
 		transition: all 0.3s .0s;
 		@include invisible;
 		transform: translateY(-20px);
-		
+
 		body.open-overlay & {
 			transition: all 0.3s .2s;
 			transform: translateY(0);
 			@include visible;
 		}
-		
+
 		@include media($desktop) {
 			display: flex;
 		}
 		@include media(1152px) {
 			width: 20%;
 		}
-		
+
 		a {
 			@include font-size(28px);
 			color: white;
@@ -307,19 +307,19 @@ body.open-overlay {
 			margin: 7% 0;
 			transition: all 0.2s;
 			transform: scale(1);
-			
+
 			@include media(1152px) {
 				@include font-size(32px);
 				margin: 10% 0;
 			}
-			
+
 			&:hover {
 				color: $yellow;
 				transform: scale(1.35);
 			}
 		}
 	}
-	
+
 	.overlay-logo {
 		transition: all 0.3s .0s;
 		@include invisible;
@@ -329,14 +329,14 @@ body.open-overlay {
 		top: 30px;
 		left: 30px;
 		transform: translateY(-20px);
-		
+
 		body.open-overlay & {
 			transition: all 0.3s .2s;
 			transform: translateY(0);
 			@include visible;
 		}
 	}
-	
+
 	.overlay-close {
 		width: 32px;
         height: 32px;
@@ -348,13 +348,13 @@ body.open-overlay {
 		@include invisible;
 		transform: translateY(-20px);
 		z-index: 5;
-		
+
 		body.open-overlay & {
 			transition: all 0.3s .2s;
 			transform: translateY(0);
 			@include visible;
 		}
-		
+
 		&::before, &::after {
 			position: absolute;
 			width: 32px;
@@ -371,7 +371,7 @@ body.open-overlay {
 		&::after {
 			transform: rotate(45deg);
 		}
-		
+
 		&:hover {
 			&::before {
 				transform: rotate(0deg);
@@ -386,18 +386,18 @@ body.open-overlay {
 ////// Header Navigation
 .header-navigation {
 	margin-left: 5%;
-	
+
 	@include media($hd) {
 		margin-left: 61px;
 	}
-	
+
 	ul {
 		margin: 0;
 		padding: 0;
 		list-style: none;
 		display: flex;
 		align-items: center;
-		
+
 		ul {
 			display: block;
 			position: absolute;
@@ -413,7 +413,7 @@ body.open-overlay {
 			//border-top: 2px solid $lilac;
 			transform: translateY(5px);
 			transition-delay: .3s;
-			
+
 			&::before {
 				content: '';
 				position: absolute;
@@ -422,38 +422,38 @@ body.open-overlay {
 				@include triangle(up, 12px, 6px, white);
 				filter: drop-shadow(0px -3px 2px rgba(0,0,0,0.07));
 			}
-			
+
 			li {
 				margin: 0 !important;
-				
+
 				&:not(:last-child) {
 					border-bottom: 1px solid rgba(black,.1);
 				}
-				
+
 				a {
 					padding: 10px;
 					line-height: 1;
 					@include font-size(15px);
-					
+
 					&:hover {
 						background: rgba(black,.02);
 					}
 				}
 			}
-			
+
 			body.dark-theme & {
 				background: rgba(black,.7);
 				box-shadow: none;
-				
+
 				&::before {
 					@include triangle(up, 12px, 6px, rgba(black,.7));
 					filter: none;
 				}
-				
+
 				li {
 					border-color: rgba(white,.1);
 				}
-				
+
 				a {
 					&:hover {
 						background: rgba(black,.3);
@@ -461,20 +461,20 @@ body.open-overlay {
 				}
 			}
 		}
-		
+
 		li {
 			position: relative;
 			transition: margin .2s;
-			
+
 			&.no-link {
 				> a {
 					cursor: default !important;
 				}
 			}
-			
+
 			&:not(:last-child) {
 				margin-right: 10px;
-				
+
 				@include media(400px) {
 					margin-right: 20px;
 				}
@@ -488,7 +488,7 @@ body.open-overlay {
 					margin-right: 50px;
 				}
 			}
-			
+
 			&:hover ul {
 				opacity: 1;
 				visibility: visible;
@@ -497,7 +497,7 @@ body.open-overlay {
 			}
 		}
 	}
-	
+
 	a {
 		color: #222;
 		transition: all .2s;
@@ -505,7 +505,7 @@ body.open-overlay {
 		text-decoration: none;
 		display: block;
 		@include font-size(12px);
-		
+
 		@include media(400px) {
 			@include font-size(13px);
 		}
@@ -521,15 +521,15 @@ body.open-overlay {
 		@include media($desktop) {
 			@include font-size(17px);
 		}
-		
+
 		&:hover {
 			opacity: 1;
 			color: #111;
 		}
-		
+
 		.dark-theme & {
 			color: white;
-			
+
 			&:hover {
 				color: white;
 			}
@@ -562,7 +562,7 @@ body.open-overlay {
 
 
 /*.main-navigation {
-	
+
 	ul {
 		list-style: none;
 		margin: 0;
@@ -606,7 +606,7 @@ body.open-overlay {
 			left: auto;
 		}
 	}
-	
+
 	li {
 		float: left;
 		position: relative;
@@ -615,7 +615,7 @@ body.open-overlay {
 		&.focus > a {
 		}
 	}
-	
+
 	a {
 		display: block;
 		text-decoration: none;
@@ -632,7 +632,7 @@ body.open-overlay {
 .pagination {
 	padding-top: 50px;
 	text-align: center;
-	
+
 	ul {
 		display: inline-flex;
 		margin: 0;
@@ -642,15 +642,15 @@ body.open-overlay {
 		justify-content: center;
 		align-items: center;
 	}
-	
+
 	li {
 		display: block;
-		
+
 		&:not(:last-child) {
 			border-right: 1px solid rgba(black,.1);
 		}
 	}
-	
+
 	span, a {
 		display: block;
 		min-width: 36px;
@@ -661,14 +661,14 @@ body.open-overlay {
 		transition: all .2s;
 		text-decoration: none;
 	}
-	
+
 	a {
 		&:hover {
 			background: rgba(black,.03);
 			color: #333;
 		}
 	}
-	
+
 	span.current {
 		color: white;
 		background: $lilac;

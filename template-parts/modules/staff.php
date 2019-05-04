@@ -137,7 +137,7 @@ $staff = get_sub_field('staff', false, false);
                                 <span><?php echo $info['job_title'];?></span>
                             <?php } ?>
                             <?php if($info['email']) { ?>
-                                <a href="mailto:<?php echo $info['mail'];?>" class="email"><?php echo $info['email'];?></a>
+                                <a href="mailto:<?php echo $info['email'];?>" class="email"><?php echo $info['email'];?></a>
                             <?php } ?>
                             <?php if($info['email'] && $info['phone']) { ?> | <?php } ?>
                             <?php if($info['phone']) { ?>

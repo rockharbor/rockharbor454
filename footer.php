@@ -28,7 +28,7 @@
 				'depth'			 => 1,
 			));	?>
 			<div class="app-store">
-				<h5>Stay Connected Through Our App</h5>
+				<h5>Download the Rockharbor App</h5>
 				<a href="https://itunes.apple.com/us/app/rockharbor/id1230114218?mt=8"><img src="<?php bloginfo('template_url');?>/images/apple_app_store_badge.svg" alt="Download the ROCKHARBOR App on the App Store for iPhone and iPad" class="svg-logo"></a>
 				<a href="https://play.google.com/store/apps/details?id=io.echurch.rockharborc&amp;hl=en"><img src="<?php bloginfo('template_url');?>/images/google_play_web_badge.png" alt="Get the ROCKHARBOR App on Google Play"></a>
 			</div>

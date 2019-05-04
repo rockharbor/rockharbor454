@@ -3,11 +3,11 @@
 section.staff {
     padding-left: 5px;
     padding-right: 5px;
-    
+
     .container {
         max-width: 100%;
     }
-    
+
     .filters {
         display: flex;
         flex-wrap: wrap;
@@ -16,7 +16,7 @@ section.staff {
         padding-left: 15px;
         padding-right: 15px;
     }
-    
+
     .filter {
         margin: 0 20px 30px 20px;
         position: relative;
@@ -25,11 +25,11 @@ section.staff {
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        
+
         @include media(500px) {
 	        width: auto;
         }
-        
+
         &::after {
             content: '\f107';
             font-family: "Font Awesome 5 Free";
@@ -41,14 +41,14 @@ section.staff {
             color: #999;
             pointer-events: none;
         }
-        
+
         span {
             display: inline-block;
             @include font-size(16px);
             line-height: 1;
             width: 100%;
             margin-bottom: 5px;
-            
+
             @include media(500px) {
 	            margin-right: 10px;
 	            width: auto;
@@ -56,10 +56,10 @@ section.staff {
 	            margin-bottom: 0;
             }
         }
-        
+
         select {
             display: inline-block;
-            appearance: none;
+            @include x-appearance(none);
             background: white;
             border: none;
             border-bottom: 1px solid rgba(black,.1);
@@ -71,18 +71,18 @@ section.staff {
             color: #888;
             min-width: 165px;
             width: 100%;
-            
+
             @include media(500px) {
 	            width: auto;
             }
         }
     }
-    
+
     .staff-list {
         margin: 0 auto -30px auto;
         width: 100%;
         max-width: 300px;
-        
+
         @include media(610px) {
             max-width: 600px;
         }
@@ -92,29 +92,29 @@ section.staff {
         @include media(1210px) {
             max-width: 1200px;
         }
-        
+
         @include media(1440px) {
             max-width: 1440px;
         }
-        
+
         .item {
             padding-left: 15px;
             padding-right: 15px;
             width: 300px;
             float: left;
-            
+
             @include media(1440px) {
                 width: 286px;
             }
         }
-        
+
         .figure {
             margin: 0;
             padding: 0;
             position: relative;
             overflow: hidden;
             background: #DDD;
-            
+
             img {
                 display: block;
                 transform: scale(1);
@@ -122,7 +122,7 @@ section.staff {
                 width: 100%;
                 max-width: none;
             }
-            
+
             .alt-image {
                 opacity: 0;
                 z-index: 1;
@@ -131,34 +131,34 @@ section.staff {
                 top: 0;
             }
         }
-        
+
         a {
             text-decoration: none;
             color: #999;
             outline: none;
-            
+
             &:hover {
                 img {
                     //transform: scale(1.1);
                 }
-                
+
                 .alt-image {
                     opacity: 1;
                 }
             }
         }
-        
+
         .name {
             padding: 20px 20px 30px 0px;
-            
+
             h3 {
                 @include font-size(18px);
-                
+
                 @include media(1440px) {
                     @include font-size(16px);
                 }
             }
-            
+
             small {
                 text-transform: uppercase;
                 @include rem(letter-spacing, 1px);
@@ -174,11 +174,11 @@ section.staff {
     width: 100%;
     max-width: 450px !important;
     //min-height: 458px;
-    
+
     @include media($tablet) {
 	    max-width: 930px !important;
     }
-    
+
     .image {
         position: absolute;
         width: 75px;
@@ -186,19 +186,19 @@ section.staff {
         top: 24px;
         left: 24px;
         overflow: hidden;
-        
+
         @include media($tablet) {
 	        width: 50%;
 	        top: 0;
 			left: 0;
         }
-        
+
         img {
 			border-radius: 100px;
-			
+
 			@include media($tablet) {
 		        border-radius: 0px;
-		        
+
 		        position: absolute;
 				display: block;
 				height: 100%;
@@ -211,60 +211,60 @@ section.staff {
 	        }
         }
     }
-    
+
     .content {
         margin-left: auto;
         padding: 0;
         @include font-size(14px);
-        
+
         @include media($tablet) {
 	        width: 50%;
 	        padding: 15px 0 15px 40px;
         }
     }
-    
+
     .info {
         color: #999;
         margin-bottom: 30px;
         padding-left: 90px;
-        
+
         @include media($tablet) {
 	        padding-left: 0px;
         }
-        
+
         h3 {
             font-weight: 600;
             @include font-size(20px);
             margin-bottom: 4px;
-            
+
             @include media($tablet) {
 	            @include font-size(24px);
             }
-            
+
             small {
                 color: #999;
                 font-weight: 400;
                 font-size: 60%;
             }
         }
-        
+
         span {
             @include font-size(12px);
             display: block;
-            
+
             @include media($tablet) {
 	            text-transform: uppercase;
 	            @include rem(letter-spacing, 1px);
 	            @include font-size(14px);
             }
         }
-        
+
         a {
             font-weight: 600;
             color: $blue;
         }
     }
-    
+
     .scroller {
         overflow-x: hidden;
 		overflow-y: scroll;
@@ -272,7 +272,7 @@ section.staff {
 	    -ms-overflow-style: -ms-autohiding-scrollbar;
         padding-right: 15px;
         max-height: 280px;
-        
+
         &::-webkit-scrollbar {
 	    	-webkit-appearance: none;
 	    	width: 2px;
@@ -284,27 +284,27 @@ section.staff {
 	        background-color: $teal;
 		}
     }
-    
+
     .details {
         color: #777;
-        
+
         .section {
-            
+
             div {
                 &:not(:last-child) {
                     margin-bottom: 10px;
                 }
             }
-            
+
             &:not(:last-child) {
                 margin-bottom: 40px;
             }
-            
+
             strong {
             	color: #333;
             }
         }
-        
+
         h4 {
             font-weight: 600;
             color: rgba(#999,.8);
@@ -312,7 +312,7 @@ section.staff {
             @include font-size(15px);
         }
     }
-    
+
     button {
         box-shadow: none;
         background: none;

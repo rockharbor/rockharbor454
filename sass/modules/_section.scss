@@ -7,47 +7,47 @@
 section.section {
     position: relative;
     padding: 60px 20px;
-    
+
     @include media($tablet) {
         padding: 80px 30px;
     }
-    
+
     body.home & {
         padding: 60px 20px;
-        
+
         @include media($tablet) {
             padding: 120px 30px;
         }
     }
-    
+
     &.gray {
         background: #F5F5F5;
     }
-    
+
     .container {
         position: relative;
         z-index: 10;
         margin: auto;
         max-width: 1000px;
-        
+
         //// Paragraph
         p:last-child {
             margin-bottom: 0;
         }
     }
-    
+
     //// Heading
     .heading {
         text-align: center;
-        
+
         &::after {
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         &.align-left {
             text-align: left;
-            
+
             &::after {
                 margin-left: 0;
                 margin-right: auto;
@@ -55,7 +55,7 @@ section.section {
         }
         &.align-right {
             text-align: right;
-            
+
             &::after {
                 margin-left: auto;
                 margin-right: 0;
@@ -65,7 +65,7 @@ section.section {
     h1 {
         &.heading {
             @include font-size(44px);
-            
+
             @include media($tablet) {
                 @include font-size(54px);
             }
@@ -81,11 +81,11 @@ section.section {
             @include media(1400px) {
                 @include font-size(94px);
             }
-            
+
             body.dark-theme & {
                 color: white;
             }
-            
+
             &::after {
                 content: '';
                 display: block;
@@ -102,7 +102,7 @@ section.section {
         &.heading {
             margin-bottom: 20px;
             @include font-size(24px);
-            
+
             @include media($tablet) {
                 @include font-size(34px);
                 margin-bottom: 30px;
@@ -119,7 +119,7 @@ section.section {
         color: #999;
         @include font-size(18px);
         font-weight: 300;
-        
+
         @include media($tablet) {
             @include font-size(22px);
             padding-top: 10px;
@@ -128,11 +128,11 @@ section.section {
         @include media($desktop) {
             @include font-size(30px);
         }
-        
+
         body.dark-theme & {
             color: white;
         }
-        
+
         &.align-left {
             text-align: left;
         }
@@ -140,11 +140,11 @@ section.section {
             text-align: right;
         }
     }
-    
+
     //// Options
     &.no-top-padding { padding-top: 0 !important;}
     &.no-bottom-padding { padding-bottom: 0 !important;}
-    
+
     //// Slick Dots
     .slick-dots {
         z-index: 2;
@@ -157,18 +157,18 @@ section.section {
         left: 50%;
         bottom: 5px;
         transform: translateX(-50%);
-        
+
         li {
             width: 20px;
             height: 20px;
             border-radius: 20px;
             position: relative;
             cursor: pointer;
-            
+
             button {
                 display: none;
             }
-            
+
             &::before {
                 content: '';
                 width: 6px;
@@ -181,14 +181,14 @@ section.section {
                 transition: all .2s;
                 box-shadow: 0 0 20px 0px rgba(black,.5);
             }
-            
+
             &:hover {
                 &::before {
                     background: white;
                 }
             }
         }
-        
+
         li.slick-active {
             &::before {
                 background: $lilac !important;
@@ -211,7 +211,7 @@ section.section {
     border: 1px solid rgba(black,.1);
     width: 175px;
     z-index: 10;
-    
+
     &::before {
         content: '\f107';
         font-family: "Font Awesome 5 Free";
@@ -226,7 +226,7 @@ section.section {
 
     select {
         outline: none;
-        appearance: none;
+        @include x-appearance(none);
         border: none;
         background: transparent;
         @include font-size(18px);
@@ -237,27 +237,27 @@ section.section {
 .content-filter {
 	text-align: center;
 	padding: 25px 20px 0px 20px;
-	
+
 	@include media($tablet) {
 		padding: 45px 20px 0px 20px;
 	}
-	
+
 	span {
 		color: #111;
 		display: none;
 		vertical-align: middle;
 		margin-right: 5px;
-		
+
 		@include media(400px) {
 			display: inline-block;
 		}
 	}
-	
+
 	.select {
 		display: inline-block;
 		vertical-align: middle;
 		position: relative;
-		
+
 		&::before {
 	        content: '\f107';
 	        font-family: "Font Awesome 5 Free";
@@ -270,11 +270,11 @@ section.section {
 	        pointer-events: none;
 	    }
 	}
-	
+
 	select {
 		display: block;
 		outline: none;
-		appearance: none;
+		@include x-appearance(none);
 		border-radius: 0px;
 		border: none;
 		border-bottom: 1px solid rgba(black,.1);
@@ -306,7 +306,7 @@ section.section {
 .fancybox-inner {
     button {
         box-shadow: none !important;
-        
+
         &:hover {
             background: none !important;
         }
@@ -333,11 +333,11 @@ section.section {
     background: transparent !important;
     color: rgba(white,.7) !important;
     box-shadow: none;
-    
+
     &:hover {
         color: white !important;
     }
-    
+
     &.disabled {
         color: rgba(white,.3) !important;
     }
@@ -345,14 +345,14 @@ section.section {
 
 .plyr__video-wrapper {
     transition: opacity .2s;
-    
+
     .plyr--stopped {
-        
+
         & + .container {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .plyr__controls {
             opacity: 0;
             visibility: hidden;
@@ -364,7 +364,7 @@ section.section {
 .fancybox-toolbar {
     body.admin-bar & {
         top: 46px !important;
-        
+
         @include media(783px) {
             top: 32px !important;
         }

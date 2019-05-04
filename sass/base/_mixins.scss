@@ -9,7 +9,7 @@
 	display: block;
 	line-height: 1;
 	padding: 1em 1.350em;
-	appearance: none;
+	@include x-appearance(none);
 	cursor: pointer;
 	text-align: center;
 	font-weight: 600;
@@ -17,15 +17,15 @@
 	text-decoration: none !important;
 	text-align: center;
 	box-shadow: inset 0 0 0px 1px rgba(black,.1);
-	
+
 	@include media($tablet) {
 		display: inline-block;
 	}
-	
+
 	&:hover {
 		background: rgba(black,.04);
 	}
-	
+
 	&.outline {
 		color: #333 !important;
 		background: none !important;
@@ -33,22 +33,22 @@
 		border-style: solid;
 		border-color: #ccc;
 		box-shadow: none;
-		
+
 		&:hover {
 			background: #ccc !important;
 		}
 	}
-	
+
 	&.blue {
 		box-shadow: none;
 		color: #fff;
 		background: $blue;
 		box-shadow: none;
 		&:hover { background: darken($blue,10%);}
-		
+
 		&.outline {
 			border-color: $blue;
-			
+
 			&:hover {
 				color: white !important;
 				background: $blue !important;
@@ -61,10 +61,10 @@
 		background: $lilac;
 		box-shadow: none;
 		&:hover { background: darken($lilac,10%);}
-		
+
 		&.outline {
 			border-color: $lilac;
-			
+
 			&:hover {
 				color: white !important;
 				background: $lilac !important;
@@ -77,10 +77,10 @@
 		background: $red;
 		box-shadow: none;
 		&:hover { background: darken($red,10%);}
-		
+
 		&.outline {
 			border-color: $red;
-			
+
 			&:hover {
 				color: white !important;
 				background: $red !important;
@@ -93,10 +93,10 @@
 		background: $orange;
 		box-shadow: none;
 		&:hover { background: darken($orange,10%);}
-		
+
 		&.outline {
 			border-color: $orange;
-			
+
 			&:hover {
 				color: white !important;
 				background: $orange !important;
@@ -109,10 +109,10 @@
 		background: darken($teal,20%);
 		box-shadow: none;
 		&:hover { background: darken($teal,30%);}
-		
+
 		&.outline {
 			border-color: $teal;
-			
+
 			&:hover {
 				color: white !important;
 				background: $teal !important;
@@ -125,10 +125,10 @@
 		background: darken($yellow,15%);
 		box-shadow: none;
 		&:hover { background: darken($yellow,25%);}
-		
+
 		&.outline {
 			border-color: darken($yellow,15%);
-			
+
 			&:hover {
 				color: white !important;
 				background: darken($yellow,15%) !important;
@@ -266,3 +266,9 @@
 	font-size: calculate-rem($value);
 }
 // @include font-size(30px);
+
+@mixin x-appearance($value) {
+	-webkit-appearance: $value;
+	-moz-appearance: $value;
+	appearance: $value;
+}
