@@ -29,6 +29,7 @@ if ($event->registration_forms->registration_form) {
 
 <div class="rh-ccbpress-event-details <?php if ($splitColumns) { echo "rh-ccbpress-left-column"; } ?>">
     <?php if ((get_option('ccbpress_individual_event_show_image', '1') == '1') && $template->has_event_image( $event ) ): ?>
+	<?php $eventHasImage = true; ?>
         <div class="rh-ccbpress-event-image"><img src="<?php echo $event->image; ?>" /></div>
     <?php
     endif;
@@ -222,4 +223,14 @@ jQuery(document).ready(function() {
     //jQuery('.breadcrumbs').append('&nbsp;/&nbsp;<span class="crumb"><?php echo str_replace("'", "\'", $event->name); ?></span>');
     jQuery('h1 .page-title').html(eventName);
 });
+</script>
+<?php
+$locationParts1 = explode(',', $cleanAddress2);
+$locationParts2 = explode(' ', $locationParts1[1]);
+$locationCity = $locationParts1[0];
+$locationState = $locationParts2[0];
+$locationZip = $locationParts2[1];
+?>
+<script type="application/ld+json">
+	{"@context":"https://schema.org","@type":"Event","name":"<?php the_title(); ?>","location":{"@type":"Place","name":"<?php echo $cleanLocationName; ?>","address":{"@type":"PostalAddress","streetAddress":"<?php echo $cleanAddress1; ?>","addressLocality":"<?php echo trim($locationCity); ?>","postalCode":"<?php echo trim($locationZip); ?>","addressRegion":"<?php echo trim($locationState); ?>","addressCountry":"US"}},<?php if ($eventHasImage) { $matches = array(); preg_match("/str=\"(.*)\"/", $event->image, $matches); echo "\"image\":[\"" . $matches[1] . "\"],"; }?>"description":"<?php echo $event->description; ?>","startDate":"<?php echo 
 </script>
