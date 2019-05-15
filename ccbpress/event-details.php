@@ -7,6 +7,8 @@ global $post;
 $pageUrl = get_permalink($post->ID);
 $eventID = get_query_var('ccbpress_event_id');
 $pageUrl = rawurlencode($pageUrl . '?ccbpress_event_id=' . $eventID);
+$eventHasImage = false;
+$eventHasAddress = false;
 
 $splitColumns = (!empty($event->location_name) || $template->has_exceptions($event) || !empty($event->registration_forms));
 
@@ -40,7 +42,7 @@ if ($event->registration_forms->registration_form) {
         <?php endif; ?>
     </div>
     <?php endif; ?>
-    
+
     <div class="rh-ccbpress-event-description" style="width: 100%;">
 	    <?php if (empty($event->description)) : ?>
 		    <p>No description has been provided for this event</p>
@@ -48,7 +50,7 @@ if ($event->registration_forms->registration_form) {
 			<?php echo wpautop( $event->description, true ); ?>
 		<?php endif; ?>
 	</div>
-       
+
     <div class="rh-ccbpress-event-cta rh-ccbpress-hoverbox">
         <div class="cta-banner"><p>Ready to get on the guest list?</p></div>
         <div class="rh-ccbpress-rsvp">
@@ -60,28 +62,29 @@ if ($event->registration_forms->registration_form) {
             }?>" class="rh-button">Sign Me Up!</a>
     	</div>
     </div>
-    
+
     <div class="rh-ccbpress-share-container rh-ccbpress-hoverbox">
         <div class="cta-banner"><p>Want to share with your friends?</p></div>
         	<a class="share facebook rh-button" href="<?php echo "http://www.facebook.com/sharer.php?u=$pageUrl&t=$event->name"?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
 			<a class="share twitter rh-button" href="<?php echo "http://www.twitter.com/home?status=Check out $event->name at $pageUrl"?>" target="_blank"><i class="fab fa-twitter"></i></a>
     </div>
-    
+
 </div>
 
 <?php if ($splitColumns): ?>
 <div class="rh-ccbpress-right-column">
-	
+
     <div class="rh-event-info-box">
         <div class="rh-event-info-box-header clearfix"><div class="rh-ccbpress-event-location-header rh-event-info-box-icon"><span class="dashicons dashicons-clock"></span></div><div class="rh-event-info-box-header-text">When</div></div>
         <div class="rh-ccbpress-event-recurrence-description"><?php echo $template->recurrence_desc( $event ) ; ?></div>
     </div>
-	
+
 	<?php
 	/**
 	 * Check if there are is a location for this event
 	 */
 	if ( $event->location_name != '' || $event->location_line_1 != '' ) :
+        $eventHasAddress = true;
         $cleanLocationName = str_replace(array("\r\n", "\r", "\n"), "<br/>", @$event->location_name);
         $cleanAddress1 = str_replace(array("\r\n", "\r", "\n"), "<br/>", $event->location_line_1);
         $cleanAddress2 = str_replace(array("\r\n", "\r", "\n"), "<br/>", $event->location_line_2);
@@ -225,12 +228,18 @@ jQuery(document).ready(function() {
 });
 </script>
 <?php
-$locationParts1 = explode(',', $cleanAddress2);
-$locationParts2 = explode(' ', $locationParts1[1]);
-$locationCity = $locationParts1[0];
-$locationState = $locationParts2[0];
-$locationZip = $locationParts2[1];
+if ($eventHasAddress && !empty($cleanAddress1)):
+    $locationParts1 = explode(',', $cleanAddress2);
+    $locationParts2 = explode(' ', trim($locationParts1[1]));
+    $locationCity = $locationParts1[0];
+    $locationState = $locationParts2[0];
+    $locationZip = $locationParts2[1];
+
+    $eventTimeZone = new DateTimeZone($event->timezone);
+    $startDate = new DateTime($_GET['ccbpress_event_date'] . " " . $event->start_time, $eventTimeZone);
+    $endDate = new DateTime($_GET['ccbpress_event_date'] . " " . $event->end_time, $eventTimeZone);
 ?>
 <script type="application/ld+json">
-	{"@context":"https://schema.org","@type":"Event","name":"<?php the_title(); ?>","location":{"@type":"Place","name":"<?php echo $cleanLocationName; ?>","address":{"@type":"PostalAddress","streetAddress":"<?php echo $cleanAddress1; ?>","addressLocality":"<?php echo trim($locationCity); ?>","postalCode":"<?php echo trim($locationZip); ?>","addressRegion":"<?php echo trim($locationState); ?>","addressCountry":"US"}},<?php if ($eventHasImage) { $matches = array(); preg_match("/str=\"(.*)\"/", $event->image, $matches); echo "\"image\":[\"" . $matches[1] . "\"],"; }?>"description":"<?php echo $event->description; ?>","startDate":"<?php echo 
+	{"@context":"https://schema.org","@type":"Event","name":"<?php echo $event->name; ?>","location":{"@type":"Place","name":"<?php echo $cleanLocationName; ?>","address":{"@type":"PostalAddress","streetAddress":"<?php echo $cleanAddress1; ?>","addressLocality":"<?php echo trim($locationCity); ?>","postalCode":"<?php echo trim($locationZip); ?>","addressRegion":"<?php echo trim($locationState); ?>","addressCountry":"US"}},<?php if (isset($eventHasImage) && $eventHasImage) {  echo "\"image\":[\"" . $event->image . "\"],"; }?>"description":"<?php echo strip_tags($event->description); ?>","startDate":"<?php echo $startDate->format(DateTimeInterface::ISO8601); ?>","endDate":"<?php echo $endDate->format(DateTimeInterface::ISO8601); ?>"}
 </script>
+<?php endif;

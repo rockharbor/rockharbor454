@@ -14,7 +14,7 @@ if(!isset($_GET['c'])) {
 		} else {
 			$campus = 'all';
 		}
-	}	
+	}
 	header("Location: /events/?c=".$campus);
 	die();
 } else {
@@ -42,7 +42,7 @@ get_header();
 	while ( have_posts() ) :	the_post();
 		include(locate_template('template-parts/modules/page-header.php')); ?>
 
-		
+
 		<div class="content-filter event-filters">
 			<span>Filter by</span>
 			<div class="select">
@@ -77,7 +77,7 @@ get_header();
 					<option value="Women's Ministry">Women</option>
 					<option value="Arts||Communications||Worship & Production">Worship &amp; Arts</option>
 				</select>
-			</div>	
+			</div>
 			<div class="select" style="margin-left: 20px;">
 				<select id="event-filter-month">
 					<option value="">All Months</option>
@@ -96,24 +96,24 @@ get_header();
 				</select>
 			</div>
 		</div>
-		
-		
+
+
 		<section class="section upcoming-events campus-all">
 		    <div class="container">
-		        
+
 				<?php
 			        $duration = 'date_range="4 weeks" ';
 			        $max = 'how_many="50" ';
-					
+
 					// date
 					if ($month) {
 						$start_date = date('Y').'-'.$month.'-01';
 						$max = ''; // remove max to show only specific month
 					}
-					if($start_date) {
+					if(isset($start_date) && !empty($start_date)) {
 			            $start = 'date_start="'.$start_date.'" ';
 			        }
-					
+
 					// campus
 					if ($campus != 'all') {
 						$filter = 'filter_by="campus" ';
@@ -124,28 +124,28 @@ get_header();
 						} else if ($campus == 'charlotte') {
 							$campus_id = 7;
 						}
-						
+
 						$value = 'campus_id="'.$campus_id.'" ';
 					}
-					
+
 					// ministry
 					if ($ministry != '') {
 						$filter = 'filter_by="department" ';
 						$value = 'department="'.$ministry.'" ';
 					}
-			        
+
 			        $finalshortcode = '[ccbpress_upcoming_events ' . ($start ?? '') . ($duration ?? '') . ($max ?? '') . ($filter ?? '') . ($value ?? '') . ' theme="graphical"]';
-			        
+
 			        echo do_shortcode($finalshortcode);
-			        
+
 			        //echo $finalshortcode;
-			        
+
 		        ?>
 		    </div>
 		</section>
-		
 
-		
+
+
 		<?php get_template_part( 'template-parts/content', 'modules' );?>
 
 
@@ -153,61 +153,61 @@ get_header();
 			$campusFilter = $('#event-filter-campus');
 			$ministryFilter = $('#event-filter-ministry');
 			$monthFilter = $('#event-filter-month');
-			
+
 			$campus = '<?php echo $campus; ?>';
 			$ministry = '<?php echo $ministry; ?>';
 			$month = '<?php echo $month; ?>';
-		
+
 			// Update Campus Filter to match URL
 			$campusFilter.val($campus);
-			
+
 			// Update Ministry Filter to match URL
 			$ministryFilter.val($ministry);
-			
+
 			// Update Month Filter to match URL
 			$monthFilter.val($month);
-		
+
 			// change url on filter change
 			$('.event-filters select').change(function(){
-				
+
 				// If Campus Filter Change
 				if ($(this).is($campusFilter)) {
 					console.log('campus change');
 					$campus = $(this).val();
 					$ministry = '';
-					
+
 				}
-				
+
 				// If Ministry Filter Change
 				if ($(this).is($ministryFilter)) {
 					console.log('ministry change');
 					$ministry = $(this).val();
 					$campus = 'all';
 				}
-				
+
 				// If Month Filter Change
 				if ($(this).is($monthFilter)) {
 					console.log('month change');
 					$month = $(this).val();
 				}
-				
+
 				window.location.replace('/events/?c='+$campus+'&ministry='+$ministry+'&month='+$month);
-						
+
 			});
-			
+
 			// Rewriting descriptive "No Results" Message
 			$campusLabel = $campusFilter.find('option:selected').text();
 			$campusLabel = $campusLabel+' / ';
-		
+
 			$ministryLabel = $ministryFilter.find('option:selected').text();
 			$ministryLabel = $ministryLabel+' / ';
-			
+
 			$monthLabel = $monthFilter.find('option:selected').text();
-			
+
 			$('.ccbpress_upcoming_events:contains("No upcoming events are scheduled")')
 				.addClass('no-results')
 				.html('No Events Found For: <span>' + $campusLabel + $ministryLabel + $monthLabel + '</span>' );
-			
+
 		</script>
 
 	<?php endwhile;
