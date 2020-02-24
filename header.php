@@ -99,38 +99,36 @@ if (!$campus) {
 <div id="page" class="site">
 
 	<header id="masthead" class="site-header">
-		<?php if ( (is_front_page() || ($post->post_type == 'campus')) && have_rows('notification_bars', 'option') ) {
-            if (is_front_page()) {
-                $currentCampus = 'homepage';
-            } else {
-                $currentCampus = $post->post_name;
-            }
-			$rowFound = false;
-            while (have_rows('notification_bars', 'option')):
-                the_row();
-				if ($rowFound) { continue; }
-                $notificationText = get_sub_field('message');
-    			$current = current_time('mysql');
-    			$start = get_sub_field('publish_date');
-    			$end = get_sub_field('expiration_date');
-                $notificationCampuses = get_sub_field('campuses');
-                if (!in_array($currentCampus, $notificationCampuses) || empty($notificationText)) {
-                    continue;
-                }
-                if($current >= $start && $end == '' || $start == '' && $current <= $end || $start == '' && $end == '' || $current >= $start && $current <= $end) { ?>
-				<div class="header-bar bg-<?php the_sub_field('background'); ?>"><?php the_sub_field('message'); ?>
-					<?php if($button = get_sub_field('button')){ ?>
-						<a href="<?php (get_sub_field('type') == 'link') ? the_sub_field('page_link') : the_sub_field('url');?>" class="button" <?php if((get_sub_field('type') == 'url') && get_sub_field('new_window')){?>target="_blank"<?php }?>>
-							<?php the_sub_field('button');?>
-						</a>
-					<?php }?>
-				</div>
-			    <?php
-                    $rowFound = true;
-					continue;
-                }
-            endwhile;
-        } ?>
+		<?php if ( (is_front_page() || ($post->post_type == 'campus')) && have_rows('notification_bars', 'option') ):
+		$notificationSlug = is_front_page() ? 'homepage' : $post->post_name; ?>
+		<script>
+			jQuery('document').ready(function() {
+				var ajaxUrl = "<?php echo admin_url('admin-ajax.php'); ?>";
+				jQuery.ajax({
+					url: ajaxUrl,
+					method: "POST",
+					data: { action: "get_header_alerts", notificationSlug: "<?php echo $notificationSlug; ?>" }
+				}).done(function(response) {
+					if (jQuery.isEmptyObject(response)) {
+						return;
+					}
+					var notificationDiv = jQuery('<div class="header-bar bg-' + response.background + '">' + response.notificationText + '</div>');
+					if (response.button != '') {
+						if (response.type == 'link') {
+							var buttonUrl = response.link;
+						} else {
+							var buttonUrl = response.url;
+						}
+						var buttonTag = jQuery('<a href="' + buttonUrl + '" class="button"' + ((response.type == 'url' && response.window == true) ? ' target="_blank"' : '') + '>' + response.button + '</a>');
+					}
+					notificationDiv.append(buttonTag);
+					jQuery('#masthead').prepend(notificationDiv);
+				});
+			});
+		</script>
+		<?php
+		reset_rows();
+		endif; ?>
 		<div class="header-wrapper">
 		<?php if ( is_front_page() ) { ?>
 			<h1 class="logo"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php rockharbor_logo(); ?></a></h1>

@@ -260,3 +260,56 @@ require get_template_directory() . '/inc/front-end.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+function getHeaderAlerts() {
+	//check_ajax_referer('', '', false);
+	$notificationSlug = sanitize_title_for_query($_REQUEST['notificationSlug']);
+	if (empty($notificationSlug)) {
+		// Invalid JSON input
+		$response = array(
+			'message' => 'This endpoint only accepts a string in the notificationSlug field'
+		);
+		wp_send_json_error($response, 400);
+	}
+	$rowFound = false;
+	while (have_rows('notification_bars', 'option')) {
+		if ($rowFound) { continue; }
+		the_row();
+		$notificationCampuses = get_sub_field('campuses');
+		$notificationText = get_sub_field('message');
+		if (!in_array($notificationSlug, $notificationCampuses) || empty($notificationText)) {
+			continue;
+		}
+		$current = current_time('mysql');
+		$start = get_sub_field('publish_date');
+		$end = get_sub_field('expiration_date');
+		if (($current >= $start && $end == '') ||
+			($start == '' && $current <= $end) ||
+			($start == '' && $end == '') ||
+			($current >= $start && $current <= $end)) {
+			$background = get_sub_field('background');
+			$button = get_sub_field('button');
+			$type = get_sub_field('type');
+			$link = get_sub_field('page_link');
+			$url = get_sub_field('url');
+			$window = get_sub_field('new_window');
+			$rowFound = true;
+		}
+	}
+	if ($rowFound) {
+		$response = array(
+			'notificationText' => $notificationText,
+			'background' => $background,
+			'button' => $button,
+			'type' => $type,
+			'link' => $link,
+			'url' => $url,
+			'window' => $window
+		);
+		wp_send_json($response, 200);
+	} else {
+		wp_send_json((object)array(), 200);
+	}
+}
+add_action('wp_ajax_get_header_alerts', 'getHeaderAlerts');
+add_action('wp_ajax_nopriv_get_header_alerts', 'getHeaderAlerts');
