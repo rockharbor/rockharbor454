@@ -12,6 +12,7 @@ get_header();
 	<?php while ( have_posts() ) : the_post();
 		$video = get_field('video');
 		$audio = get_field('audio');
+		$subtitle = get_field('subtitle');
 		$tags = get_the_term_list( $post->ID, 'tags', '<span>', ' ', '</span>' ) ;
 		$scripture = get_field('scripture');
 		$series = get_the_terms( $post->ID, 'series' )[0]->name;
@@ -42,6 +43,9 @@ get_header();
 						<source src="<?php echo $video;?>" type="video/mp4">
 					<?php } else { ?>
 						<source src="<?php echo $audio;?>" type="audio/mp3">
+					<?php }
+					if ($subtitle) { ?>
+						<track kind="captions" label="English (United States) captions" src="<?php echo $subtitle; ?>" srclang="en" default />
 					<?php } ?>
 				</video>
 				<header>
