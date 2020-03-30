@@ -1,0 +1,26 @@
+/* Plyr overrides */
+.plyr--video .plyr__control--overlaid,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded="true"],
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--audio .plyr__control:hover,
+.plyr--audio .plyr__control.plyr__tab-focus {
+	background: #d950fc !important;
+}
+
+.plyr--full-ui input[type="range"] {
+	color: #d950fc !important;
+}
+
+.plyr__control[role="menuitemradio"][aria-checked="true"]::before {
+	background: #d950fc !important;
+}
+
+.plyr__control.plyr__tab-focus,
+.plyr--full-ui input[type=range]:focus::-webkit-slider-runnable-track {
+	box-shadow: 0 0 0 5px rgba(217, 80, 252, 0.5) !important;
+}
+
+.plyr--full-ui input[type=range]:focus::-moz-range-track {
+	box-shadow: 0 0 0 5px rgba(217, 80, 252, 0.5) !important;
+}

@@ -36,7 +36,7 @@ if (!$campus) {
 
 	<?php if( have_rows('modules') ) { ?>
 		<!-- Video Player -->
-		<script src="<?php bloginfo('template_url');?>/js/vendors/plyr.min.js"></script>
+		<script src="//cdn.plyr.io/3.5.10/plyr.js"></script>
 		<!-- Slick Slider -->
 		<script src="<?php bloginfo('template_url');?>/js/vendors/slick.min.js"></script>
 		<!-- Filter (staff) -->
@@ -44,7 +44,7 @@ if (!$campus) {
 	<?php } ?>
 
 	<?php if(is_page_template('templates/about.php')) { ///////////////// ABOUT PAGE ?>
-		<script src="<?php bloginfo('template_url');?>/js/vendors/plyr.min.js"></script>
+		<script src="//cdn.plyr.io/3.5.10/plyr.js"></script>
 	<?php } ?>
 
 	<!-- Google Tag Manager -->

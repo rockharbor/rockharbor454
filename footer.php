@@ -113,7 +113,7 @@ $('#campus-filter').change(function(){
 ///////////////// JESUS PAGE
 if(is_page_template('templates/jesus.php')) { ?>
 <script src="<?php bloginfo('template_url');?>/js/vendors/multiplyfilter.min.js"></script>
-<script src="<?php bloginfo('template_url');?>/js/vendors/plyr.min.js"></script>
+<script src="//cdn.plyr.io/3.5.10/plyr.js"></script>
 <script src="<?php bloginfo('template_url');?>/js/vendors/scrolloverflow.min.js"></script>
 <script src="<?php bloginfo('template_url');?>/js/vendors/fullpage.min.js"></script>
 <script src="<?php bloginfo('template_url');?>/js/vendors/aos.min.js"></script>
@@ -153,12 +153,21 @@ if(is_page_template('templates/jesus.php')) { ?>
 <?php
 ///////////////// MESSAGES PAGE
 if(is_singular('message')) { ?>
-<script src="https://cdn.plyr.io/3.3.22/plyr.polyfilled.js"></script>
+<script src="//cdn.plyr.io/3.5.10/plyr.js"></script>
 <script>
 const player = new Plyr('#plyr',{
 	//autoplay: true,
 });
 const player_audio = new Plyr('#plyr-audio');
+
+/* Janky browsers (cough Safari cough) turn on captions in the native player with no controls so we get duplicates
+So this turns them all off when the video player loads so we can toggle on plyr captions with the UI */
+var video = document.getElementById("plyr");
+video.addEventListener("canplay", function(event) {
+  for (var i = 0; i < event.target.textTracks.length; i++) {
+    video.textTracks[i].mode = 'hidden';
+  }
+});
 </script>
 <?php } ?>
 
