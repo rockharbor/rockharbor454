@@ -41,6 +41,7 @@ if(!is_page_template('templates/events.php')): // dont show on events page
 									'hide_empty'	=> 0,
 									'parent'        => 0,
 									'taxonomy'      => $taxonomy,
+									'exclude'	=> '33' // exclude Charlotte
 								);
 								$locations = get_terms($locationsargs);
 									foreach($locations as $location) {?>

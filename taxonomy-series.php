@@ -18,7 +18,8 @@ get_header();
 					$locations = get_terms(array(
 						'hide_empty' => 0,
 						'parent' => 0,
-						'taxonomy' => 'campuses'
+						'taxonomy' => 'campuses',
+						'exclude' => '33' // exclude Charlotte
 					));
 					$locations[] = (object) ['name' => 'All Campuses', 'slug' => 'all'];
 					foreach ($locations as $location) {?>

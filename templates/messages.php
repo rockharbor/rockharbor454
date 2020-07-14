@@ -193,6 +193,7 @@ get_header();
 								'hide_empty'	=> 0,
 								'parent'        => 0,
 								'taxonomy'      => $campuses,
+								'exclude'	=> '33' // exclude Charlotte
 							);
 							$terms = get_terms($termsargs);
 								foreach($terms as $term){ ?>
