@@ -10,8 +10,9 @@
 
 // Set Campus Slug as Campus Cookie
 global $post;
-$campus=$post->post_name;
-unset($_COOKIE['campus']);
+// fix new -online campuses; costa-mesa-online becomes costa-mesa
+$campus = preg_replace('/(.*)-online/', '$1', $post->post_name);
+$_COOKIE['campus'] = $campus;
 setcookie('campus', $campus, 2147483647, '/');
 
 get_header(); ?>

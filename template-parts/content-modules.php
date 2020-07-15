@@ -12,14 +12,14 @@ if(!is_page_template('templates/events.php')): // dont show on events page
 	$campus = $_COOKIE['campus'] ?? null;
 	// If Campus Cookie Not set
 	if (!$campus) {
-		// check for campus url parameter, ex: ?c=cotsa-mesa
+		// check for campus url parameter, ex: ?c=costa-mesa
 		if(isset($_GET['c'])) {
-	    	$campus = $_GET['c'];
-			setcookie('campus', $campus, 2147483647, '/');
+		    	$campus = $_GET['c'];
 		} else {
-			//setcookie('campus', 'all', 2147483647, '/');
 			$campus = 'all';	
 		}
+	} else {
+		$campus = preg_replace('/(.*)-online/', '$1', $campus);
 	}
 	
 	
@@ -162,5 +162,7 @@ if ($campus) {
 		var $campus  = 'campus-'+$campus; // add campus- to match class
 		$('.section').not('.campus-all, .'+$campus).remove();
 	}
+	// Remove Charlotte @TODO remove this when charlotte content is gone
+	$('.section.campus-charlotte').remove();
 }
 </script>

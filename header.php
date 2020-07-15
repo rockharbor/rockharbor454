@@ -13,11 +13,15 @@ $campus = $_COOKIE['campus'] ?? null;
 // If Campus Cookie Not set
 if (!$campus) {
 	// check for campus url parameter, ex: ?c=cotsa-mesa
-	if(isset($_GET['c'])) {
+	if (isset($_GET['c'])) {
     	$campus = $_GET['c'];
 	} else {
 		$campus = 'all';
 	}
+} else {
+	// fix new -online campuses; costa-mesa-online becomes costa-mesa
+	$campus = preg_replace('/(.*)-online/', '$1', $campus);
+	setcookie('campus', $campus, 2147483647, '/');
 }
 
 ?>

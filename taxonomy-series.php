@@ -15,6 +15,7 @@ get_header();
 		<div class="campus-filter" style="position: relative; margin-bottom: 50px; margin-left: auto; margin-right: auto;" >
 			<select id="campus-filter">
 				<?php
+					$realLocations = array();
 					$locations = get_terms(array(
 						'hide_empty' => 0,
 						'parent' => 0,
@@ -22,7 +23,8 @@ get_header();
 						'exclude' => '33' // exclude Charlotte
 					));
 					$locations[] = (object) ['name' => 'All Campuses', 'slug' => 'all'];
-					foreach ($locations as $location) {?>
+					foreach ($locations as $location) {
+						$realLocations[] = $location->slug; ?>
 					<option value="<?php echo $location->slug; ?>"><?php echo $location->name; ?></option>
 					<?php } ?>
 			</select>
@@ -32,11 +34,19 @@ get_header();
 
 			<?php $terms = get_queried_object()->slug;
 			$paged = ( get_query_var('page') ) ? get_query_var('page') : 1;
-			$taxQuery = ($location->slug == 'all') ? array() : array(array(
-				'taxonomy' => 'campuses',
-				'field' => 'slug',
-				'terms' => $location->slug
-			));
+			if ($location->slug == 'all') {
+				$taxQuery = array(array(
+					'taxonomy' => 'campuses',
+					'field' => 'slug',
+					'terms' => $realLocations
+				));
+			} else {
+				$taxQuery = array(array(
+					'taxonomy' => 'campuses',
+					'field' => 'slug',
+					'terms' => $location->slug
+				));
+			}
 			$args = array (
 				'taxonomy'			=> 'series',
 				'term'				=> $terms,
@@ -121,7 +131,7 @@ get_header();
 		if (typeof phpCampus !== 'undefined') {
 			campus = phpCampus.campus;
 		} else if (cookieCampus) {
-			campus = cookieCampus;
+			campus = cookieCampus.replace('/(.*)-online/', '$1');
 		} else {
 			campus = 'all';
 		}

@@ -10,12 +10,11 @@
 $campus = $_COOKIE['campus'];
 // If Campus Cookie Not set
 if (!$campus) {
-	// check for campus url parameter, ex: ?c=cotsa-mesa
+	// check for campus url parameter, ex: ?c=costa-mesa
 	if(isset($_GET['c'])) {
     	$campus = $_GET['c'];
 	} else {
-		$campus_slug = get_post(269)->post_name; // Costa Mesa by default
-		$campus = $campus_slug;	
+		$campus = 'costa-mesa'; // Costa Mesa by default
 	}
 }
 

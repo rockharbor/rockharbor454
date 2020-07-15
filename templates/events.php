@@ -8,14 +8,14 @@ if(!isset($_GET['c'])) {
 	$campus = $_COOKIE['campus'] ?? null;
 	// If Campus Cookie Not set
 	if (!$campus) {
-		// check for campus url parameter, ex: ?c=cotsa-mesa
+		// check for campus url parameter, ex: ?c=costa-mesa
 		if(isset($_GET['c'])) {
 	    	$campus = $_GET['c'];
 		} else {
 			$campus = 'all';
 		}
 	}
-	header("Location: /events/?c=".$campus);
+	header("Location: /events/?c=".preg_replace('/(.*)-online/', '$1', $campus));
 	die();
 } else {
 	$campus = $_GET['c'];
@@ -54,6 +54,7 @@ get_header();
 						'hide_empty'	=> 0,
 						'parent'        => 0,
 						'taxonomy'      => $taxonomy,
+						'exclude'	=> '33' // exclude Charlotte
 					);
 					$locations = get_terms($locationsargs);
 						foreach($locations as $location) {?>

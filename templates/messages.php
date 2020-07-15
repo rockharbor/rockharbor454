@@ -14,6 +14,9 @@ if (!$campus) {
 		//setcookie('campus', 'all', 2147483647, '/');
 		$campus = 'all';
 	}
+} else {
+	$campus = preg_replace('/(.*)-online/', '$1', $campus);
+	setcookie('campus', $campus, 2147483647, '/');
 }
 
 get_header();
@@ -704,6 +707,9 @@ get_header();
 		$('.section.message').not('.campus-all').remove();
 		$('.campus-series-archive').not('.campus-all').remove();
 	}
+	// remove Charlotte @TODO remove this when all Charlotte content is removed
+	$('.section.message.campus-charlotte').remove();
+	$('.campus-series-archive.campus-charlotte').remove();
 	</script>
 
 	<script>
@@ -742,17 +748,6 @@ get_header();
 			  debug: false,
 			})
 
-			$('.campus-charlotte .series').infiniteScroll({
-			  path: '.campus-charlotte .page-numbers.next',
-			  append: '.campus-charlotte .series li',
-			  responseType: 'document',
-			  scrollThreshold: 400,
-			  history: false,
-			  hideNav: '.campus-charlotte .pagination-infinite',
-			  status: '.campus-charlotte .page-load-status',
-			  debug: false,
-			})
-
 			$('.series').on( 'append.infiniteScroll', function( event, response, path, items ) {
 				removeDuplicateSeries();
 			});
@@ -766,7 +761,6 @@ get_header();
 				    else
 				        seen[identifier] = true;
 				});
-				//console.log('removeDuplicateSeries');
 			}
 			removeDuplicateSeries();
 		});

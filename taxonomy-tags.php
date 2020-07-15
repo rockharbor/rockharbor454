@@ -14,10 +14,10 @@ if (!$campus) {
 	if(isset($_GET['c'])) {
     	$campus = $_GET['c'];
 	} else {
-		$campus_slug = get_post(269)->post_name; // Costa Mesa by default
-		$campus = $campus_slug;	
+		$campus = 'costa-mesa';
 	}
 }
+$campus = preg_replace('/(.*)-online/', '$1', $campus);
 
 get_header();
 ?>
@@ -48,7 +48,7 @@ get_header();
 						<a href="<?php the_permalink();?>" class="cover"><img src="<?php echo $imagesm; ?>" data-layzr="<?php echo $image; ?>" alt="<?php the_title();?>"></a>
 						<div class="content">
 							<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
-							<div class="date"><?php $date = get_the_date( 'F j, Y' ); echo $date;?> <?php $terms_as_link = get_the_term_list( $post->ID, 'campuses', '<span>', ', ', '</span>' ); if($terms_as_link){ echo ' &nbsp;&mdash;&nbsp; ' , $terms_as_link; }?></div>
+							<div class="date"><?php $date = get_the_date( 'F j, Y' ); echo $date;?> <?php $terms_as_link = get_the_term_list( $post->ID, 'campuses', '<span class="campus">', ', ', '</span>' ); if($terms_as_link){ echo ' &nbsp;&mdash;&nbsp; ' , $terms_as_link; }?></div>
 							<div class="description"><?php the_excerpt();?></div>
 							<?php if($scripture) { ?>
 								<div class="scripture"><strong>Scripture:</strong> <?php the_field('scripture');?></div>
@@ -86,6 +86,16 @@ get_header();
 	
 	<script src="<?php bloginfo('template_url');?>/js/vendors/infinite-scroll.pkgd.js"></script>
 	<script>
+		removeCharlotte = function() {
+			$('.series-term li').each(function(index, element) {
+				var campus = $(element).find('.campus > a');
+				if (campus.html() == 'Charlotte') {
+					$(element).remove();
+				}
+			});
+		}
+		$(document).ready(removeCharlotte());
+		$('.series-term').on('append.infiniteScroll', removeCharlotte);
 		if ($('.page-numbers.next').length) {
 			$('.series-term').infiniteScroll({
 			  path: '.page-numbers.next',
@@ -95,7 +105,7 @@ get_header();
 			  history: false,
 			  hideNav: '.pagination-infinite',	
 			  status: '.page-load-status',
-			  debug: false,
+			  debug: false
 			})
 		}
 	</script>

@@ -78,6 +78,8 @@
 	if (!$campus) {
 		$campus = 'all';
 	}
+	// fix new -online campus pages; costa-mesa-online becomes costa-mesa
+	$campus.replace('/(.*)-online/', '$1');
 	$('#campus-filter').val($campus);
 	</script>
 <?php } ?>
