@@ -103,7 +103,7 @@ if (!$campus) {
 <div id="page" class="site">
 
 	<header id="masthead" class="site-header">
-		<?php if ( (is_front_page() || ($post->post_type == 'campus')) && have_rows('notification_bars', 'option') ):
+		<?php if ( is_front_page() || $post->post_type == 'campus' ):
 		$notificationSlug = is_front_page() ? 'homepage' : $post->post_name; ?>
 		<script>
 			jQuery('document').ready(function() {
