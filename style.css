@@ -9430,74 +9430,107 @@ section.more-sermons ul .date {
 .campus-hero .info {
   margin: 0 auto 30px auto;
   width: 100%;
-  border-top: 1px solid white;
   color: white;
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.4;
+  display: flex;
+  justify-content: space-between;
 }
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 985px) {
   .campus-hero .info {
-    min-width: 550px;
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
   }
 }
-.campus-hero .info i {
-  font-size: 32px;
-  font-size: 2rem;
-  width: 45px;
+.campus-hero .info .info-box {
+  border-right: 1px solid #ffffff;
+  padding: 0 40px;
 }
-.campus-hero .info strong {
+@media screen and (max-width: 985px) {
+  .campus-hero .info .info-box {
+    border-right: none;
+  }
+  .campus-hero .info .info-box::after {
+    content: "";
+    width: 75%;
+    border-bottom: 1px solid #ffffff;
+    display: block;
+    margin: 18px auto;
+  }
+}
+.campus-hero .info .info-box:last-child {
+  border-right: none;
+}
+.campus-hero .info .info-header {
   text-transform: uppercase;
   font-weight: 600;
+  font-size: 22px;
 }
-@media screen and (min-width: 768px) {
-  .campus-hero .info span {
-    display: block;
-  }
+.campus-hero .info .info-links {
+  margin: 15px 0 0 0;
 }
-.campus-hero .info .address,
-.campus-hero .info .times {
+.campus-hero .info .info-links ul {
+  list-style: none;
   display: flex;
-  align-items: flex-start;
-  text-align: left;
+  margin: 0;
+  padding: 0;
 }
-@media screen and (min-width: 768px) {
-  .campus-hero .info .address,
-.campus-hero .info .times {
-    width: 50%;
-  }
-}
-.campus-hero .info .address {
-  padding-top: 25px;
-}
-@media screen and (min-width: 768px) {
-  .campus-hero .info .address {
-    order: 2;
-    padding-left: 25px;
-    padding-bottom: 20px;
-  }
-}
-.campus-hero .info .address a {
-  display: flex;
-  color: #fff;
+.campus-hero .info .info-links a {
+  color: #43ccb6;
+  font-weight: 600;
   text-decoration: none;
+  transition: color 0.3s;
 }
-.campus-hero .info .times {
-  padding-top: 10px;
+.campus-hero .info .info-links a:hover {
+  color: #2fad99;
 }
-@media screen and (min-width: 768px) {
-  .campus-hero .info .times {
-    justify-content: flex-end;
-    padding-top: 25px;
-    padding-right: 25px;
-    padding-bottom: 20px;
-    border-right: 1px solid white;
-    text-align: right;
+.campus-hero .info .info-links a:first-child {
+  margin-right: 0;
+}
+.campus-hero .info .info-links li:first-child a::after {
+  content: "|";
+  margin: 0 10px;
+}
+.campus-hero .bottom-links {
+  display: flex;
+  justify-content: center;
+}
+.campus-hero .bottom-links a {
+  font-size: 18px;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 8px 15px;
+  display: inline-block;
+  text-decoration: none;
+  transition: background 0.3s, border 0.3s;
+  display: flex;
+}
+.campus-hero .bottom-links a:hover {
+  background: #43ccb6;
+  border: 2px solid #43ccb6;
+}
+.campus-hero .bottom-links a:hover .bx {
+  color: #ffffff;
+}
+.campus-hero .bottom-links a:first-child {
+  margin: 0 30px 0 0;
+}
+.campus-hero .bottom-links .bx {
+  color: #43ccb6;
+  font-size: 28px;
+  transition: color 0.3s;
+  margin: 0 5px 0 0;
+}
+@media screen and (max-width: 985px) {
+  .campus-hero .bottom-links {
+    align-items: center;
   }
-  .campus-hero .info .times i {
-    order: 2;
+  .campus-hero .bottom-links a {
+    font-size: 15px;
+  }
+  .campus-hero .bottom-links .bx {
+    font-size: 22px;
   }
 }
 .campus-hero ul.other-info {

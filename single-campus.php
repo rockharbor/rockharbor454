@@ -23,30 +23,61 @@ get_header(); ?>
 	  			<div>
 				<h1><?php the_title();?></h1>
 				<?php
-					$address = get_field('address');
-					$gtemp = explode (',',  implode($address));
-					$coord = explode (',', implode($gtemp));
+					$weekend_fields = get_field('weekend_fields');
+					$kids_fields = get_field('kids_fields');
+					$youth_fields = get_field('youth_fields');
+					$social_fields = get_field('social_fields');
+					$custom_button = get_field('custom_button');
 				?>
 				<div class="info">
-					<?php if($address){?><div class="address"><a href="<?php echo "https://www.google.com/maps/place/" . urlencode($address['address']); ?>" target="_blank"><i class="bx bx-map"></i><div><?php echo '<span>' . $gtemp[0] . ',</span> <span>' . $gtemp[1] . ', ' . $gtemp[2] . '</span>'; ?></div></a></div><?php } ?>
-					<?php
-					$rows = get_field('hours');
-					$first_row = $rows[0];
-					if($rows) { ?>
-						<div class="times"><i class="bx bx-time"></i><div><span><strong><?php echo $first_row['description'];?> </strong></span> <span><?php echo $first_row['hours'];?></span></div></div>
-					<?php } ?>
+					<div class="info-box">
+						<div class="info-header">
+							<span>Weekend Services</span>
+						</div>
+						<div class="info-body">
+							<span><?php echo $weekend_fields['description']; ?></span>
+						</div>
+						<div class="info-links">
+							<ul>
+								<li><a href="<?php echo $weekend_fields['live_link']; ?>">Watch Live</a></li>
+								<li><a href="<?php echo $weekend_fields['archive_link']; ?>">Past Messages</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="info-box">
+						<div class="info-header">
+							<span>Kids Services</span>
+						</div>
+						<div class="info-body">
+							<span><?php echo $kids_fields['description']; ?></span>
+						</div>
+						<div class="info-links">
+							<ul>
+								<li><a href="<?php echo $kids_fields['live_link']; ?>">Watch Live</a></li>
+								<li><a href="<?php echo $kids_fields['archive_link']; ?>">Past Messages</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="info-box">
+						<div class="info-header">
+							<span>Youth Services</span>
+						</div>
+						<div class="info-body">
+							<span><?php echo $youth_fields['description']; ?></span>
+						</div>
+						<div class="info-links">
+							<ul>
+								<li><a href="<?php echo $youth_fields['live_link']; ?>">Watch Live</a></li>
+								<li><a href="<?php echo $youth_fields['archive_link']; ?>">Past Messages</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="bottom-links">
+					<a href="<?php echo $social_fields['instagram']; ?>" title="Follow Us on Instagram"><i class="bx bx-instagram"></i>Follow Us</a>
+					<a href="<?php echo $custom_button['link']; ?>" title="<?php echo $custom_button['text']; ?>"><?php echo $custom_button['text']; ?></a>
 				</div>
 				</div>
-				<?php if( have_rows('hours') ):
-				$countrows = 0;?>
-				<ul class="other-info">
-					<?php while ( have_rows('hours') ) : the_row(); $countrows++;
-					if($countrows != 1) { ?>
-						<li><span><?php the_sub_field('description');?>: </span> <?php the_sub_field('hours');?></li>
-					<?php }
-				    endwhile; ?>
-				</ul>
-				<?php endif; ?>
 			</div>
 			<nav class="campus-menu">
 				<?php

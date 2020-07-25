@@ -1,5 +1,7 @@
 /* Single Campus
 	========================================================================== */
+$heroBreakpoint: 985px;
+
 .campus-hero {
     position: relative;
     background-color: #111;
@@ -49,75 +51,125 @@
     .info {
         margin: 0 auto 30px auto;
         width: 100%;
-        border-top: 1px solid white;
         color: white;
         @include font-size(18px);
         line-height: 1.4;
-        
-        @include media($tablet) {
-            min-width: 550px;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        i {
-            @include font-size(32px);
-            width: 45px;
-        }
-        
-        strong {
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        
-        span {
-            @include media($tablet) {
-                display: block;
-            }
-        }
-        
-        .address,
-        .times {
-            display: flex;
-            align-items: flex-start;
-            text-align: left;
-            
-            @include media($tablet) {
-                width: 50%;
-            }
-        }
-        
-        .address {
-            padding-top: 25px;
-            
-            @include media($tablet) {
-                order: 2;
-                padding-left: 25px;
-                padding-bottom: 20px;
-            }
-        }
-        .address a {
-            display: flex;
-	    color: #fff;
-            text-decoration: none;
+	display: flex;
+	justify-content: space-between;
+
+	@include media-below($heroBreakpoint) {
+		flex-direction: column;
+		align-items: center;
 	}
-        .times {
-            padding-top: 10px;
-            
-            @include media($tablet) {
-                justify-content: flex-end;
-                padding-top: 25px;
-                padding-right: 25px;
-                padding-bottom: 20px;
-                border-right: 1px solid white;
-                text-align: right;
-                
-                i {
-                    order: 2;
-                }
-            }
-        }
+        
+	.info-box {
+		border-right: 1px solid #ffffff;
+		padding: 0 40px;
+
+		@include media-below($heroBreakpoint) {
+			border-right: none;
+
+			&::after {
+				content: '';
+				width: 75%;
+				border-bottom: 1px solid #ffffff;
+				display: block;
+				margin: 18px auto;
+			}
+		}
+	}
+
+	.info-box:last-child {
+		border-right: none;
+	}
+
+	.info-header {
+		text-transform: uppercase;
+		font-weight: 600;
+		font-size: 22px;
+	}
+
+	.info-links {
+		margin: 15px 0 0 0;
+
+		ul {
+			list-style: none;
+			display: flex;
+			margin: 0;
+			padding: 0;
+		}
+
+		a {
+			color: #43ccb6;
+			font-weight: 600;
+			text-decoration: none;
+			transition: color 0.3s;
+
+			&:hover {
+				color: #2fad99;
+			}
+
+			&:first-child {
+				margin-right: 0;
+			}
+		}
+
+		li:first-child {
+			a::after {
+				content: '|';
+				margin: 0 10px;
+			}
+		}
+	}
     }
+
+	.bottom-links {
+		display: flex;
+		justify-content: center;
+
+		a {
+			font-size: 18px;
+			color: #ffffff;
+			border: 2px solid #ffffff;
+			padding: 8px 15px;
+			display: inline-block;
+			text-decoration: none;
+			transition: background 0.3s, border 0.3s;
+			display: flex;
+
+			&:hover {
+				background: #43ccb6;
+				border: 2px solid #43ccb6;
+
+				.bx {
+					color: #ffffff;
+				}
+			}
+
+			&:first-child {
+				margin: 0 30px 0 0;
+			}
+		}
+
+		.bx {
+			color: #43ccb6;
+			font-size: 28px;
+			transition: color 0.3s;
+			margin: 0 5px 0 0;
+		}
+
+		@include media-below($heroBreakpoint) {
+			align-items: center;
+
+			a {
+				font-size: 15px;
+			}
+
+			.bx {
+				font-size: 22px;
+			}
+		}
+	}
     
     // Other Info
     ul.other-info {
