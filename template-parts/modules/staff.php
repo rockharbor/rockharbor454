@@ -6,7 +6,7 @@ $staff = get_sub_field('staff', false, false);
 ?>
 <section class="section staff <?php echo $bg;?> <?php if(!$top){ echo 'no-top-padding';}?> <?php if(!$bottom){ echo 'no-bottom-padding';}?> <?php if( $assigned_campuses ) { foreach( $assigned_campuses as $assigned_campus ) { echo ' campus-'.$assigned_campus->slug; } } else { echo 'campus-all';} ?>" id="<?php echo $secid;?>">
     <div class="container">
-        <?php if($filterD || $filterD) { ?>
+        <?php if($filterC || $filterD) { ?>
         <div class="filters">
             <?php if($filterC){ ?>
             <div class="filter">
@@ -27,7 +27,6 @@ $staff = get_sub_field('staff', false, false);
                     }
                     wp_reset_postdata();
                     ?>
-                    <option data-filter-value=".church-wide">Church-Wide</option>
                 </select>
             </div>
             <?php }?>
