@@ -248,7 +248,19 @@ $heroBreakpoint: 985px;
                 line-height: 1;
                 padding: 23px 0;
                 text-decoration: none;
+
+		@include media-below(400px) {
+			@include font-size(16px);
+		}
             }
         }
+
+	@include media-height-below(730px) {
+		position: static;
+	}
+
+	@include media-below(532px) {
+		text-align: center;
+	}
     }
 }

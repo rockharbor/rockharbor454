@@ -9604,6 +9604,22 @@ body.admin-bar .campus-hero .campus-menu.scroll-to-fixed-fixed {
   padding: 23px 0;
   text-decoration: none;
 }
+@media screen and (max-width: 400px) {
+  .campus-hero .campus-menu ul a {
+    font-size: 16px;
+    font-size: 1rem;
+  }
+}
+@media screen and (max-height: 730px) {
+  .campus-hero .campus-menu {
+    position: static;
+  }
+}
+@media screen and (max-width: 532px) {
+  .campus-hero .campus-menu {
+    text-align: center;
+  }
+}
 
 /* Messages Page
 	========================================================================== */
