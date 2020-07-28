@@ -36,7 +36,7 @@ $heroBreakpoint: 985px;
             text-transform: uppercase;
             color: white;
             margin-bottom: 30px;
-            @include font-size(52px);
+            @include font-size(48px);
             
             @include media(500px) {
                 font-size: 10.49vw;
@@ -65,6 +65,8 @@ $heroBreakpoint: 985px;
 	.info-box {
 		border-right: 1px solid #ffffff;
 		padding: 0 40px;
+		display: flex;
+		flex-direction: column;
 
 		@include media-below($heroBreakpoint) {
 			border-right: none;
@@ -87,6 +89,10 @@ $heroBreakpoint: 985px;
 		text-transform: uppercase;
 		font-weight: 600;
 		font-size: 22px;
+	}
+
+	.info-body {
+		flex-grow: 1;
 	}
 
 	.info-links {

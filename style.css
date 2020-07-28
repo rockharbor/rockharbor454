@@ -9413,8 +9413,8 @@ section.more-sermons ul .date {
   text-transform: uppercase;
   color: white;
   margin-bottom: 30px;
-  font-size: 52px;
-  font-size: 3.25rem;
+  font-size: 48px;
+  font-size: 3rem;
 }
 @media screen and (min-width: 500px) {
   .campus-hero .container h1 {
@@ -9446,6 +9446,8 @@ section.more-sermons ul .date {
 .campus-hero .info .info-box {
   border-right: 1px solid #ffffff;
   padding: 0 40px;
+  display: flex;
+  flex-direction: column;
 }
 @media screen and (max-width: 985px) {
   .campus-hero .info .info-box {
@@ -9466,6 +9468,9 @@ section.more-sermons ul .date {
   text-transform: uppercase;
   font-weight: 600;
   font-size: 22px;
+}
+.campus-hero .info .info-body {
+  flex-grow: 1;
 }
 .campus-hero .info .info-links {
   margin: 15px 0 0 0;
