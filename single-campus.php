@@ -74,7 +74,7 @@ get_header(); ?>
 					</div>
 				</div>
 				<div class="bottom-links">
-					<a href="<?php echo $social_fields['instagram']; ?>" title="Follow Us on Instagram"><i class="bx bx-instagram"></i>Follow Us</a>
+					<a href="<?php echo $social_fields['instagram']; ?>" title="Follow Us on Instagram"><i class="bx bxl-instagram"></i>Follow Us</a>
 					<a href="<?php echo $custom_button['link']; ?>" title="<?php echo $custom_button['text']; ?>"><?php echo $custom_button['text']; ?></a>
 				</div>
 				</div>

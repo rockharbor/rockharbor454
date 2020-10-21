@@ -31,6 +31,11 @@ $heroBreakpoint: 985px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+	@include media-below($heroBreakpoint) {
+		max-height: initial;
+		height: 1200px;
+	}
         
         h1 {
             text-transform: uppercase;
@@ -93,6 +98,27 @@ $heroBreakpoint: 985px;
 
 	.info-body {
 		flex-grow: 1;
+	}
+
+	.info-body a {
+		color: #ffffff;
+		display: block;
+	}
+
+	.info-body-header {
+		display: block;
+		font-size: 20px;
+		font-weight: 600;
+		margin-top: 10px;
+	}
+
+	.info-body-header::after {
+		content: '';
+		display: block;
+		width: 50px;
+		height: 6px;
+		background: #43ccb6;
+		margin: 5px auto 10px auto;
 	}
 
 	.info-links {
